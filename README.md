@@ -103,12 +103,10 @@ As a marker for this project, I want to see groups create engaging and well made
 
 ## Use-case specifications
 
-*Difficult Mode*
-
 | Use-Case Section                        | vs Human                                      | vs Computer                                                                                                     |
 |-----------------------------------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| **Description**                         | A run through of the game on hard mode        | 1 player run through of the game on hard mode, against a computer                                               |
-| **Basic Flow**                          | Shoot your opponent until his/her HP becomes zero                    | Shoot the computer until its HP becomes zero, or your own becomes zero                                          |
+| **Description**                         | 1 player play the blocker 1 player play the ghost      | 1 player run through of the game, against a ghost play by a computer                                               |
+| **Basic Flow**                          | Ghost need to catch the pacman, blocker need to stop that                    | Ghost need to catch the pacman, blocker need to stop that                                          |
 | 1.                                      | Players can choose their own planet, each planet has different gravity | Players can choose their own planet, each planet has different gravity                                          |
 | 2.                                      | LEFT-CLICK and drag the mouse to control throwing power and angle (User can choose to hit the star or opponent) | LEFT-CLICK and drag the mouse to control throwing power and angle (User can choose to hit the star or opponent) |
 | 3.                                      | May appear strong wind and change the trajectory of the arrow         | ay appear strong wind and change the trajectory of the arrow                                                    |
