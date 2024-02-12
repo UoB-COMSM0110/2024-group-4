@@ -59,7 +59,7 @@ Dynamic Maze System: The layout of the maze is randomly generated each time you 
 Diverse equipment: Provides a variety of weapon options, each with its own characteristics and tactical value.
 Special abilities and props: Players can find or earn special abilities and props in the maze, such as invisibility cloaks, speed acceleration, and powerful cannonballs, adding more variables to the battle.
 
-Design challenges:
+challenges:
 Balance: Ensure balance between all weapons to make the game both fair and challenging.
 Maze generation algorithm: Design an algorithm that can generate fair and interesting maze layouts to provide a diverse gaming experience.
 
