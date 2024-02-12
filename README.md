@@ -64,10 +64,20 @@ Balance: Ensure balance between all weapons to make the game both fair and chall
 Maze generation algorithm: Design an algorithm that can generate fair and interesting maze layouts to provide a diverse gaming experience.
 
 5.
-Name: Pac-Man
+Name: Reimagining of Pac-Man
    
-Description: Pac-Man is a  classic arcade game that was created by Namco in 1980. It features a yellow, circular character that moves around a maze, eating dot and avoiding ghosts.
+Description: The original Pac-Man is a  classic arcade game that was created by Namco in 1980. It features a yellow, circular character that moves around a maze, eating dot and avoiding ghosts.
 
 Twist: In our version of Pac-Man, both the character and the ghost will be controled by AI, and the player's task is to build blocks to keep the ghosts away from the character and all the dots that are eaten by the character will become money which can be used to buy more blocks, and there are different kinds of blocks that can be bought which have different abilities like transport the character or stop the ghost for a while.
    
 Challenges: how to create different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
+
+
+6.
+Name: Hollow Knight clone
+
+Description: Metroidvania-style platformer puzzle game where the player must navigate through a dungeon, avoiding obstacles and killing enemies. 
+
+Twist: The player’s peripherals have limited use (e.g. can only move forward x squares, limited mouse presses) and in order to reach the end of the dungeon, they must collect ‘peripheral’ tokens to allow them to continue. If they run out of moves, the game ends.
+
+Challenges: tedious to design levels which strike right balance between playable and frustrating, must design by anticipating how the player chooses to use their available moves, using a generative map to avoid hand-designing levels, extra challenges stemming from generative map are how to generate peripheral tokens and enemies in the right place to make the game playable.
