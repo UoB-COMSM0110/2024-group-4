@@ -8,7 +8,7 @@ Tianyi Chen fu23287@bristol.ac.uk    TYChen2000
 
 Nicky Dickson kr23498@bristol.ac.uk   nd1221
 
-Game ideas:
+# Game ideas:
 
 1.
 Name: Vampire Survivors
