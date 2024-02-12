@@ -62,3 +62,12 @@ Special abilities and props: Players can find or earn special abilities and prop
 Design challenges:
 Balance: Ensure balance between all weapons to make the game both fair and challenging.
 Maze generation algorithm: Design an algorithm that can generate fair and interesting maze layouts to provide a diverse gaming experience.
+
+5.
+Name: Pac-Man
+   
+Description: Pac-Man is a  classic arcade game that was created by Namco in 1980. It features a yellow, circular character that moves around a maze, eating dot and avoiding ghosts.
+
+Twist: In our version of Pac-Man, both the character and the ghost will be controled by AI, and the player's task is to build blocks to keep the ghosts away from the character and all the dots that are eaten by the character will become money which can be used to buy more blocks, and there are different kinds of blocks that can be bought which have different abilities like transport the character or stop the ghost for a while.
+   
+Challenges: how to create different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
