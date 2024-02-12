@@ -2,16 +2,15 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Run Processing",
+            "label": "Run Processing Sketch",
             "type": "shell",
             "command": "processing-java",
             "args": [
                 "--force",
-                "--sketch=${fileDirname}",
-                "--output=${fileDirname}/out",
+                "--sketch=${workspaceFolder}\\main",
+                "--output=${workspaceFolder}\\out",
                 "--run"
             ],
-            "problemMatcher": [],
             "group": {
                 "kind": "build",
                 "isDefault": true
