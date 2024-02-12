@@ -107,50 +107,29 @@ As a marker for this project, I want to see groups create engaging and well made
 |-----------------------------------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | **Description**                         | 1 player play the blocker 1 player play the ghost      | 1 player run through of the game, against a ghost play by a computer                                               |
 | **Basic Flow**                          | Ghost need to catch the pacman, blocker need to stop that                    | Ghost need to catch the pacman, blocker need to stop that                                          |
-| 1.                                      | Players can choose their own planet, each planet has different gravity | Players can choose their own planet, each planet has different gravity                                          |
-| 2.                                      | LEFT-CLICK and drag the mouse to control throwing power and angle (User can choose to hit the star or opponent) | LEFT-CLICK and drag the mouse to control throwing power and angle (User can choose to hit the star or opponent) |
-| 3.                                      | May appear strong wind and change the trajectory of the arrow         | ay appear strong wind and change the trajectory of the arrow                                                    |
-| 4.                                      | Hit opponent, their HP will be reduced [A1, A2, A3]                    | Hit opponent, their HP will be reduced [A1, A2, A3]                                                             |
-| 5.                                      | Change sides                                  | Change sides, computer will take their turn                                                                     |
+| 1.                                      | Players can choose to be the blocker or the ghost | Players can choose the difficulty, which will change the abilities of the ghost                                          |
+| 2.                                      | Blocker LEFT-CLICK and drag the block to place blocks if the money is enough; ghost use WASD to control the ghost's move | Blocker LEFT-CLICK and drag the block to place blocks if the money is enough|
+| 3.                                      | Game ends                                  | Game ends                                                                     |
 |                                         |                                               |                                                                                                                 |
 | **Alternative Flow**                    |                                               |                                                                                                                 |
-| A1                                      | 1. Hit a star, skill points will increase                                |                                                                                                                 |
+| A1                                      | 1. Pacman eats a dot, the blocker's money increase by 1                                |                                                                                                                 |
+|                                         | 2. Back to Basic Flow 2.                    |                                                                                                                 |
+| A2                                      | 1. Pacman eats all the dots                                    |                                                                                                                 |
 |                                         | 2. Back to Basic Flow 5.                    |                                                                                                                 |
-| A2                                      | 1. Hit a star, star becomes black hole                                    |                                                                                                                 |
-|                                         | 2. No skill points will be added                                       |                                                                                                                 |
-|                                         | 3. Back to Basic Flow 5.                    |                                                                                                                 |
-| A3                                      | 1. Hit the ground                            |                                                                                                                 |
-|                                         | 2. The ground breaks                        |                                                                                                                 |
-|                                         | 3. Back to Basic Flow 5.                    |                                                                                                                 |
+| A3                                      | 1. Ghost catch the pacman                           |                                                                                                                 |
+|                                         | 2. Back to Basic Flow 5.                    |                                                                                                                 |
 =======
 
 * vs Human or vs Computer
 
 * then settings screen
-    * choose how many rounds you want to play
-    * how much health each player should have
-    * the number of planets
+    * choose side for the two players or choose the difficulty of the game
+    * show some examples of how to play the game
+    * choose the map of the game
 
-* Points system + shop
-* Gravity planets; choosing between moon, mars, earth, etc.
-* Interactive terrain (destroyable by certain items in the shop ? )
-* solar wind ? like in TANKS, raft wars
-* black holes ?
+* game starts 
 
-* shooting stars mechanics
-    * probabilities to do certain things
-    * turn into a planet/black hole (which can be turned off in the settings)
-    * gaining points etc
-
-* camera zooms in on the following of an arrow
-* whether to do a half and half screen where one side has negative gravity, or multiple planets completely visible on the screen
-
-* player can move around the planet rather than shoot for a move
-* moving to other planets ? maybe an item in the shop
-* HP bars and blood
-* Targets on other planets which give points when shot
-
-* Final screen: player X wins
+* Final screen: Pacman / Ghost wins
 
 
 ## Use-case diagram
