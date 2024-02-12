@@ -1,9 +1,80 @@
-Stakeholders: players
+# Requirements
 
-User Stories: 
+## Stakeholders
 
-Worked Through Use Case Specification:
+* Users of the game
+* The markers of the project
 
-Use Case Diagram:
+## User Storeies
 
-Reflection:
+As a player, I want to choose different modes of the game so that I can choose the game's difficulty based on my requirements.
+
+As a player, I want to gain resources through some special behviours in the game, and these resources can be able to trade for different blocks, so it is bit more fun.
+
+As a player, I want to know the direction of my character, so that I can know where it will go.
+
+As a player, I want to have cases or tutorial examples telling me some of special designs of the game.
+
+As a marker for this project, I want to see groups create engaging and well made games, with a good twist that is interesting, and a strong process of development that utilises the techniques taught in this module.
+
+## Use-case specifications
+
+*Difficult Mode*
+
+| Use-Case Section                        | vs Human                                      | vs Computer                                                                                                     |
+|-----------------------------------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| **Description**                         | A run through of the game on hard mode        | 1 player run through of the game on hard mode, against a computer                                               |
+| **Basic Flow**                          | Shoot your opponent until his/her HP becomes zero                    | Shoot the computer until its HP becomes zero, or your own becomes zero                                          |
+| 1.                                      | Players can choose their own planet, each planet has different gravity | Players can choose their own planet, each planet has different gravity                                          |
+| 2.                                      | LEFT-CLICK and drag the mouse to control throwing power and angle (User can choose to hit the star or opponent) | LEFT-CLICK and drag the mouse to control throwing power and angle (User can choose to hit the star or opponent) |
+| 3.                                      | May appear strong wind and change the trajectory of the arrow         | ay appear strong wind and change the trajectory of the arrow                                                    |
+| 4.                                      | Hit opponent, their HP will be reduced [A1, A2, A3]                    | Hit opponent, their HP will be reduced [A1, A2, A3]                                                             |
+| 5.                                      | Change sides                                  | Change sides, computer will take their turn                                                                     |
+|                                         |                                               |                                                                                                                 |
+| **Alternative Flow**                    |                                               |                                                                                                                 |
+| A1                                      | 1. Hit a star, skill points will increase                                |                                                                                                                 |
+|                                         | 2. Back to Basic Flow 5.                    |                                                                                                                 |
+| A2                                      | 1. Hit a star, star becomes black hole                                    |                                                                                                                 |
+|                                         | 2. No skill points will be added                                       |                                                                                                                 |
+|                                         | 3. Back to Basic Flow 5.                    |                                                                                                                 |
+| A3                                      | 1. Hit the ground                            |                                                                                                                 |
+|                                         | 2. The ground breaks                        |                                                                                                                 |
+|                                         | 3. Back to Basic Flow 5.                    |                                                                                                                 |
+=======
+
+* vs Human or vs Computer
+
+* then settings screen
+    * choose how many rounds you want to play
+    * how much health each player should have
+    * the number of planets
+
+* Points system + shop
+* Gravity planets; choosing between moon, mars, earth, etc.
+* Interactive terrain (destroyable by certain items in the shop ? )
+* solar wind ? like in TANKS, raft wars
+* black holes ?
+
+* shooting stars mechanics
+    * probabilities to do certain things
+    * turn into a planet/black hole (which can be turned off in the settings)
+    * gaining points etc
+
+* camera zooms in on the following of an arrow
+* whether to do a half and half screen where one side has negative gravity, or multiple planets completely visible on the screen
+
+* player can move around the planet rather than shoot for a move
+* moving to other planets ? maybe an item in the shop
+* HP bars and blood
+* Targets on other planets which give points when shot
+
+* Final screen: player X wins
+
+
+## Use-case diagram
+
+TODO
+
+## Reflection
+
+TODO
