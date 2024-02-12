@@ -115,9 +115,9 @@ As a marker for this project, I want to see groups create engaging and well made
 | A1                                      | 1. Pacman eats a dot, the blocker's money increase by 1                                |                                                                                                                 |
 |                                         | 2. Back to Basic Flow 2.                    |                                                                                                                 |
 | A2                                      | 1. Pacman eats all the dots                                    |                                                                                                                 |
-|                                         | 2. Back to Basic Flow 5.                    |                                                                                                                 |
+|                                         | 2. Back to Basic Flow 3.                    |                                                                                                                 |
 | A3                                      | 1. Ghost catch the pacman                           |                                                                                                                 |
-|                                         | 2. Back to Basic Flow 5.                    |                                                                                                                 |
+|                                         | 2. Back to Basic Flow 3.                    |                                                                                                                 |
 =======
 
 * vs Human or vs Computer
