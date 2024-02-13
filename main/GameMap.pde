@@ -40,7 +40,7 @@ class GameMap {
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
         if (map[i][j] == 2) {
-          fill(11, 11, 74);
+          fill(22, 22, 148);
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
       }
@@ -57,6 +57,10 @@ class GameMap {
       wallindex++;
       wallindex%=3;
       map[y][x] = 2;
+      return true;
+    }
+    if (map[y][x] == 2) {
+      map[y][x] = 0;
       return true;
     }
     return false;
