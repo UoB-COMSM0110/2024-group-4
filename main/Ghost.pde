@@ -44,12 +44,6 @@ class Ghost {
   // Method to draw the ghost
   void drawGhost() {
     togglePacmanState();
-
-    // V 1.0
-    // fill(255, 0, 0); // 设置为红色
-    // ellipse(x * map.cellSize + map.cellSize / 2, y * map.cellSize + map.cellSize / 2, map.cellSize, map.cellSize);
-
-
     int baseX = x * cellSize + cellSize / 2;
     int baseY = y * cellSize + cellSize / 2;
     fill(255, 0, 0); // Set to red color
