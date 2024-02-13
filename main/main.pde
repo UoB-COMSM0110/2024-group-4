@@ -42,5 +42,4 @@ void mouseClicked() {
       gameMap.setWall(gridX, gridY); 
    // gameMap.map[gridX][gridY] = 1;
    }
-   
 }
