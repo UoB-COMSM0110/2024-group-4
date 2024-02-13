@@ -8,10 +8,18 @@ class GameMap {
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
   };
+  // player can build 3 walls
+  int[][] wallstack={
+  {-1,-1},
+  {-1,-1},
+  {-1,-1},
+  };
+  int wallindex;
   
   // Constructor
   GameMap(int cellSize) {
     this.cellSize = cellSize;
+    this.wallindex = 0;
   }
   
   // Method to check if a move to a new position is possible
@@ -31,7 +39,26 @@ class GameMap {
           fill(33, 33, 222); // Wall color
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
+        if (map[i][j] == 2) {
+          fill(11, 11, 74);
+          rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
+        }
       }
     }
+  }
+  
+  boolean setWall(int x, int y){
+    if (map[y][x] == 0) {
+      if (wallstack[wallindex][0] != -1){
+        map[wallstack[wallindex][1]][wallstack[wallindex][0]] = 0;
+      }
+      wallstack[wallindex][0] = x;
+      wallstack[wallindex][1] = y;
+      wallindex++;
+      wallindex%=3;
+      map[y][x] = 2;
+      return true;
+    }
+    return false;
   }
 }
