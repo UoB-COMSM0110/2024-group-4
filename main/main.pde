@@ -1,19 +1,22 @@
 Pacman myPacman;
 GameMap gameMap;
-Ghost ghost;
+Ghost ghost1;
+Ghost ghost2;
 
 void setup() {
   size(400, 240);
   gameMap = new GameMap(40); // Assuming each cell is 40 pixels
   myPacman = new Pacman(1, 1, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
-  ghost = new Ghost(8, 4, myPacman, gameMap);
+  ghost1 = new Ghost(8, 4, myPacman, gameMap);
+  ghost2 = new Ghost(8, 1, myPacman, gameMap);
 }
 
 void draw() {
   background(0);
   gameMap.drawMap();
   myPacman.drawPacman();
-  ghost.drawGhost();
+  ghost1.drawGhost();
+  ghost2.drawGhost();
 }
 
 void keyPressed() {
