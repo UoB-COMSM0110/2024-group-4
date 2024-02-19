@@ -120,7 +120,7 @@ As a marker for this project, I want to see groups create engaging and well made
 |                                         | 2. Back to Basic Flow 3.                    |                                                                                                                 |
 =======
 
-* vs Human or vs Computer
+* 1 player or 2 players
 
 * then settings screen
     * choose side for the two players or choose the difficulty of the game
@@ -129,7 +129,7 @@ As a marker for this project, I want to see groups create engaging and well made
 
 * game starts 
 
-* Final screen: Pacman / Ghost wins
+* Final screen: Pacman / Ghosts win
 
 
 ## Use-case diagram
