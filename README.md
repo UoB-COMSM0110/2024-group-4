@@ -103,9 +103,9 @@ As a marker for this project, I want to see groups create engaging and well made
 
 ## Use-case specifications
 
-| Use-Case Section                        | vs Human                                      | vs Computer                                                                                                     |
+| Use-Case Section                        | 2 players vs Computer                                      | 1 player vs Computer                                                                                                     |
 |-----------------------------------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| **Description**                         | 1 player play the blocker 1 player play the pacman      | 1 player run through of the game, against 4 ghosts play by a computer                                               |
+| **Description**                         | 1 player play the blocker 1 player play the pacman      | player play the blocker,one computer play the pacman, against 4 ghosts play by a computer                                             |
 | **Basic Flow**                          | Ghosts need to catch the pacman, blocker need to stop that                    | Ghosts need to catch the pacman, blocker need to stop that                                          |
 | 1.                                      | Players can choose to be the blocker or the pacman | Players can choose the difficulty, which will change the abilities of the ghost                                          |
 | 2.                                      | Blocker LEFT-CLICK and drag the block to place blocks if the money is enough; the other player use WASD to control the pacman's move | Blocker LEFT-CLICK and drag the block to place blocks if the money is enough|
