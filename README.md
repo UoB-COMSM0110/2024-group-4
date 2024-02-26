@@ -146,7 +146,7 @@ TODO
 
 ## Class Diagram
 
-![](asset/Pacman Class Diagram.png)
+
 
 ## Works Division before 3.11
 1. Start menu // Tianyi Chen
