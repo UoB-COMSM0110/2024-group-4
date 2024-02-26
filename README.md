@@ -107,7 +107,7 @@ As a marker for this project, I want to see groups create engaging and well made
 |-----------------------------------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | **Description**                         | 1 player play the blocker 1 player play the pacman against 4 ghosts play by the computer     | player play the blocker,one computer play the pacman, against 4 ghosts play by the computer                                             |
 | **Basic Flow**                          | Ghosts need to catch the pacman, blocker need to stop that                    | Ghosts need to catch the pacman, blocker need to stop that                                          |
-| 1.                                      | Players can choose to be the blocker or the pacman | Players can choose the difficulty, which will change the abilities of the ghost                                          |
+| 1.                                      | Players can choose to be the blocker or the pacman, Players can choose the difficulty, which will change the abilities of the ghost | Players can choose the difficulty, which will change the abilities of the ghost                                          |
 | 2.                                      | Blocker LEFT-CLICK and drag the block to place blocks if the money is enough; the other player use WASD to control the pacman's move | Blocker LEFT-CLICK and drag the block to place blocks if the money is enough|
 | 3.                                      | Game ends                                  | Game ends                                                                     |
 |                                         |                                               |                                                                                                                 |
@@ -145,3 +145,12 @@ TODO
 ## Class Diagram
 
 ![Pacman Class Diagram.png](https://s2.loli.net/2024/02/19/6fTRoFiNHIDz4JB.png)
+
+## Works Division before 3.11
+1. Start menu // Tianyi Chen
+2. End Scene // Tianyi Chen
+3. Highscore record // Kane
+4. Ghost's movement logic // Nicky
+5. Pacman's movement logic // Juean Chen
+6. Block's design // Juean Chen
+7. Collision logic // Kane
