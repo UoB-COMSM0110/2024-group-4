@@ -1,6 +1,6 @@
 # 2024-group-4
 
-![](assets/mmexport1708947640736.jpg)
+![](asset/mmexport1708947640736.jpg)
 
 Kevin Chen   ad23091@bristol.ac.uk   ad23091
 
