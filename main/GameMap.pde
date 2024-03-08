@@ -1,8 +1,18 @@
 class GameMap {
   int cellSize; // Cell size
+  int dotSize;
+  int distance;
   int[][] map = {
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     {1, 0, 0, 0, 1, 1, 0, 0, 0, 1},
+    {1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+    {1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+  };
+  int [][] dotMap = {
+    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    {1, 1, 0, 0, 1, 1, 0, 0, 0, 1},
     {1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
     {1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -19,6 +29,8 @@ class GameMap {
   // Constructor
   GameMap(int cellSize) {
     this.cellSize = cellSize;
+    this.dotSize = cellSize / 4;
+    this.distance = (cellSize - dotSize) / 2;
     this.wallindex = 0;
   }
   
@@ -43,9 +55,28 @@ class GameMap {
           fill(22, 22, 148);
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
+        if (dotMap[i][j] == 0) {
+          fill(255, 255, 0); // Dot color
+          rect(j * cellSize + distance, i * cellSize + distance, dotSize, dotSize); // Draw dots
+        }
       }
     }
   }
+  
+  //  Method to check if a move to a new position has a dot
+  boolean checkDot(int x, int y) {
+    if (dotMap[y][x] == 0) {
+      return true;
+    }
+    else {
+      return false;
+    }  
+  }  
+  
+  void eatDot(int x, int y) {
+    dotMap[y][x] = 1; // Eat dot
+    drawMap();
+  }  
   
   boolean setWall(int x, int y){
     if (map[y][x] == 0) {

@@ -22,16 +22,16 @@ void draw() {
 
 void keyPressed() {
   // Update Pacman's direction and attempt to move
-  if (keyCode == UP) {
-    myPacman.move(0, -1);
-  } else if (keyCode == DOWN) {
-    myPacman.move(0, 1);
-  } else if (keyCode == LEFT) {
-    myPacman.move(-1, 0);
-  } else if (keyCode == RIGHT) {
-    myPacman.move(1, 0);
-  }
-}
+    if (keyCode == UP) {
+      myPacman.move(0, -1);
+    } else if (keyCode == DOWN) {
+      myPacman.move(0, 1);
+    } else if (keyCode == LEFT) {
+      myPacman.move(-1, 0);
+    } else if (keyCode == RIGHT) {
+      myPacman.move(1, 0);
+    }
+}  
 
 void mouseClicked() {
    int gridX = mouseX / cellSize;

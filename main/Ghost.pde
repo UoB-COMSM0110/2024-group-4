@@ -33,17 +33,17 @@ class Ghost {
       case 3: dx = -1; break; // Left
       default: break; // No movement
     }
-    if (map.checkMove(x + dx, y + dy)) {
-      x += dx;
-      y += dy;
-      return true;
-    }
+    //if (map.checkMove(x + dx, y + dy)) {
+    //  x += dx;
+    //  y += dy;
+    //  return true;
+    //}
     return false;
   }
 
   // Method to draw the ghost
   void drawGhost() {
-    togglePacmanState();
+    toggleGhostState();
     int baseX = x * cellSize + cellSize / 2;
     int baseY = y * cellSize + cellSize / 2;
     fill(255, 0, 0); // Set to red color
@@ -75,8 +75,8 @@ class Ghost {
   }
 
 
-  // Toggle Pacman's state based on time
-  void togglePacmanState() {
+  // Toggle Ghost's state based on time
+  void toggleGhostState() {
     if (millis() - lastSwitchTime > 100) { // Check if X milliseconds have passed to update direction more frequently
       update();
       lastSwitchTime = millis(); // Update switch time
