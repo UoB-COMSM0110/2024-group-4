@@ -8,7 +8,7 @@ class GameMap {
   int distance;
   int[][] map = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-    {wall, 0, dot, dot, 1, 1, dot, dot, dot, wall},
+    {wall, dot, dot, dot, wall, wall, dot, dot, dot, wall},
     {wall, dot, wall, dot, dot, dot, dot, wall, dot, wall},
     {wall, dot, wall, dot, wall, wall, dot, wall, dot, wall},
     {wall, dot, dot, dot, dot, dot, dot, dot, dot, wall},
@@ -28,6 +28,10 @@ class GameMap {
     this.dotSize = cellSize / 4;
     this.distance = (cellSize - dotSize) / 2;
     this.wallindex = 0;
+  }
+
+  void clearGrid(int x, int y) {
+    map[x][y] = 0;
   }
   
   // Method to check if a move to a new position is possible
