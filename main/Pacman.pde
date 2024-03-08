@@ -15,6 +15,7 @@ class Pacman {
     this.y = startY;
     this.map = map;
     cellSize = map.cellSize;
+    map.clearGrid(x, y);
   }
 
   // Method to draw Pacman
