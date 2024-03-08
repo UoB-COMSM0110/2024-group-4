@@ -1,22 +1,18 @@
+int dot = 16;
+int eat_dot = 17;
+int wall = 1;
+
 class GameMap {
   int cellSize; // Cell size
   int dotSize;
   int distance;
   int[][] map = {
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-    {1, 0, 0, 0, 1, 1, 0, 0, 0, 1},
-    {1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
-    {1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-  };
-  int [][] dotMap = {
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-    {1, 1, 0, 0, 1, 1, 0, 0, 0, 1},
-    {1, 0, 1, 0, 0, 0, 0, 1, 0, 1},
-    {1, 0, 1, 0, 1, 1, 0, 1, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, 0, dot, dot, 1, 1, dot, dot, dot, wall},
+    {wall, dot, wall, dot, dot, dot, dot, wall, dot, wall},
+    {wall, dot, wall, dot, wall, wall, dot, wall, dot, wall},
+    {wall, dot, dot, dot, dot, dot, dot, dot, dot, wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   };
   // player can build 3 walls
   int[][] wallstack={
@@ -40,7 +36,7 @@ class GameMap {
     if (x < 0 || x >= map[0].length || y < 0 || y >= map.length) {
       return false;
     }
-    return map[y][x] == 0; // 0 represents a road, which is movable
+    return map[y][x] != wall; // 1 represents a wall
   }
   
   // Method to draw the map
@@ -55,7 +51,7 @@ class GameMap {
           fill(22, 22, 148);
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
-        if (dotMap[i][j] == 0) {
+        if (map[i][j] == dot) {
           fill(255, 255, 0); // Dot color
           rect(j * cellSize + distance, i * cellSize + distance, dotSize, dotSize); // Draw dots
         }
@@ -65,7 +61,7 @@ class GameMap {
   
   //  Method to check if a move to a new position has a dot
   boolean checkDot(int x, int y) {
-    if (dotMap[y][x] == 0) {
+    if (map[y][x] == dot) {
       return true;
     }
     else {
@@ -74,7 +70,7 @@ class GameMap {
   }  
   
   void eatDot(int x, int y) {
-    dotMap[y][x] = 1; // Eat dot
+    map[y][x] = eat_dot; // Eat dot
     drawMap();
   }  
   
