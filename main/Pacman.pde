@@ -96,6 +96,8 @@ class Pacman {
     int flag = 0;
     for (int i = 0; i < 4; i++) {
       switch (i) {
+        // temp[0] = (2-i)*(i%2);
+        // temp[1] = (1-i)*(i%2-1);
         case 0: temp[0] = 0; // Up
                 temp[1] = -1; 
                 break; 
