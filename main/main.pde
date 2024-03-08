@@ -34,12 +34,12 @@ void keyPressed() {
 }  
 
 void mouseClicked() {
-   int gridX = mouseX / cellSize;
-   int gridY = mouseY / cellSize;
-   
-   if (gridX >= 0 && gridX < 400/cellSize && gridY >= 0 && gridY < 240/cellSize) {
-     println(gridX, gridY);
+  int gridX = mouseX / cellSize;
+  int gridY = mouseY / cellSize;
+  
+  if (gridX >= 0 && gridX < 400/cellSize && gridY >= 0 && gridY < 240/cellSize) {
+    println(gridX, gridY);
       gameMap.setWall(gridX, gridY); 
    // gameMap.map[gridX][gridY] = 1;
-   }
+  }
 }
