@@ -149,6 +149,7 @@ TODO
 ![](asset/PacmanClassDiagram.png)
 
 ## Heuristic Evaluation
-1. Add more interface for the game to improve the HCI experience.
+Project Title: Pacman
+1. Add more interface/UI for the game to improve the HCI experience.
 2. Add more instructions for the game to guide the players.
 3. Add more difficulties to the game to add different experience.
