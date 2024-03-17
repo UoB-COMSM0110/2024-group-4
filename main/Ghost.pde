@@ -195,6 +195,5 @@ class Ghost {
     int[] target = {pacman.x, pacman.y};
     return target;
   }
-  
 
 }

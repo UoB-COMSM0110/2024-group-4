@@ -1,5 +1,5 @@
-final int MAX_COLS = 10;
-final int MAX_ROWS = 6;
+final int MAX_COLS = 28;
+final int MAX_ROWS = 31;
 
 final int WALL = 1;
 final int TMP_WALL = 2;
