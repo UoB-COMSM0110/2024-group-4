@@ -2,13 +2,15 @@ Pacman myPacman;
 GameMap gameMap;
 Ghost ghost1;
 //Ghost ghost2;
+Pathfinder pf;
 int cellSize = 40;
 
 void setup() {
   size(400, 240);
   gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
   myPacman = new Pacman(1, 1, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
-  ghost1 = new Ghost(8, 4, myPacman, gameMap);
+  pf = new Pathfinder(gameMap);
+  ghost1 = new Ghost(8, 4, myPacman, gameMap, pf);
   //ghost2 = new Ghost(8, 1, myPacman, gameMap);
 }
 

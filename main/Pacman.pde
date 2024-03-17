@@ -153,5 +153,13 @@ class Pacman {
               break; 
       default: break; // No movement
     }
-  }  
+  }
+  
+  
+  // Get Pacman's current position
+  int[] getCurrentNode() {
+    int[] node = {x, y};
+    return node;
+  }
+  
 }

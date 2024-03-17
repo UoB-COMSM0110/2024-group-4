@@ -1,17 +1,20 @@
 class Ghost {
+  
   int x, y; // Ghost's position
   int direction; // Ghost's movement direction
   GameMap map; // Reference to the game map
   Pacman pacman; // Reference to the player
+  Pathfinder pf;
   long lastSwitchTime = 0; // Time of the last state switch
   int cellSize;
     
   // Constructor
-  Ghost(int startX, int startY, Pacman pacman, GameMap map) {
+  Ghost(int startX, int startY, Pacman pacman, GameMap map, Pathfinder pf) {
     this.x = startX;
     this.y = startY;
     this.pacman = pacman;
     this.map = map;
+    this.pf = pf;
     this.direction = (int)random(8); // Randomly initialize movement direction
     this.lastSwitchTime = 0;
     this.cellSize = map.cellSize;
@@ -19,10 +22,11 @@ class Ghost {
 
   // Update the ghost's position
   void update() {
-    direction = (int)random(8); // Randomly change direction
+    //direction = (int)random(8); // Randomly change direction
     move();
   }
 
+/*
   // Attempt to move the ghost based on the current direction, return true if successful, otherwise false
   boolean move() {
     int dx = 0, dy = 0;
@@ -40,6 +44,7 @@ class Ghost {
     //}
     return false;
   }
+*/
 
   // Method to draw the ghost
   void drawGhost() {
@@ -77,9 +82,67 @@ class Ghost {
 
   // Toggle Ghost's state based on time
   void toggleGhostState() {
-    if (millis() - lastSwitchTime > 100) { // Check if X milliseconds have passed to update direction more frequently
+    if (millis() - lastSwitchTime > 500) { // Check if X milliseconds have passed to update direction more frequently
       update();
       lastSwitchTime = millis(); // Update switch time
     }
   }
+  
+  /*
+  // Move Ghosts according to A* algorithm
+  void move() {
+   
+    ArrayList<int[]> closed = new ArrayList<int[]>();
+    ArrayList<int[]> open = new ArrayList<int[]>();
+    
+    open.add(this.getCurrentNode());
+    int[] targetNode = pacman.getCurrentNode();
+    
+    while (open.size() > 0) {
+      
+      
+      
+    }
+       
+     
+  }
+  */
+  
+ 
+  void move() {
+    
+    int targetRow = getTargetNode()[1];
+    int targetCol = getTargetNode()[0];
+    
+    //print("row = " + targetRow + "\n");
+    //print("col = " + targetCol + "\n");
+    
+    pf.setGrid(this.x, this.y, targetCol, targetRow);
+    //print(this.x);
+    //print(this.y);
+    println("Ghost pos : " + this.x + " " + this.y);
+    println("Pacman pos : " + targetCol + " " + targetRow);
+    
+    if ( pf.traverse() ) {
+      
+      for (int i = 0; i < pf.optimalPath.size(); i++) {
+        print("row = " + pf.optimalPath.get(i).x + ", col = " + pf.optimalPath.get(i).y + "  ->  ");
+      }
+      println();
+      println();
+      
+      this.x = pf.optimalPath.get(0).x;
+      this.y = pf.optimalPath.get(0).y;
+    }
+  
+  }
+
+ 
+  // Get ghost's target node
+  int[] getTargetNode() {
+    int[] target = {pacman.x, pacman.y};
+    return target;
+  }
+  
+
 }
