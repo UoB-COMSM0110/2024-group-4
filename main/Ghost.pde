@@ -1,3 +1,9 @@
+final int UP = 1;
+final int RIGHT = 2;
+final int DOWN = 3;
+final int LEFT = 4;
+
+
 class Ghost {
   
   int x, y; // Ghost's position
@@ -134,7 +140,53 @@ class Ghost {
       this.x = pf.optimalPath.get(0).x;
       this.y = pf.optimalPath.get(0).y;
     }
+    else { // Ghost is completely blocked off -> move randomly until able to reach target again
+      randomMove();
+    }
+    
   
+  }
+  
+  
+  // If ghost blocked and cannot find target -> move randomly
+  void randomMove() {
+    
+    int newX = -1;
+    int newY = -1;
+    
+    // Get valid move
+    while ( !map.checkMove(newX, newY) ) {
+      
+      int direction = (int) random(1, 5);
+    
+      switch (direction) {
+      
+      case UP:
+        newX = this.x;
+        newY = this.y - 1;
+        break;
+      case RIGHT:
+        newX = this.x + 1;
+        newY = this.y;
+        break;
+      case DOWN:
+        newX = this.x;
+        newY = this.y + 1;
+        break;
+      case LEFT:
+        newX = this.x - 1;
+        newY = this.y;
+        break;
+      default:
+        break;
+      }
+      
+    }
+    
+    // Update position
+    this.x = newX;
+    this.y = newY;
+    
   }
 
  

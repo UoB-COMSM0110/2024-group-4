@@ -157,6 +157,13 @@ class Pathfinder {
         else;
       }
       
+      if ( openList.isEmpty() ) {
+        // If openList is empty at this point, ghost is completely blocked off
+        // and cannot find targetNode. Ghost class switches movement logic to 
+        // random until blocks are removed.
+        return false;
+      }
+      
       // Update currentNode
       currentNode = openList.get(bestNodeIndex);
       if ( currentNode == targetNode ) {
@@ -172,20 +179,13 @@ class Pathfinder {
   
   // Add node to openList if it's a valid path node
   void openNode(Node node) {
+    
     if ( !node.open && !node.visited && map.checkMove(node.x, node.y) ) {
-      //println("x/col = " + node.x);
-      //println("y/row = " + node.y);
-      //println("VALID");
-      //println();
       node.open = true;
       node.parent = currentNode;
       openList.add(node);
     }
-    
-//println("x/col = " + node.x);
-    //println("y/row = " + node.y);
-    //println("INVALID");
-    //println();
+  
   }
   
   
