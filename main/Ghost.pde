@@ -14,6 +14,7 @@ class Ghost {
   long lastSwitchTime = 0; // Time of the last state switch
   int cellSize;
     
+    
   // Constructor
   Ghost(int startX, int startY, Pacman pacman, GameMap map, Pathfinder pf) {
     this.x = startX;
@@ -26,32 +27,14 @@ class Ghost {
     this.cellSize = map.cellSize;
   }
 
+
   // Update the ghost's position
   void update() {
     //direction = (int)random(8); // Randomly change direction
     move();
   }
-
-/*
-  // Attempt to move the ghost based on the current direction, return true if successful, otherwise false
-  boolean move() {
-    int dx = 0, dy = 0;
-    switch (direction) {
-      case 0: dy = -1; break; // Up
-      case 1: dx = 1; break;  // Right
-      case 2: dy = 1; break;  // Down
-      case 3: dx = -1; break; // Left
-      default: break; // No movement
-    }
-    //if (map.checkMove(x + dx, y + dy)) {
-    //  x += dx;
-    //  y += dy;
-    //  return true;
-    //}
-    return false;
-  }
-*/
-
+  
+  
   // Method to draw the ghost
   void drawGhost() {
     toggleGhostState();
@@ -94,48 +77,16 @@ class Ghost {
     }
   }
   
-  /*
-  // Move Ghosts according to A* algorithm
-  void move() {
-   
-    ArrayList<int[]> closed = new ArrayList<int[]>();
-    ArrayList<int[]> open = new ArrayList<int[]>();
-    
-    open.add(this.getCurrentNode());
-    int[] targetNode = pacman.getCurrentNode();
-    
-    while (open.size() > 0) {
-      
-      
-      
-    }
-       
-     
-  }
-  */
   
- 
+  // Move ghost
   void move() {
     
     int targetRow = getTargetNode()[1];
     int targetCol = getTargetNode()[0];
-    
-    //print("row = " + targetRow + "\n");
-    //print("col = " + targetCol + "\n");
-    
+
     pf.setGrid(this.x, this.y, targetCol, targetRow);
-    //print(this.x);
-    //print(this.y);
-    println("Ghost pos : " + this.x + " " + this.y);
-    println("Pacman pos : " + targetCol + " " + targetRow);
-    
+
     if ( pf.traverse() ) {
-      
-      for (int i = 0; i < pf.optimalPath.size(); i++) {
-        print("row = " + pf.optimalPath.get(i).x + ", col = " + pf.optimalPath.get(i).y + "  ->  ");
-      }
-      println();
-      println();
       
       this.x = pf.optimalPath.get(0).x;
       this.y = pf.optimalPath.get(0).y;
@@ -144,7 +95,6 @@ class Ghost {
       randomMove();
     }
     
-  
   }
   
   
@@ -195,5 +145,5 @@ class Ghost {
     int[] target = {pacman.x, pacman.y};
     return target;
   }
-
+  
 }
