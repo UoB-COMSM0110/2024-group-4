@@ -85,7 +85,7 @@ abstract class Ghost {
 
   // Toggle Ghost's state based on time
   void toggleGhostState(int targetRow, int targetCol) {
-    if (millis() - lastSwitchTime > 500) { // Check if X milliseconds have passed to update direction more frequently
+    if (millis() - lastSwitchTime > 400) { // Check if X milliseconds have passed to update direction more frequently
       update(targetRow, targetCol);
       lastSwitchTime = millis(); // Update switch time
     }
