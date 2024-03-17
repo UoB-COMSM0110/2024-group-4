@@ -1,7 +1,7 @@
 Pacman myPacman;
 GameMap gameMap;
-Ghost ghost1;
-//Ghost ghost2;
+Blinky ghost1;
+Pinky ghost2;
 Pathfinder pf;
 int cellSize = 40;
 
@@ -10,16 +10,20 @@ void setup() {
   gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
   myPacman = new Pacman(1, 1, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
   pf = new Pathfinder(gameMap);
-  ghost1 = new Ghost(14, 15, myPacman, gameMap, pf);
-  //ghost2 = new Ghost(8, 1, myPacman, gameMap);
+  ghost1 = new Blinky(14, 16, myPacman, gameMap, pf);
+  ghost2 = new Pinky(16, 16, myPacman, gameMap, pf);
 }
 
 void draw() {
   background(0);
   gameMap.drawMap();
   myPacman.drawPacman();
-  ghost1.drawGhost();
-  //ghost2.drawGhost();
+  ghost1.drawBlinky();
+  ghost2.drawPinky();
+  
+  if ( ghost1.caughtPacman || ghost2.caughtPacman ) {
+    noLoop();
+  }
 }
 
 void keyPressed() {

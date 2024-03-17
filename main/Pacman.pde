@@ -162,4 +162,10 @@ class Pacman {
     return node;
   }
   
+  
+  // Get Pacman's current direction
+  int getCurrentDirection() {
+    return direction;
+  }
+  
 }
