@@ -148,8 +148,19 @@ TODO
 
 ![](asset/PacmanClassDiagram.png)
 
+//<<<<<<< main
+## Works Division before 3.11
+1. Start menu // Tianyi Chen
+2. End Scene // Tianyi Chen
+3. Highscore record // Kane
+4. Ghost's movement logic // Nicky
+5. Pacman's movement logic // Juean Chen
+6. Block's design // Juean Chen
+7. Collision logic // Kane
+//=======
 ## Heuristic Evaluation
 Project Title: Pacman
 1. Add more interface/UI for the game to improve the HCI experience.
 2. Add more instructions for the game to guide the players.
 3. Add more difficulties to the game to add different experience.
+//>>>>>>> main
