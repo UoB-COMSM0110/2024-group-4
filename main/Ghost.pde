@@ -1,3 +1,4 @@
+//<<<<<<< main
 final int UP = 1;
 final int RIGHT = 2;
 final int DOWN = 3;
@@ -6,10 +7,14 @@ final int LEFT = 4;
 
 abstract class Ghost {
   
+//=======
+//class Ghost {
+//>>>>>>> main
   int x, y; // Ghost's position
   int direction; // Ghost's movement direction
   GameMap map; // Reference to the game map
   Pacman pacman; // Reference to the player
+//<<<<<<< main
   Pathfinder pf;
   long lastSwitchTime = 0; // Time of the last state switch
   int cellSize;
@@ -17,11 +22,19 @@ abstract class Ghost {
     
     
   // Constructor
-  Ghost(int startX, int startY, Pacman pacman, GameMap map, Pathfinder pf) {
+  //Ghost(int startX, int startY, Pacman pacman, GameMap map, Pathfinder pf) {
+//=======
+  //long lastSwitchTime = 0; // Time of the last state switch
+  //int cellSize;
+    
+  // Constructor
+  //Ghost(int startX, int startY, Pacman pacman, GameMap map) {
+//>>>>>>> main
     this.x = startX;
     this.y = startY;
     this.pacman = pacman;
     this.map = map;
+//<<<<<<< main
     this.pf = pf;
     this.direction = (int)random(8); // Randomly initialize movement direction
     this.lastSwitchTime = 0;
@@ -55,6 +68,7 @@ abstract class Ghost {
     int baseX = x * cellSize + cellSize / 2;
     int baseY = y * cellSize + cellSize / 2;
     fill(colour[0], colour[1], colour[2]); // Set to red color
+
     noStroke();
 
     // Draw the body
@@ -84,6 +98,7 @@ abstract class Ghost {
 
 
   // Toggle Ghost's state based on time
+//<<<<<<< main
   void toggleGhostState(int targetRow, int targetCol) {
     if (millis() - lastSwitchTime > 400) { // Check if X milliseconds have passed to update direction more frequently
       update(targetRow, targetCol);

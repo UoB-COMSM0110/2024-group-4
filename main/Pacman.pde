@@ -153,6 +153,7 @@ class Pacman {
               break; 
       default: break; // No movement
     }
+
   }
   
   

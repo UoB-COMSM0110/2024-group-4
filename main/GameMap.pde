@@ -1,4 +1,8 @@
+//<<<<<<< main
 final int dot = 3;
+//=======
+//final int dot = 16;
+//>>>>>>> main
 final int eat_dot = 17;
 final int empty_grid = 0;
 final int wall = 1;
@@ -11,6 +15,7 @@ class GameMap {
   int dotSize;
   int distance;
   int[][] map = {
+//<<<<<<< main
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     {1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1},
     {1, 3, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 3, 1, 1, 3, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3, 1},
@@ -43,6 +48,14 @@ class GameMap {
     {1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1},
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     
+//=======
+//    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+//    {wall, dot, dot, dot, wall, wall, dot, dot, dot, wall},
+//    {wall, dot, wall, dot, dot, dot, dot, wall, dot, wall},
+//    {wall, dot, wall, dot, wall, wall, dot, wall, dot, wall},
+//    {wall, dot, dot, dot, dot, dot, dot, dot, dot, wall},
+//    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+//>>>>>>> main
   };
   // player can build 3 walls
   int[][] wallstack={
@@ -128,7 +141,9 @@ class GameMap {
         }
       }
       if(i==wallstack_deep) {
-        println("ERROR: Can not find this tmp wall int wallstack", x, y);
+
+      println("ERROR: Can not find this tmp wall int wallstack", x, y);
+
       }
       return true;
     }

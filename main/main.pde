@@ -1,5 +1,6 @@
 Pacman myPacman;
 GameMap gameMap;
+
 Blinky ghost1;
 Pinky ghost2;
 Pathfinder pf;
@@ -12,18 +13,21 @@ void setup() {
   pf = new Pathfinder(gameMap);
   ghost1 = new Blinky(14, 16, myPacman, gameMap, pf);
   ghost2 = new Pinky(16, 16, myPacman, gameMap, pf);
+
 }
 
 void draw() {
   background(0);
   gameMap.drawMap();
   myPacman.drawPacman();
+
   ghost1.drawBlinky();
   ghost2.drawPinky();
   
   if ( ghost1.caughtPacman || ghost2.caughtPacman ) {
     noLoop();
   }
+
 }
 
 void keyPressed() {
@@ -44,6 +48,7 @@ void mouseClicked() {
   int gridY = mouseY / cellSize;
   
   if (gridX >= 0 && gridX < 1120/cellSize && gridY >= 0 && gridY < 1240/cellSize) {
+
     println(gridX, gridY);
       gameMap.setWall(gridX, gridY); 
   }
