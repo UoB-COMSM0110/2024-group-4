@@ -4,15 +4,19 @@ GameMap gameMap;
 Blinky ghost1;
 Pinky ghost2;
 Pathfinder pf;
-int cellSize = 40;
+int cellSize = 30;
+final int eazy = 4;
+final int middle = 3;
+final int hard = 2;
+final int difficulty = eazy;
 
 void setup() {
-  size(1120, 1240);
+  size(1120/4*3, 1240/4*3);
   gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
   myPacman = new Pacman(1, 1, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
   pf = new Pathfinder(gameMap);
-  ghost1 = new Blinky(14, 16, myPacman, gameMap, pf);
-  ghost2 = new Pinky(16, 16, myPacman, gameMap, pf);
+  ghost1 = new Blinky(26, 29, myPacman, gameMap, pf);
+  ghost2 = new Pinky(1, 29, myPacman, gameMap, pf);
 
 }
 
@@ -24,6 +28,7 @@ void draw() {
   ghost1.drawBlinky();
   ghost2.drawPinky();
   
+  //println(ghost2.caughtPacman);
   if ( ghost1.caughtPacman || ghost2.caughtPacman ) {
     noLoop();
   }

@@ -22,7 +22,7 @@ abstract class Ghost {
     
     
   // Constructor
-  //Ghost(int startX, int startY, Pacman pacman, GameMap map, Pathfinder pf) {
+  Ghost(int startX, int startY, Pacman pacman, GameMap map, Pathfinder pf) {
 //=======
   //long lastSwitchTime = 0; // Time of the last state switch
   //int cellSize;
@@ -40,6 +40,7 @@ abstract class Ghost {
     this.lastSwitchTime = 0;
     this.cellSize = map.cellSize;
     this.caughtPacman = false;
+    
   }
   
   
@@ -54,11 +55,6 @@ abstract class Ghost {
   void update(int targetRow, int targetCol) {
     //direction = (int)random(8); // Randomly change direction
     move(targetRow, targetCol);
-    
-    if ( reachedTarget() ) {
-      caughtPacman = true;
-    }
-    
   }
   
   
@@ -100,7 +96,11 @@ abstract class Ghost {
   // Toggle Ghost's state based on time
 //<<<<<<< main
   void toggleGhostState(int targetRow, int targetCol) {
-    if (millis() - lastSwitchTime > 400) { // Check if X milliseconds have passed to update direction more frequently
+    if ( reachedTarget() ) {
+      caughtPacman = true;
+    }
+    
+    if (millis() - lastSwitchTime > 100*difficulty) { // Check if X milliseconds have passed to update direction more frequently
       update(targetRow, targetCol);
       lastSwitchTime = millis(); // Update switch time
     }
@@ -168,7 +168,9 @@ abstract class Ghost {
   
   // Check if a ghost has caught pacman -> game over
   boolean reachedTarget() {
-    
+    println("#######################");
+    println(x, y);
+    println(pacman.getCurrentNode());
     if ( this.x == pacman.getCurrentNode()[0] && this.y == pacman.getCurrentNode()[1] ) {
       return true;
     }
