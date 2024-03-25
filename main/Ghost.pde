@@ -53,7 +53,7 @@ abstract class Ghost {
 
   // Update the ghost's position
   void update(int targetRow, int targetCol) {
-    //direction = (int)random(8); // Randomly change direction
+    direction = (int)random(8); // Randomly change direction
     move(targetRow, targetCol);
   }
   
@@ -101,7 +101,9 @@ abstract class Ghost {
     }
     
     if (millis() - lastSwitchTime > 100*difficulty) { // Check if X milliseconds have passed to update direction more frequently
-      update(targetRow, targetCol);
+      if (!map.checkPause()) {
+        update(targetRow, targetCol);
+      }
       lastSwitchTime = millis(); // Update switch time
     }
   }

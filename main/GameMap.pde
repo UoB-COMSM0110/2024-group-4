@@ -9,6 +9,7 @@ final int wall = 1;
 final int tmp_wall = 2;
 final int basic_score = 10;
 final int wallstack_deep = 3;
+boolean pause = false;
 
 class GameMap {
   int cellSize; // Cell size
@@ -65,6 +66,7 @@ class GameMap {
   };
   int wallindex;
   int score;
+  int money;
   
   // Constructor
   GameMap(int cellSize) {
@@ -105,11 +107,53 @@ class GameMap {
         }
       }
     }
+    // draw edges
+    for (int i = 0; i < map.length; i++) {
+      if (i == 0 || i == 3 || i == map.length-1) {
+        for (int j = 28; j < 1560/cellSize; j++) {
+          fill(33, 33, 222); // Wall color
+          rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
+        }  
+      }
+      else if (i == 1 || i == 2) {
+        fill(135, 206, 250); // Pause button color
+        rect((1560/cellSize-2) * cellSize, i * cellSize, cellSize, cellSize);
+        rect((1560/cellSize-3) * cellSize, i * cellSize, cellSize, cellSize); // Draw pause button
+        fill(33, 33, 222); // Wall color
+        rect((1560/cellSize-1) * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
+      }  
+      else {
+        fill(33, 33, 222); // Wall color
+        rect((1560/cellSize-1) * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
+      }  
+    }  
     // Show score
     fill(255); // White
-    textSize(32); 
-    text("Score: " + score, 10, 30);
+    textSize(52); 
+    text("SCORE: " + score, 1140, 95);
+    // Show money
+    fill(255, 255, 0); // Yellow
+    textSize(52);
+    text("MONEY: $ " + money, 1140, 220);
+    // Draw pause button
+    drawPauseButton();
   }
+  
+  void drawPauseButton() {
+    if (pause == false) {
+      fill(255);
+      rect(36.4 * cellSize, 1.4 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(36.4 * cellSize, 1.8 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(36.4 * cellSize, 2.2 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(37.2 * cellSize, 1.4 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(37.2 * cellSize, 1.8 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(37.2 * cellSize, 2.2 * cellSize, cellSize/5*2, cellSize/5*2);
+    }
+    else {
+      fill(255);
+      triangle(36.55 * cellSize, 1.4 * cellSize, 36.55 * cellSize, 2.6 * cellSize,37.6 * cellSize, 2 * cellSize);
+    }  
+  }  
   
   //  Method to check if a move to a new position has a dot
   boolean checkDot(int x, int y) {
@@ -124,6 +168,7 @@ class GameMap {
   void eatDot(int x, int y) {
     map[y][x] = eat_dot; // Eat dot
     score += basic_score;
+    money++;
     drawMap();
   }  
   
@@ -164,4 +209,17 @@ class GameMap {
   int getScore() {
     return score;
   }
+  
+  void pause() {
+    if (pause == false) {
+      pause = true;
+    }  
+    else {
+      pause = false;
+    }  
+  }
+  
+  boolean checkPause() {
+    return pause;
+  }  
 }

@@ -1,6 +1,5 @@
 class Pacman {
   int x, y; // Pacman's grid position
-  int money = 0; // Initial money for buying block
   GameMap map; // Reference to the game map for checking
   int cellSize; // Assuming a fixed cell size for simplicity
   int direction = 1; // Initial direction (0 up, 1 right, 2 down, 3 left)
@@ -57,7 +56,9 @@ class Pacman {
   void togglePacmanState() {
     if (millis() - lastSwitchTime > 500) { // Check if 500 milliseconds have passed
       if (isComputer) {
-        update();
+        if (!map.checkPause()) {
+          update();
+        }
       }  
       state = (state + 1) % 2; // Toggle state
       lastSwitchTime = millis(); // Update switch time
@@ -72,11 +73,7 @@ class Pacman {
     // Check if the move is valid
     if (map.checkMove(newX, newY)) {
       x = newX;
-      y = newY;
-      if (map.checkDot(x, y)) {
-        map.eatDot(x, y);
-        money++;
-      }  
+      y = newY;  
     }
     // Optionally, update the direction based on dx, dy here for drawing purposes
     if (dx == 1) direction = 1; // Right
@@ -132,7 +129,6 @@ class Pacman {
       y += movement[1];
       if (map.checkDot(x, y)) {
         map.eatDot(x, y);
-        money++;
       }
     } 
   }
