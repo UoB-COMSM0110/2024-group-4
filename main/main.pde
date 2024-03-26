@@ -11,7 +11,7 @@ final int hard = 2;
 final int difficulty = eazy;
 
 void setup() {
-  size(1560, 1240);
+  size(1600, 1240);
   gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
   myPacman = new Pacman(1, 1, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
   pf = new Pathfinder(gameMap);
@@ -58,7 +58,16 @@ void mouseClicked() {
     println(gridX, gridY);
     gameMap.setWall(gridX, gridY); 
   }
-  if (gridX >= 36 && gridX < 38 && gridY >= 1 && gridY < 4) {
+  if (gridX >= 37 && gridX < 39 && gridY >= 1 && gridY < 4) {
     gameMap.pause(); 
+  }
+  if (gridX >= 28 && gridX < 31 && gridY >= 12 && gridY < 15) {
+    gameMap.changeBlock(1); 
+  }
+  if (gridX >= 32 && gridX < 35 && gridY >= 12 && gridY < 15) {
+    gameMap.changeBlock(2); 
+  }
+  if (gridX >= 36 && gridX < 39 && gridY >= 12 && gridY < 15) {
+    gameMap.changeBlock(3); 
   }
 }

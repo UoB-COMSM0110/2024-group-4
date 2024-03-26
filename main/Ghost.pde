@@ -12,6 +12,7 @@ abstract class Ghost {
 //>>>>>>> main
   int x, y; // Ghost's position
   int direction; // Ghost's movement direction
+  int speed;
   GameMap map; // Reference to the game map
   Pacman pacman; // Reference to the player
 //<<<<<<< main
@@ -40,7 +41,7 @@ abstract class Ghost {
     this.lastSwitchTime = 0;
     this.cellSize = map.cellSize;
     this.caughtPacman = false;
-    
+    this.speed = 100 * difficulty;
   }
   
   
@@ -53,10 +54,27 @@ abstract class Ghost {
 
   // Update the ghost's position
   void update(int targetRow, int targetCol) {
+    boolean speed_slow = false;
+    boolean speed_stop = false;
+    for (int i = 0; i < map.map.length; i++) {
+      for (int j = 0; j < map.map[i].length; j++) {
+        if (map.map[i][j] == 4) {
+          speed_slow = true;
+          speed = 100 * difficulty * 2;
+        }
+        if (map.map[i][j] == 6) {
+          speed_stop = true;
+        }
+      }
+    }
+    if (!speed_slow) {
+      speed = 100 * difficulty;
+    }  
     direction = (int)random(8); // Randomly change direction
-    move(targetRow, targetCol);
+    if (!speed_stop) {
+      move(targetRow, targetCol);  
+    }
   }
-  
   
   // Method to draw the ghost
   void drawGhost(int targetRow, int targetCol, int[] colour) {
@@ -100,7 +118,7 @@ abstract class Ghost {
       caughtPacman = true;
     }
     
-    if (millis() - lastSwitchTime > 100*difficulty) { // Check if X milliseconds have passed to update direction more frequently
+    if (millis() - lastSwitchTime > speed) { // Check if X milliseconds have passed to update direction more frequently
       if (!map.checkPause()) {
         update(targetRow, targetCol);
       }

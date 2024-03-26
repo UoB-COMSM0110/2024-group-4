@@ -6,12 +6,14 @@ final int dot = 3;
 final int eat_dot = 17;
 final int empty_grid = 0;
 final int wall = 1;
-final int tmp_wall = 2;
+int tmp_wall = 2;
 final int basic_score = 10;
 final int wallstack_deep = 3;
 boolean pause = false;
+int block_type = 1;
 
 class GameMap {
+  Ghost ghost;
   int cellSize; // Cell size
   int dotSize;
   int distance;
@@ -66,7 +68,7 @@ class GameMap {
   };
   int wallindex;
   int score;
-  int money;
+  int money = 100;
   
   // Constructor
   GameMap(int cellSize) {
@@ -97,8 +99,16 @@ class GameMap {
           fill(33, 33, 222); // Wall color
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
-        if (map[i][j] == tmp_wall) {
+        if (map[i][j] == 2) {
           fill(22, 22, 148);
+          rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
+        }
+        if (map[i][j] == 4) {
+          fill(135, 206, 250);
+          rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
+        }
+        if (map[i][j] == 6) {
+          fill(255);
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
         if (map[i][j] == dot) {
@@ -109,22 +119,23 @@ class GameMap {
     }
     // draw edges
     for (int i = 0; i < map.length; i++) {
-      if (i == 0 || i == 3 || i == map.length-1) {
-        for (int j = 28; j < 1560/cellSize; j++) {
+      if (i == 0 || i == 3 || i == 4 || i == 5 || i == 8 || i == 11 || i == 15 || i == 18 || i == map.length-1) {
+        for (int j = 28; j < 1600/cellSize; j++) {
           fill(33, 33, 222); // Wall color
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }  
       }
       else if (i == 1 || i == 2) {
         fill(135, 206, 250); // Pause button color
-        rect((1560/cellSize-2) * cellSize, i * cellSize, cellSize, cellSize);
-        rect((1560/cellSize-3) * cellSize, i * cellSize, cellSize, cellSize); // Draw pause button
+        rect((1600/cellSize-2) * cellSize, i * cellSize, cellSize, cellSize);
+        rect((1600/cellSize-3) * cellSize, i * cellSize, cellSize, cellSize); // Draw pause button
         fill(33, 33, 222); // Wall color
-        rect((1560/cellSize-1) * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
+        rect((1600/cellSize-1) * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
+        rect((1600/cellSize-4) * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
       }  
       else {
         fill(33, 33, 222); // Wall color
-        rect((1560/cellSize-1) * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
+        rect((1600/cellSize-1) * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
       }  
     }  
     // Show score
@@ -134,24 +145,88 @@ class GameMap {
     // Show money
     fill(255, 255, 0); // Yellow
     textSize(52);
-    text("MONEY: $ " + money, 1140, 220);
+    text("MONEY: $ " + money, 1140, 300);
     // Draw pause button
     drawPauseButton();
-  }
+    if (pause) {
+      fill(255);
+      textSize(80); 
+      text("GAME PAUSE", 345, 605);
+    }  
+    // Show current block type
+    fill(135, 206, 250);
+    textSize(52); 
+    text("BLOCK TYPE: ", 1140, 420);
+    if (block_type == 1) {
+      fill(22, 22, 148);
+    }
+    else if (block_type == 2) {
+      fill(135, 206, 250);
+    }
+    else {
+      fill(255);
+    }  
+    rect(1450, 370, 1.5*cellSize, 1.5*cellSize);
+    // Show block shop
+    fill(135, 206, 250);
+    textSize(80); 
+    text("BLOCK SHOP", 1120, 200);
+    textSize(30); 
+    text("V    V    V    V    V    V    V    V    V    V    V", 1130, 230);
+    fill(33, 33, 222); // Wall color
+    rect(31 * cellSize, 12 * cellSize, cellSize, cellSize);
+    rect(31 * cellSize, 13 * cellSize, cellSize, cellSize);
+    rect(31 * cellSize, 14 * cellSize, cellSize, cellSize);
+    rect(35 * cellSize, 12 * cellSize, cellSize, cellSize);
+    rect(35 * cellSize, 13 * cellSize, cellSize, cellSize);
+    rect(35 * cellSize, 14 * cellSize, cellSize, cellSize);
+    fill(22, 22, 148);
+    rect(28.75 * cellSize, 12.75 * cellSize, 1.5*cellSize, 1.5*cellSize);
+    fill(135, 206, 250);
+    rect(32.75 * cellSize, 12.75 * cellSize, 1.5*cellSize, 1.5*cellSize);
+    fill(255);
+    rect(36.75 * cellSize, 12.75 * cellSize, 1.5*cellSize, 1.5*cellSize);
+    // Show block information
+    fill(135, 206, 250);
+    textSize(52); 
+    text("BLOCK PRICE: ", 1140, 700);
+    fill(255, 255, 0);
+    text("$ "+ String.valueOf(10*block_type), 1450, 700);
+    fill(135, 206, 250);
+    textSize(52); 
+    text("BLOCK FUNCTION: ", 1140, 820);
+    if (block_type == 1) {
+      text("Block both pacman", 1140, 900);
+      text("and the ghosts", 1140, 980);
+      text("when it exists.", 1140, 1060);
+    }
+    else if (block_type == 2) {
+      text("Block both pacman", 1140, 900);
+      text("and the ghosts,", 1140, 980);
+      text("slow the ghosts", 1140, 1060);
+      text("when it exists.", 1140, 1140);
+    }
+    else {
+      text("Block both pacman", 1140, 900);
+      text("and the ghosts,", 1140, 980);
+      text("stop all the ghosts", 1140, 1060);
+      text("when it exists.", 1140, 1140);
+    }
+ }
   
   void drawPauseButton() {
     if (pause == false) {
       fill(255);
-      rect(36.4 * cellSize, 1.4 * cellSize, cellSize/5*2, cellSize/5*2);
-      rect(36.4 * cellSize, 1.8 * cellSize, cellSize/5*2, cellSize/5*2);
-      rect(36.4 * cellSize, 2.2 * cellSize, cellSize/5*2, cellSize/5*2);
-      rect(37.2 * cellSize, 1.4 * cellSize, cellSize/5*2, cellSize/5*2);
-      rect(37.2 * cellSize, 1.8 * cellSize, cellSize/5*2, cellSize/5*2);
-      rect(37.2 * cellSize, 2.2 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(37.4 * cellSize, 1.4 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(37.4 * cellSize, 1.8 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(37.4 * cellSize, 2.2 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(38.2 * cellSize, 1.4 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(38.2 * cellSize, 1.8 * cellSize, cellSize/5*2, cellSize/5*2);
+      rect(38.2 * cellSize, 2.2 * cellSize, cellSize/5*2, cellSize/5*2);
     }
     else {
       fill(255);
-      triangle(36.55 * cellSize, 1.4 * cellSize, 36.55 * cellSize, 2.6 * cellSize,37.6 * cellSize, 2 * cellSize);
+      triangle(37.55 * cellSize, 1.4 * cellSize, 37.55 * cellSize, 2.6 * cellSize,38.6 * cellSize, 2 * cellSize);
     }  
   }  
   
@@ -173,7 +248,7 @@ class GameMap {
   }  
   
   boolean setWall(int x, int y){
-    if (map[y][x] == tmp_wall) {
+    if (map[y][x] == 2 || map[y][x] == 4 || map[y][x] == 6 ) {
       map[y][x] = empty_grid;
       // Clear tmp wall in the stack
       wallindex=(wallindex+wallstack_deep-1)%wallstack_deep;
@@ -192,7 +267,7 @@ class GameMap {
       }
       return true;
     }
-    if (map[y][x] != wall) {
+    if (map[y][x] != wall && money >= 10 * block_type) {
       if (wallstack[wallindex][0] != -1){
         map[wallstack[wallindex][1]][wallstack[wallindex][0]] = empty_grid;
       }
@@ -200,7 +275,8 @@ class GameMap {
       wallstack[wallindex][1] = y;
       wallindex++;
       wallindex%=wallstack_deep;
-      map[y][x] = tmp_wall;
+      map[y][x] = 2 * block_type;
+      money -= 10 * block_type;
       return true;
     }
     return false;
@@ -221,5 +297,10 @@ class GameMap {
   
   boolean checkPause() {
     return pause;
+  }  
+  
+  void changeBlock(int type) {
+    block_type = type;
+    tmp_wall = 2 * type;
   }  
 }
