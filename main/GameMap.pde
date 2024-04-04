@@ -139,6 +139,7 @@ class GameMap {
       }  
     }  
     // Show score
+    textAlign(LEFT, BASELINE);
     fill(255); // White
     textSize(52); 
     text("SCORE: " + score, 1140, 95);
