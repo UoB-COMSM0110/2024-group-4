@@ -10,24 +10,21 @@ Tianyi Chen fu23287@bristol.ac.uk    TYChen2000
 
 Nicky Dickson kr23498@bristol.ac.uk   nd1221
 
-# Game ideas:
+# Game Ideas:
 
-1.
-Name: Vampire Survivors
+## 1. Vampire Survivors
    
 Description: It is an action roguelike game, in this game, players need to survive while encountering an evolving horde of monsters in a select time; eliminating monsters can provide experience for players to level up which will provide several choices for players to choose, like upgrade a old weapon, add a new weapon or add a buff to the player; before the game is started, the player can choose a weapon to start; there will be 3 modes for the player to choose: easy, middle, hard.
    
 Challenges: how to create an evolving horde of monsters? how to design different weapons? how to balance the game difficulty and the fun of playing the game?
 
-2.
-Name: Defend Zombies
+## 2. Defend Zombies
 
 Description: In Defend Zombies, players take on the role of a gardener using a variety of plants to protect their home from an ever-evolving zombie horde. The game is set during the day in a swimming pool, with waves and types of zombies evolving and increasing over time. Players need to flexibly deploy plants, upgrade strategies, and use special props to defend against zombies. As players progress, they can unlock more plant species and upgrades to face greater challenges.
 
 Challenge: How to design unique zombies? How to design different defense towers? How to balance game difficulty and fun of playing the game?
 
-3.
-Name: Grand Strategy Chess
+## 3. Grand Strategy Chess
 
 Description: In "Grand Strategy Chess", players will play the role of generals from different historical periods and command their armies to fight on a map composed of checkerboards. Each checkerboard represents a different terrain, such as plains, mountains, forests, and rivers, and each terrain will have an impact on the outcome of the battle. Players need to use strategic deployment, troop matching and terrain utilization to defeat their opponents and win.
 
@@ -45,8 +42,7 @@ Balance: Ensure that all classes, special units, and terrain effects are balance
 Strategic Depth: Designing mechanics and tactical possibilities that are complex enough to satisfy players of all skill levels while keeping the game accessible.
 Map and campaign diversity: Create rich and diverse maps and campaign stories to increase the replay value of your game.
 
-4.
-Name: Maze Tank Blitz
+## 4. Maze Tank Blitz
 
 Description: In "Maze Tank Blitz", players will drive tanks to fight in a maze full of obstacles and traps. The goal of the game is to use your tank's cannon and special abilities to defeat your enemies while avoiding the maze's traps and enemy attacks. The game offers multiple different maze maps, each with unique designs and challenges. Players can fight alone or with friends in split-screen or online multiplayer modes.
 
@@ -65,18 +61,16 @@ challenges:
 Balance: Ensure balance between all weapons to make the game both fair and challenging.
 Maze generation algorithm: Design an algorithm that can generate fair and interesting maze layouts to provide a diverse gaming experience.
 
-5.
-Name: Reimagining of Pac-Man
+## 5. Pac-Man Savior (selected)
    
-Description: The original Pac-Man is a  classic arcade game that was created by Namco in 1980. It features a yellow, circular character that moves around a maze, eating dot and avoiding ghosts.
+Description: The original Pac-Man is a classic arcade game that was created by Namco in 1980. It features a yellow, circular character that moves around a maze, eating dot and avoiding ghosts.
 
-Twist: In our version of Pac-Man, both the character and the ghost will be controled by AI, and the player's task is to build blocks to keep the ghosts away from the character and all the dots that are eaten by the character will become money which can be used to buy more blocks, and there are different kinds of blocks that can be bought which have different abilities like transport the character or stop the ghost for a while.
+Twist: In our version of Pac-Man, both the character and the ghost will be controled by AI, and the player's task is to build blocks to keep the ghosts away from the character and all the dots that are eaten by the character will become money which can be used to buy more blocks, and there are different kinds of blocks that can be bought which have different abilities like slow or stop the ghost for a while.
    
-Challenges: how to create different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
+Challenges: how to design and program different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
 
 
-6.
-Name: Hollow Knight clone
+## 6. Hollow Knight clone
 
 Description: Metroidvania-style platformer puzzle game where the player must navigate through a dungeon, avoiding obstacles and killing enemies. 
 
@@ -88,14 +82,18 @@ Challenges: tedious to design levels which strike right balance between playable
 
 ## Stakeholders
 
-* Users of the game
+* Developers of the game
+* Project manager of the game
+* Players of the game
 * The markers of the project
 
 ## User Storeies
 
-As a player, I want to choose different modes of the game so that I can choose the game's difficulty based on my requirements.
+As a developer, I want to make a game that is popular, so that my game could have more exposure to people and I could earn more reputation.
 
-As a player, I want to gain resources through some special behviours in the game, and these resources can be able to trade for different blocks, so it is bit more fun.
+As the project manager, I want to ensure the game developed is meeting all the requirements, so that the project can be developed according to the plan.
+
+As a player, I want to choose different modes of the game so that I can choose the game's difficulty based on my interests.
 
 As a player, I want to know the direction of my character, so that I can know where it will go.
 
@@ -126,12 +124,12 @@ As a marker for this project, I want to see groups create engaging and well made
 
 * 1 player or 2 players
 
-* then settings screen
+* Then settings screen
     * choose side for the two players or choose the difficulty of the game
     * show some examples of how to play the game
     * choose the map of the game
 
-* game starts 
+* Game starts 
 
 * Final screen: Pacman / Ghosts win
 
@@ -148,7 +146,6 @@ TODO
 
 ![](asset/PacmanClassDiagram.png)
 
-//<<<<<<< main
 ## Works Division before 3.11
 1. Start menu // Tianyi Chen
 2. End Scene // Tianyi Chen
@@ -157,10 +154,9 @@ TODO
 5. Pacman's movement logic // Juean Chen
 6. Block's design // Juean Chen
 7. Collision logic // Kane
-//=======
+
 ## Heuristic Evaluation
-Project Title: Pacman
+Project Title: Pacman Savior
 1. Add more interface/UI for the game to improve the HCI experience.
 2. Add more instructions for the game to guide the players.
 3. Add more difficulties to the game to add different experience.
-//>>>>>>> main
