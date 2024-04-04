@@ -72,7 +72,7 @@ Description: The original Pac-Man is a classic arcade game that was created by N
 
 Twist: In our version of Pac-Man, both the character and the ghost will be controled by AI, and the player's task is to build blocks to keep the ghosts away from the character and all the dots that are eaten by the character will become money which can be used to buy more blocks, and there are different kinds of blocks that can be bought which have different abilities like slow or stop the ghost for a while.
    
-Challenges: how to create different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
+Challenges: how to design and program different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
 
 
 6.
@@ -88,14 +88,18 @@ Challenges: tedious to design levels which strike right balance between playable
 
 ## Stakeholders
 
+* Developers of the game
+* Project manager of the game
 * Players of the game
 * The markers of the project
 
 ## User Storeies
 
-As a player, I want to choose different modes of the game so that I can choose the game's difficulty based on my interests.
+As a developer, I want to make a game that is popular, so that my game could have more exposure to people and I could earn more reputation.
 
-As a player, I want to gain resources through some special behviours in the game, and these resources can be able to trade for different blocks, so it is bit more fun.
+As the project manager, I want to ensure the game developed is meeting all the requirements, so that the project can be developed according to the plan.
+
+As a player, I want to choose different modes of the game so that I can choose the game's difficulty based on my interests.
 
 As a player, I want to know the direction of my character, so that I can know where it will go.
 
