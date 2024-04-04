@@ -12,19 +12,19 @@ Nicky Dickson kr23498@bristol.ac.uk   nd1221
 
 # Game Ideas:
 
-## 1. Name: Vampire Survivors
+## 1. Vampire Survivors
    
 Description: It is an action roguelike game, in this game, players need to survive while encountering an evolving horde of monsters in a select time; eliminating monsters can provide experience for players to level up which will provide several choices for players to choose, like upgrade a old weapon, add a new weapon or add a buff to the player; before the game is started, the player can choose a weapon to start; there will be 3 modes for the player to choose: easy, middle, hard.
    
 Challenges: how to create an evolving horde of monsters? how to design different weapons? how to balance the game difficulty and the fun of playing the game?
 
-## 2. Name: Defend Zombies
+## 2. Defend Zombies
 
 Description: In Defend Zombies, players take on the role of a gardener using a variety of plants to protect their home from an ever-evolving zombie horde. The game is set during the day in a swimming pool, with waves and types of zombies evolving and increasing over time. Players need to flexibly deploy plants, upgrade strategies, and use special props to defend against zombies. As players progress, they can unlock more plant species and upgrades to face greater challenges.
 
 Challenge: How to design unique zombies? How to design different defense towers? How to balance game difficulty and fun of playing the game?
 
-## 3. Name: Grand Strategy Chess
+## 3. Grand Strategy Chess
 
 Description: In "Grand Strategy Chess", players will play the role of generals from different historical periods and command their armies to fight on a map composed of checkerboards. Each checkerboard represents a different terrain, such as plains, mountains, forests, and rivers, and each terrain will have an impact on the outcome of the battle. Players need to use strategic deployment, troop matching and terrain utilization to defeat their opponents and win.
 
@@ -42,7 +42,7 @@ Balance: Ensure that all classes, special units, and terrain effects are balance
 Strategic Depth: Designing mechanics and tactical possibilities that are complex enough to satisfy players of all skill levels while keeping the game accessible.
 Map and campaign diversity: Create rich and diverse maps and campaign stories to increase the replay value of your game.
 
-## 4. Name: Maze Tank Blitz
+## 4. Maze Tank Blitz
 
 Description: In "Maze Tank Blitz", players will drive tanks to fight in a maze full of obstacles and traps. The goal of the game is to use your tank's cannon and special abilities to defeat your enemies while avoiding the maze's traps and enemy attacks. The game offers multiple different maze maps, each with unique designs and challenges. Players can fight alone or with friends in split-screen or online multiplayer modes.
 
@@ -61,7 +61,7 @@ challenges:
 Balance: Ensure balance between all weapons to make the game both fair and challenging.
 Maze generation algorithm: Design an algorithm that can generate fair and interesting maze layouts to provide a diverse gaming experience.
 
-## 5. Name: Pac-Man Savior (selected)
+## 5. Pac-Man Savior (selected)
    
 Description: The original Pac-Man is a classic arcade game that was created by Namco in 1980. It features a yellow, circular character that moves around a maze, eating dot and avoiding ghosts.
 
@@ -70,7 +70,7 @@ Twist: In our version of Pac-Man, both the character and the ghost will be contr
 Challenges: how to design and program different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
 
 
-## 6. Name: Hollow Knight clone
+## 6. Hollow Knight clone
 
 Description: Metroidvania-style platformer puzzle game where the player must navigate through a dungeon, avoiding obstacles and killing enemies. 
 
