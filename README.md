@@ -10,7 +10,7 @@ Tianyi Chen fu23287@bristol.ac.uk    TYChen2000
 
 Nicky Dickson kr23498@bristol.ac.uk   nd1221
 
-# Game ideas:
+# Game Ideas:
 
 1.
 Name: Vampire Survivors
@@ -66,11 +66,11 @@ Balance: Ensure balance between all weapons to make the game both fair and chall
 Maze generation algorithm: Design an algorithm that can generate fair and interesting maze layouts to provide a diverse gaming experience.
 
 5.
-Name: Reimagining of Pac-Man
+Name: Pac-Man Savior (selected)
    
-Description: The original Pac-Man is a  classic arcade game that was created by Namco in 1980. It features a yellow, circular character that moves around a maze, eating dot and avoiding ghosts.
+Description: The original Pac-Man is a classic arcade game that was created by Namco in 1980. It features a yellow, circular character that moves around a maze, eating dot and avoiding ghosts.
 
-Twist: In our version of Pac-Man, both the character and the ghost will be controled by AI, and the player's task is to build blocks to keep the ghosts away from the character and all the dots that are eaten by the character will become money which can be used to buy more blocks, and there are different kinds of blocks that can be bought which have different abilities like transport the character or stop the ghost for a while.
+Twist: In our version of Pac-Man, both the character and the ghost will be controled by AI, and the player's task is to build blocks to keep the ghosts away from the character and all the dots that are eaten by the character will become money which can be used to buy more blocks, and there are different kinds of blocks that can be bought which have different abilities like slow or stop the ghost for a while.
    
 Challenges: how to create different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
 
@@ -88,12 +88,12 @@ Challenges: tedious to design levels which strike right balance between playable
 
 ## Stakeholders
 
-* Users of the game
+* Players of the game
 * The markers of the project
 
 ## User Storeies
 
-As a player, I want to choose different modes of the game so that I can choose the game's difficulty based on my requirements.
+As a player, I want to choose different modes of the game so that I can choose the game's difficulty based on my interests.
 
 As a player, I want to gain resources through some special behviours in the game, and these resources can be able to trade for different blocks, so it is bit more fun.
 
@@ -126,12 +126,12 @@ As a marker for this project, I want to see groups create engaging and well made
 
 * 1 player or 2 players
 
-* then settings screen
+* Then settings screen
     * choose side for the two players or choose the difficulty of the game
     * show some examples of how to play the game
     * choose the map of the game
 
-* game starts 
+* Game starts 
 
 * Final screen: Pacman / Ghosts win
 
@@ -148,7 +148,6 @@ TODO
 
 ![](asset/PacmanClassDiagram.png)
 
-//<<<<<<< main
 ## Works Division before 3.11
 1. Start menu // Tianyi Chen
 2. End Scene // Tianyi Chen
@@ -157,10 +156,9 @@ TODO
 5. Pacman's movement logic // Juean Chen
 6. Block's design // Juean Chen
 7. Collision logic // Kane
-//=======
+
 ## Heuristic Evaluation
-Project Title: Pacman
+Project Title: Pacman Savior
 1. Add more interface/UI for the game to improve the HCI experience.
 2. Add more instructions for the game to guide the players.
 3. Add more difficulties to the game to add different experience.
-//>>>>>>> main
