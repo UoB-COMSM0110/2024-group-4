@@ -135,7 +135,7 @@ As a marker for this project, I want to see groups create engaging and well made
 
 ## Use-case diagram
 
-TODO
+![](asset/UseCaseDiagram.png)
 
 ## Reflection
 
