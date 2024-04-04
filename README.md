@@ -122,17 +122,16 @@ As a marker for this project, I want to see groups create engaging and well made
 |                                         | 2. Back to Basic Flow 3.                    |                                                                                                                 |
 =======
 
-* 1 player or 2 players
+* Select 1 player or 2 players
 
-* Then settings screen
-    * choose side for the two players or choose the difficulty of the game
-    * show some examples of how to play the game
-    * choose the map of the game
+* Settings screen
+    * Choose the difficulty of the game
+    * Show some examples of how to play the game
+    * Choose the map of the game
 
 * Game starts 
 
 * Final screen: Pacman / Ghosts win
-
 
 ## Use-case diagram
 
