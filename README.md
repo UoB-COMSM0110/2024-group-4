@@ -156,7 +156,7 @@ Both user story and use case play crucial roles in game development, ensuring th
 ![](asset/PacmanClassDiagram.png)
 
 ## Heuristic Evaluation
-Project Title: Pacman Savior
+* Project Title: Pacman Savior
 ![](asset/HeuristicEvaluation.png)
 * Suggestions from players:
 1. Add more interface/UI for the game to improve the HCI experience.
