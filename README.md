@@ -146,15 +146,6 @@ TODO
 
 ![](asset/PacmanClassDiagram.png)
 
-## Works Division before 3.11
-1. Start menu // Tianyi Chen
-2. End Scene // Tianyi Chen
-3. Highscore record // Kane
-4. Ghost's movement logic // Nicky
-5. Pacman's movement logic // Juean Chen
-6. Block's design // Juean Chen
-7. Collision logic // Kane
-
 ## Heuristic Evaluation
 Project Title: Pacman Savior
 1. Add more interface/UI for the game to improve the HCI experience.
