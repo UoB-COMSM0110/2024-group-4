@@ -1,5 +1,4 @@
 void menu() {
-  background(0);
   startButton.display();
   levelButton.display();
   recordButton.display();
@@ -8,8 +7,6 @@ void menu() {
 }
 
 void maingame() {
-  background(0);
-  gameMap.setMap();
   gameMap.drawMap();
   myPacman.drawPacman();
   ghost1.drawBlinky();
@@ -18,6 +15,7 @@ void maingame() {
   //println(ghost2.caughtPacman);
   if ( ghost1.caughtPacman || ghost2.caughtPacman ) {
     gamemod = gameOver;
+    gameMap.drawMap();
 
     textAlign(CENTER, CENTER);
     fill(255, 0, 0);
@@ -31,10 +29,17 @@ void maingame() {
 
 void endgame() {
   if (!gameended) {
-    playerName = JOptionPane.showInputDialog("Please enter your name:");
+    String playerName = "Player";
+    playerName = JOptionPane.showInputDialog(null, "Please enter your name:", playerName);
+    if (playerName == null) {
+      playerName = "Player";
+    } else if (playerName.trim().isEmpty()) {
+      playerName = "Player";
+    }
     playerName = playerName.replace(",", "").replace("\n", "");
     GRM.saveRecord(playerName);
     gameended = true;
+    return;
   }
 }
 

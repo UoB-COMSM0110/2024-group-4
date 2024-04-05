@@ -43,7 +43,6 @@ final int button_textSize = 50;
 final int startButton_Y = (gameheight-button_h)/2 - 100;
 final int button_gap = 120;
 
-String playerName = "Player";
 boolean gameended = true;
 int finalscore = 0;
 
@@ -70,18 +69,22 @@ void setup() {
 void draw() {
   switch (gamemod) {
     case StartScreen:
+      background(0);
       menu();
       break;
     case gameInProgress:
+      background(0);
       maingame();
       break;
     case gameOver:
       endgame();
       break;
     case gameLevel:
+      background(0);
       chooselevel();
       break;
     case gameHelp:
+      background(0);
       helpmenu();
       break;
     // default:
@@ -103,7 +106,7 @@ void keyPressed() {
     }
   // TODO: Add hint;
   if (gamemod == gameLevel) {
-    if (key >= '1' && key <= '1' + max_level) {
+    if (key >= '1' && key < '1' + max_level) {
       level = key - '1';
     }
   }
@@ -114,12 +117,12 @@ void mouseClicked() {
     if (startButton.clicked()) {
       gamemod = gameInProgress;
       gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
+      gameMap.setMap();
       myPacman = new Pacman(1, 1, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
       pf = new Pathfinder(gameMap);
       ghost1 = new Blinky(26, 29, myPacman, gameMap, pf);
       ghost2 = new Pinky(1, 29, myPacman, gameMap, pf);
 
-      playerName = "Player";
       gameended = false;
       finalscore = 0;
       return;

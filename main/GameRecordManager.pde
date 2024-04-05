@@ -18,14 +18,12 @@ public class GameRecordManager {
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
                 out.print(header);
                 out.close();
-                print("Created!");
                 return;
             } catch (IOException e) {
                 e.printStackTrace();
                 return;
             }
         }
-        print("EXIST!");
     }
 
     public void saveRecord(String playerName) {
