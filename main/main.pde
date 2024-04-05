@@ -17,14 +17,14 @@ int gamemod;
 Button startButton;
 Button endButton;
 
-final int gamewidth = 1600;
+final int gamewidth = 1640;
 final int gameheight = 1240;
 final int button_w = 300;
 final int button_h = 150;
 final int button_textSize = 50;
 
 void setup() {
-  size(1600, 1240);
+  size(1640, 1240);
   gamemod = StartScreen;
   startButton = new Button((gamewidth-button_w)/2, (gameheight-button_h)/2, button_w, button_h, "Start Game", button_textSize);
   endButton = new Button((gamewidth-button_w)/2, (gameheight-button_h-200)/2, button_w*2, button_h, "Return to main menu", button_textSize);
@@ -81,16 +81,16 @@ void mouseClicked() {
       println(gridX, gridY);
       gameMap.setWall(gridX, gridY); 
     }
-    if (gridX >= 37 && gridX < 39 && gridY >= 1 && gridY < 4) {
+    if (gridX >= 38 && gridX < 40 && gridY >= 1 && gridY < 4) {
       gameMap.pause(); 
     }
-    if (gridX >= 28 && gridX < 31 && gridY >= 12 && gridY < 15) {
+    if (gridX >= 29 && gridX < 32 && gridY >= 12 && gridY < 15) {
       gameMap.changeBlock(1); 
     }
-    if (gridX >= 32 && gridX < 35 && gridY >= 12 && gridY < 15) {
+    if (gridX >= 33 && gridX < 36 && gridY >= 12 && gridY < 15) {
       gameMap.changeBlock(2); 
     }
-    if (gridX >= 36 && gridX < 39 && gridY >= 12 && gridY < 15) {
+    if (gridX >= 37 && gridX < 40 && gridY >= 12 && gridY < 15) {
       gameMap.changeBlock(3); 
     }
     return;
@@ -111,6 +111,7 @@ void menu() {
 
 void maingame() {
   background(0);
+  gameMap.setMap();
   gameMap.drawMap();
   myPacman.drawPacman();
   ghost1.drawBlinky();
