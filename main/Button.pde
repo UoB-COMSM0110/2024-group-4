@@ -24,8 +24,8 @@ class Button {
         text(label, x + width / 2, y + height / 2);
     }
 
-    boolean clicked(float mx, float my) {
-        return mx >= x && mx <= x + width && my >= y && my <= y + height;
+    boolean clicked() {
+        return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
     }
 
     void backgroundcolour(int backgroundcolour) {

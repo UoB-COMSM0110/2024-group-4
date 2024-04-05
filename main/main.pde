@@ -1,10 +1,13 @@
+import javax.swing.JOptionPane;
+
 Pacman myPacman;
 GameMap gameMap;
 
 Blinky ghost1;
 Pinky ghost2;
 Pathfinder pf;
-int cellSize = 40;
+GameRecordManager GRM;
+final int cellSize = 40;
 final int eazy = 4;
 final int middle = 3;
 final int hard = 2;
@@ -13,22 +16,55 @@ final int difficulty = eazy;
 final int StartScreen = 0;
 final int gameInProgress = 1;
 final int gameOver = 2;
+final int gameLevel = 3;
+final int gameRecord = 4;
+final int gameHelp = 5;
 int gamemod;
+int level;
+final int max_level = 5;
 Button startButton;
 Button endButton;
+Button levelButton;
+Button recordButton;
+Button helpButton;
+Button exitButton;
+
+Button levelupButton;
+Button leveldownButton;
+Button levelenterButton;
+
+Button helpcancelButton;
 
 final int gamewidth = 1640;
 final int gameheight = 1240;
 final int button_w = 300;
-final int button_h = 150;
+final int button_h = 100;
 final int button_textSize = 50;
+final int startButton_Y = (gameheight-button_h)/2 - 100;
+final int button_gap = 120;
+
+String playerName = "Player";
+boolean gameended = true;
+int finalscore = 0;
 
 void setup() {
   size(1640, 1240);
   gamemod = StartScreen;
-  startButton = new Button((gamewidth-button_w)/2, (gameheight-button_h)/2, button_w, button_h, "Start Game", button_textSize);
+  level = map_choice;
+  startButton = new Button((gamewidth-button_w)/2, startButton_Y, button_w, button_h, "Start", button_textSize);
+  levelButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 1, button_w, button_h, "Level", button_textSize);
+  recordButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 2, button_w, button_h, "Ranking List", button_textSize);
+  helpButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 3, button_w, button_h, "Help", button_textSize);
+  exitButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 4, button_w, button_h, "Exit", button_textSize);
   endButton = new Button((gamewidth-button_w)/2, (gameheight-button_h-200)/2, button_w*2, button_h, "Return to main menu", button_textSize);
 
+  leveldownButton = new Button((gamewidth-button_w)/2 - 200, startButton_Y + button_gap * 2, button_w, button_h, "<-", button_textSize);
+  levelupButton = new Button((gamewidth-button_w)/2 + 200, startButton_Y + button_gap * 2, button_w, button_h, "->", button_textSize);
+  levelenterButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Confirm", button_textSize);
+
+  helpcancelButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Cancel", button_textSize);
+
+  GRM = new GameRecordManager("game_records.txt", gameMap);
 }
 
 void draw() {
@@ -41,6 +77,12 @@ void draw() {
       break;
     case gameOver:
       endgame();
+      break;
+    case gameLevel:
+      chooselevel();
+      break;
+    case gameHelp:
+      helpmenu();
       break;
     // default:
   }
@@ -59,19 +101,65 @@ void keyPressed() {
     } else if (keyCode == 32) {
       gameMap.pause();
     }
+  // TODO: Add hint;
+  if (gamemod == gameLevel) {
+    if (key >= '1' && key <= '1' + max_level) {
+      level = key - '1';
+    }
+  }
 }  
 
 void mouseClicked() {
   if (gamemod == StartScreen) {
-    if (startButton.clicked(mouseX, mouseY)) {
+    if (startButton.clicked()) {
       gamemod = gameInProgress;
       gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
       myPacman = new Pacman(1, 1, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
       pf = new Pathfinder(gameMap);
       ghost1 = new Blinky(26, 29, myPacman, gameMap, pf);
       ghost2 = new Pinky(1, 29, myPacman, gameMap, pf);
+
+      playerName = "Player";
+      gameended = false;
+      finalscore = 0;
+      return;
     }
-    return;
+    if (levelButton.clicked()) {
+      gamemod = gameLevel;
+      return;
+    }
+    if (recordButton.clicked()) {
+      return;
+    }
+    if (helpButton.clicked()) {
+      gamemod = gameHelp;
+      return;
+    }
+    if (exitButton.clicked()) {
+      exit();
+      return;
+    }
+  }
+  if (gamemod == gameLevel) {
+    if (levelupButton.clicked()) {
+      level = (level+1)%max_level;
+      return;
+    }
+    if (leveldownButton.clicked()) {
+      level = (level-1+max_level)%max_level;
+      return;
+    }
+    if (levelenterButton.clicked()) {
+      map_choice = level;
+      gamemod = StartScreen;
+      return;
+    }
+  }
+  if (gamemod == gameHelp) {
+    if (helpcancelButton.clicked()) {
+      gamemod = StartScreen;
+      return;
+    }
   }
   if (gamemod == gameInProgress) {
     int gridX = mouseX / cellSize;
@@ -96,37 +184,10 @@ void mouseClicked() {
     return;
   }
   if (gamemod == gameOver) {
-    if (endButton.clicked(mouseX, mouseY)) {
+    if (endButton.clicked()) {
       gamemod = StartScreen;
       background(0);
     }
     return;
   }
-}
-
-void menu() {
-  background(0);
-  startButton.display();
-}
-
-void maingame() {
-  background(0);
-  gameMap.setMap();
-  gameMap.drawMap();
-  myPacman.drawPacman();
-  ghost1.drawBlinky();
-  ghost2.drawPinky();
-  
-  //println(ghost2.caughtPacman);
-  if ( ghost1.caughtPacman || ghost2.caughtPacman ) {
-    gamemod = gameOver;
-  }
-}
-
-void endgame() {
-  textAlign(CENTER, CENTER);
-  fill(255, 0, 0);
-  textSize(100);
-  text("GAME OVER" , gamewidth/2 -200, gameheight/2 - 400);
-  endButton.display();
 }
