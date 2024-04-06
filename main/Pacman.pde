@@ -19,7 +19,6 @@ class Pacman {
 
   // Method to draw Pacman
   void drawPacman() {
-    togglePacmanState();
     fill(255, 255, 0); // Yellow color
     float centerX = x * cellSize + cellSize / 2;
     float centerY = y * cellSize + cellSize / 2;

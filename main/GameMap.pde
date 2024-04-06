@@ -19,7 +19,7 @@ class GameMap {
   int dotSize;
   int distance;
   
-  int[][] map = map1;
+  int[][] map = deepCopy2D(map1);
   // player can build 3 walls
   int[][] wallstack={
   {-1,-1},
@@ -39,22 +39,8 @@ class GameMap {
   }
   
   void setMap() {
-    if (map_choice == 1) {
-      map = map1;
-    }  
-    else if (map_choice == 2) {
-      map = map2;
-    }  
-    else if (map_choice == 3) {
-      map = map3;
-    }
-    else if (map_choice == 4) {
-      map = map4;
-    }
-    else {
-      map = map5;
-    }
-    println("Here");
+    final int[][][] mapList = {map1, map2, map3, map4, map5};
+    map = deepCopy2D(mapList[map_choice]);
   }
 
   void clearGrid(int x, int y) {
@@ -255,7 +241,6 @@ class GameMap {
     map[y][x] = eat_dot; // Eat dot
     score += basic_score;
     money++;
-    drawMap();
   }  
   
   boolean setWall(int x, int y){

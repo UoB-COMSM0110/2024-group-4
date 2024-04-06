@@ -1,4 +1,7 @@
+import javax.swing.JOptionPane;
+
 void menu() {
+  background(0);
   startButton.display();
   levelButton.display();
   recordButton.display();
@@ -7,24 +10,30 @@ void menu() {
 }
 
 void maingame() {
+  // Update the status of each role
+  statusUpdate();
+  // Draw
+  background(0);
   gameMap.drawMap();
   myPacman.drawPacman();
-  ghost1.drawBlinky();
-  ghost2.drawPinky();
+  ghost1.drawGhost();
+  ghost2.drawGhost();
   
-  //println(ghost2.caughtPacman);
-  if ( ghost1.caughtPacman || ghost2.caughtPacman ) {
+  if (ghost1.caughtPacman || ghost2.caughtPacman) {
     gamemod = gameOver;
-    gameMap.drawMap();
 
     textAlign(CENTER, CENTER);
     fill(255, 0, 0);
     textSize(100);
     text("GAME OVER" , gamewidth/2 -200, gameheight/2 - 400);
     endButton.display();
-
-    // finalscore = score + money*10;
   }
+}
+
+void statusUpdate() {
+  myPacman.togglePacmanState();
+  ghost1.toggleGhostState();
+  ghost2.toggleGhostState();
 }
 
 void endgame() {
@@ -66,6 +75,18 @@ void chooselevel() {
   return;
 }
 
+void recordmenu() {
+  background(0);
+  // Help
+  textAlign(CENTER, CENTER);
+  fill(200, 100, 200);
+  textSize(100);
+  text("Record // TODO", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-200);
+  // Buttons
+  cancelButton.display();
+  return;
+}
+
 void helpmenu() {
   background(0);
   // Help
@@ -74,6 +95,6 @@ void helpmenu() {
   textSize(100);
   text("Help // TODO", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-200);
   // Buttons
-  helpcancelButton.display();
+  cancelButton.display();
   return;
 }

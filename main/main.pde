@@ -1,5 +1,3 @@
-import javax.swing.JOptionPane;
-
 Pacman myPacman;
 GameMap gameMap;
 
@@ -33,7 +31,7 @@ Button levelupButton;
 Button leveldownButton;
 Button levelenterButton;
 
-Button helpcancelButton;
+Button cancelButton;
 
 final int gamewidth = 1640;
 final int gameheight = 1240;
@@ -47,6 +45,7 @@ boolean gameended = true;
 int finalscore = 0;
 
 void setup() {
+  // TODO Make pacman smarter
   size(1640, 1240);
   gamemod = StartScreen;
   level = map_choice;
@@ -61,7 +60,7 @@ void setup() {
   levelupButton = new Button((gamewidth-button_w)/2 + 200, startButton_Y + button_gap * 2, button_w, button_h, "->", button_textSize);
   levelenterButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Confirm", button_textSize);
 
-  helpcancelButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Cancel", button_textSize);
+  cancelButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Cancel", button_textSize);
 
   GRM = new GameRecordManager("game_records.txt", gameMap);
 }
@@ -69,22 +68,21 @@ void setup() {
 void draw() {
   switch (gamemod) {
     case StartScreen:
-      background(0);
       menu();
       break;
     case gameInProgress:
-      background(0);
       maingame();
       break;
     case gameOver:
       endgame();
       break;
     case gameLevel:
-      background(0);
       chooselevel();
       break;
+    case gameRecord:
+      recordmenu();
+      break;
     case gameHelp:
-      background(0);
       helpmenu();
       break;
     // default:
@@ -132,6 +130,7 @@ void mouseClicked() {
       return;
     }
     if (recordButton.clicked()) {
+      gamemod = gameRecord;
       return;
     }
     if (helpButton.clicked()) {
@@ -158,8 +157,14 @@ void mouseClicked() {
       return;
     }
   }
+  if (gamemod == gameRecord) {
+    if (cancelButton.clicked()) {
+      gamemod = StartScreen;
+      return;
+    }
+  }
   if (gamemod == gameHelp) {
-    if (helpcancelButton.clicked()) {
+    if (cancelButton.clicked()) {
       gamemod = StartScreen;
       return;
     }

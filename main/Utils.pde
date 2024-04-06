@@ -1,0 +1,16 @@
+public static int[][] deepCopy2D(int[][] original) {
+    if (original == null) {
+        return null;
+    }
+    
+    int[][] result = new int[original.length][];
+    
+    for (int i = 0; i < original.length; i++) {
+        result[i] = new int[original[i].length];
+        for (int j = 0; j < original[i].length; j++) {
+            result[i][j] = original[i][j];
+        }
+    }
+    
+    return result;
+}

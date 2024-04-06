@@ -6,36 +6,26 @@ final int LEFT = 4;
 
 
 abstract class Ghost {
-  
-//=======
-//class Ghost {
-//>>>>>>> main
   int x, y; // Ghost's position
   int direction; // Ghost's movement direction
   int speed;
   GameMap map; // Reference to the game map
   Pacman pacman; // Reference to the player
-//<<<<<<< main
   Pathfinder pf;
   long lastSwitchTime = 0; // Time of the last state switch
   int cellSize;
   boolean caughtPacman;
-    
+
+  int targetRow;
+  int targetCol;
+  int[] colour = {255, 0, 0};
     
   // Constructor
   Ghost(int startX, int startY, Pacman pacman, GameMap map, Pathfinder pf) {
-//=======
-  //long lastSwitchTime = 0; // Time of the last state switch
-  //int cellSize;
-    
-  // Constructor
-  //Ghost(int startX, int startY, Pacman pacman, GameMap map) {
-//>>>>>>> main
     this.x = startX;
     this.y = startY;
     this.pacman = pacman;
     this.map = map;
-//<<<<<<< main
     this.pf = pf;
     this.direction = (int)random(8); // Randomly initialize movement direction
     this.lastSwitchTime = 0;
@@ -46,14 +36,14 @@ abstract class Ghost {
   
   
   // Draw ghost methods
-  abstract void drawBlinky();
-  abstract void drawPinky();
-  abstract void drawInky();
-  abstract void drawClyde();
+  // abstract void drawBlinky();
+  // abstract void drawPinky();
+  // abstract void drawInky();
+  // abstract void drawClyde();
 
 
   // Update the ghost's position
-  void update(int targetRow, int targetCol) {
+  void update() {
     boolean speed_slow = false;
     boolean speed_stop = false;
     for (int i = 0; i < map.map.length; i++) {
@@ -72,16 +62,15 @@ abstract class Ghost {
     }  
     direction = (int)random(8); // Randomly change direction
     if (!speed_stop) {
-      move(targetRow, targetCol);  
+      move();  
     }
   }
   
   // Method to draw the ghost
-  void drawGhost(int targetRow, int targetCol, int[] colour) {
-    toggleGhostState(targetRow, targetCol);
+  void drawGhost() {
     int baseX = x * cellSize + cellSize / 2;
     int baseY = y * cellSize + cellSize / 2;
-    fill(colour[0], colour[1], colour[2]); // Set to red color
+    fill(colour[0], colour[1], colour[2]); // Set color
 
     noStroke();
 
@@ -112,15 +101,15 @@ abstract class Ghost {
 
 
   // Toggle Ghost's state based on time
-//<<<<<<< main
-  void toggleGhostState(int targetRow, int targetCol) {
+  void toggleGhostState() {
+    targetMethod();
     if ( reachedTarget() ) {
       caughtPacman = true;
     }
     
     if (millis() - lastSwitchTime > speed) { // Check if X milliseconds have passed to update direction more frequently
       if (!map.checkPause()) {
-        update(targetRow, targetCol);
+        update();
       }
       lastSwitchTime = millis(); // Update switch time
     }
@@ -128,19 +117,17 @@ abstract class Ghost {
   
   
   // Move ghost
-  void move(int targetRow, int targetCol) {
-
-    pf.setGrid(this.x, this.y, targetCol, targetRow);
+  void move() {
+    pf.setGrid(x, y, targetCol, targetRow);
 
     if ( pf.traverse() ) {
       
-      this.x = pf.optimalPath.get(0).x;
-      this.y = pf.optimalPath.get(0).y;
+      x = pf.optimalPath.get(0).x;
+      y = pf.optimalPath.get(0).y;
     }
     else { // Ghost is completely blocked off -> move randomly until able to reach target again
       randomMove();
     }
-    
   }
   
   
@@ -188,125 +175,72 @@ abstract class Ghost {
   
   // Check if a ghost has caught pacman -> game over
   boolean reachedTarget() {
-    println("#######################");
-    println(x, y);
-    println(pacman.getCurrentNode());
+    // TODO
+    // println("#######################");
+    // println(x, y);
+    // println(pacman.getCurrentNode());
     if ( this.x == pacman.getCurrentNode()[0] && this.y == pacman.getCurrentNode()[1] ) {
       return true;
     }
     
     return false;
   }
-
+  
+  void targetMethod() {
+    targetRow = pacman.y;
+    targetCol = pacman.x;
+  }
 }
 
 
 class Blinky extends Ghost {
-  
   // Constructor
   Blinky(int startX, int startY, Pacman pacman, GameMap map, Pathfinder pf) {
     super(startX, startY, pacman, map, pf);
+    this.colour = new int[]{255, 0, 0};
   }
-  
-  
-  // Method to draw red ghost
-  void drawBlinky() {
-    
-    int targetRow = getTargetNode()[1];
-    int targetCol = getTargetNode()[0];
-    int[] colour = {255, 0, 0};
-    
-    drawGhost(targetRow, targetCol, colour);
-  }
-  
-  
-  // Useless methods
-  void drawPinky() {
-    return;
-  }
-  void drawInky() {
-    return;
-  }
-  void drawClyde() {
-    return;
-  }  
-  
-  
-  // Get Blinky's target node
-  int[] getTargetNode() {
-    int[] target = {pacman.x, pacman.y};
-    return target;
-  }
-  
 }
 
 
 class Pinky extends Ghost {
-  
   // Constructor
   Pinky(int startX, int startY, Pacman pacman, GameMap map, Pathfinder pf) {
     super(startX, startY, pacman, map, pf);
+    this.colour = new int[]{245, 151, 198};
   }
-  
-  
-  // Method to draw pink ghost
-  void drawPinky() {
-    
-    int targetRow = getTargetNode()[1];
-    int targetCol = getTargetNode()[0];
-    int[] colour = {245, 151, 198};
-   
-    drawGhost(targetRow, targetCol, colour);
-  }
-  
-  
-  // Useless methods
-  void drawBlinky() {
-    return;
-  }
-  void drawInky() {
-    return;
-  }
-  void drawClyde() {
-    return;
-  }
-  
-  
+
   // Get Pinky's target node
-  int[] getTargetNode() {
-    
-    int[] target = {0, 0};
-    
+  @Override
+  void targetMethod() {
+    int[] target = {x, y};
     switch(pacman.getCurrentDirection() + 1) {
       case UP:
-        target[0] = pacman.getCurrentNode()[0];
-        target[1] = pacman.getCurrentNode()[1] - 2;
+        target[0] = pacman.x;
+        target[1] = pacman.y - 2;
         break;
       case RIGHT:
-        target[0] = pacman.getCurrentNode()[0] + 2;
-        target[1] = pacman.getCurrentNode()[1];
+        target[0] = pacman.x + 2;
+        target[1] = pacman.y;
         break;
       case DOWN:
-        target[0] = pacman.getCurrentNode()[0];
-        target[1] = pacman.getCurrentNode()[1] + 2;
+        target[0] = pacman.x;
+        target[1] = pacman.y + 2;
         break;
       case LEFT:
-        target[0] = pacman.getCurrentNode()[0] - 2;
-        target[1] = pacman.getCurrentNode()[1];
+        target[0] = pacman.x - 2;
+        target[1] = pacman.y;
         break;
       default:
         break;
     }
     
-    if ( map.checkMove(target[0], target[1]) ) {
-      return target;
+    if (map.checkMove(target[0], target[1])) {
     }
     else {
-      target[0] = this.x;
-      target[1] = this.y;
-      return target;
+      target[0] = x;
+      target[1] = y;
     }
-    
+    targetRow = target[1];
+    targetCol = target[0];
   }
-  
 }
