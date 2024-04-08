@@ -65,15 +65,18 @@ class Pacman extends Entity {
     rect(x, y, WIDTH, HEIGHT);
     copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
     
-    // Move pacman
-    update();
-    
     // Eat dot
-    if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
+    if ( ( x == this.col * map.cellSize ) && ( y == this.row * map.cellSize ) ) {
+      println("col = " + this.col + ", row = " + this.row);
       if (map.checkDot(this.col, this.row)) {
+        println("DOT: col = " + this.col + ", row = " + this.row);
         map.eatDot(this.col, this.row);
       }
+      println();
     }
+    
+    // Move pacman
+    update();
     
   }
   

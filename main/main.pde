@@ -4,8 +4,8 @@ PImage sprites;
 
 
 
-Blinky ghost1;
-Pinky ghost2;
+Clyde ghost1;
+//Pinky ghost2;
 Pathfinder pf;
 GameRecordManager GRM;
 final int cellSize = 40;
@@ -124,14 +124,14 @@ void mouseClicked() {
       myPacman.setDirection(LEFT);
       myPacman.setState(EVADE);
       pf = new Pathfinder(gameMap);
-      ghost1 = new Blinky(1, 29, pf, gameMap, myPacman);
-      ghost1.setDirection(UP);
+      ghost1 = new Clyde(11, 14, pf, gameMap, myPacman);
+      ghost1.setDirection(LEFT);
       ghost1.setState(CHASE);
       ghost1.setTarget(myPacman);
-      ghost2 = new Pinky(25, 29, pf, gameMap, myPacman);
-      ghost2.setDirection(RIGHT);
-      ghost2.setState(CHASE);
-      ghost2.setTarget(myPacman);
+      //ghost2 = new Pinky(25, 29, pf, gameMap, myPacman);
+      //ghost2.setDirection(RIGHT);
+      //ghost2.setState(CHASE);
+      //ghost2.setTarget(myPacman);
 
       gameended = false;
       finalscore = 0;

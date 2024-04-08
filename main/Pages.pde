@@ -17,9 +17,9 @@ void maingame() {
   gameMap.drawMap();
   myPacman.draw();
   ghost1.draw();
-  ghost2.draw();
+  //ghost2.draw();
   
-  if (ghost1.caughtTarget() || ghost2.caughtTarget()) {
+  if (ghost1.caughtTarget()) {
     gamemod = gameOver;
 
     textAlign(CENTER, CENTER);
