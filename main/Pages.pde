@@ -11,15 +11,15 @@ void menu() {
 
 void maingame() {
   // Update the status of each role
-  statusUpdate();
+  //statusUpdate();
   // Draw
   background(0);
   gameMap.drawMap();
-  myPacman.drawPacman();
-  ghost1.drawGhost();
-  ghost2.drawGhost();
+  myPacman.draw();
+  ghost1.draw();
+  ghost2.draw();
   
-  if (ghost1.caughtPacman || ghost2.caughtPacman) {
+  if (ghost1.caughtTarget() || ghost2.caughtTarget()) {
     gamemod = gameOver;
 
     textAlign(CENTER, CENTER);
@@ -31,9 +31,9 @@ void maingame() {
 }
 
 void statusUpdate() {
-  myPacman.togglePacmanState();
-  ghost1.toggleGhostState();
-  ghost2.toggleGhostState();
+  //myPacman.togglePacmanState();
+  //ghost1.toggleGhostState();
+  //ghost2.toggleGhostState();
 }
 
 void endgame() {

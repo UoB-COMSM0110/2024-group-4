@@ -12,6 +12,8 @@ final int wallstack_deep = 3;
 boolean pause = false;
 int block_type = 1;
 int map_choice = 2;
+int PORTAL = 4;
+
 
 class GameMap {
   Ghost ghost;

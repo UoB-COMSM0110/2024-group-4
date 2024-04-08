@@ -1,3 +1,91 @@
+class Pacman extends Entity {
+  
+  int pillsEaten;
+  
+  int offsetX;
+  int offsetY;
+  int currentFrame;
+  int totalFrames;
+  int frameCell;
+  int spriteRow;
+  int hold;
+  int delay;
+ 
+ 
+  // Constructor
+  Pacman(int startCol, int startRow, Pathfinder pf, GameMap map) {
+    super(startCol, startRow, pf, map);
+    
+    this.pillsEaten = 0;
+    
+    this.currentFrame = 0;
+    this.totalFrames = 2;
+    this.hold = 0;
+    this.delay = 8;
+  
+  }
+  
+  
+  // Draw Pacman
+  void draw() {
+    
+    this.frameCell = currentFrame * cellSize;
+    
+    switch ( this.direction ) {
+      case UP:
+        this.offsetX = 16 + frameCell;
+        this.offsetY = 285;
+        break;
+      case RIGHT:
+        this.offsetX = 16 + frameCell;
+        this.offsetY = 205;
+        break;
+      case DOWN:
+        this.offsetX = 16 + frameCell;
+        this.offsetY = 325;
+        break;
+      case LEFT:
+        this.offsetX = 16 + frameCell;
+        this.offsetY = 245;
+        break;
+      default:
+        println("Error in Ghost.drawGhost()");
+        break;
+    }
+    
+    
+    // Animate sprite
+    this.hold = ( this.hold + 1 ) % this.delay;
+    if ( hold == 0 ) {
+      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+    }
+    
+    // Draw sprite
+    fill(0, 0, 0, 0);
+    rect(x, y, WIDTH, HEIGHT);
+    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+    
+    // Move pacman
+    update();
+    
+    // Eat dot
+    if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
+      if (map.checkDot(this.col, this.row)) {
+        map.eatDot(this.col, this.row);
+      }
+    }
+    
+  }
+  
+  
+  void move(int x, int y) {
+    println(x, y);
+  }
+  
+}
+
+
+/*
 class Pacman {
   int x, y; // Pacman's grid position
   GameMap map; // Reference to the game map for checking
@@ -165,3 +253,4 @@ class Pacman {
   }
   
 }
+*/

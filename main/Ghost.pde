@@ -1,3 +1,329 @@
+class Ghost extends Entity {
+  
+  Pacman pacman;
+  
+  int currentFrame;
+  int totalFrames;
+  int frameCell;
+  int hold;
+  int delay;
+ 
+ 
+  // Constructor
+  Ghost(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+    super(startCol, startRow, pf, map);
+    
+    this.pacman = pacman;
+    
+    this.currentFrame = 0;
+    this.totalFrames = 2;
+    this.hold = 0;
+    this.delay = 6;
+  }
+  
+}
+
+
+class Blinky extends Ghost {
+  
+  int offsetX;
+  int offsetY;
+
+  
+  // Constructor
+  Blinky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+    super(startCol, startRow, pf, map, pacman);
+    
+    this.offsetY = 530;
+  }
+  
+  
+  // Draw Ghost
+  void draw() {
+    
+    this.frameCell = currentFrame * cellSize;
+    
+    switch ( this.direction ) {
+      case UP:
+        this.offsetX = 176 + frameCell;
+        break;
+      case RIGHT:
+        this.offsetX = 16 + frameCell;
+        break;
+      case DOWN:
+        this.offsetX = 256 + frameCell;
+        break;
+      case LEFT:
+        this.offsetX = 96 + frameCell;
+        break;
+      default:
+        println("Error in Blinky.draw()");
+        break;
+    }
+    
+    // Animate sprite
+    this.hold = ( this.hold + 1 ) % this.delay;
+    if ( hold == 0 ) {
+      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+    }
+    
+    // Draw sprite
+    fill(0, 0, 0, 0);
+    rect(x, y, WIDTH, HEIGHT);
+    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+    
+    // Move sprite
+    setTargetTile();
+    update();
+  }
+  
+  
+  // Set target tile
+  void setTargetTile() {
+    
+    this.targetCol = this.target.getCurrentNode()[0];
+    this.targetRow = this.target.getCurrentNode()[1]; 
+  }
+
+}
+
+
+class Inky extends Ghost {
+  
+  int offsetX;
+  int offsetY;
+
+  
+  // Constructor
+  Inky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+    super(startCol, startRow, pf, map, pacman);
+    
+    this.offsetY = 402;
+  }
+  
+  
+  // Draw Ghost
+  void draw() {
+    
+    this.frameCell = currentFrame * cellSize;
+    
+    switch ( this.direction ) {
+      case UP:
+        this.offsetX = 176 + frameCell;
+        break;
+      case RIGHT:
+        this.offsetX = 16 + frameCell;
+        break;
+      case DOWN:
+        this.offsetX = 256 + frameCell;
+        break;
+      case LEFT:
+        this.offsetX = 96 + frameCell;
+        break;
+      default:
+        println("Error in Inky.draw()");
+        break;
+    }
+    
+    // Animate sprite
+    this.hold = ( this.hold + 1 ) % this.delay;
+    if ( hold == 0 ) {
+      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+    }
+    
+    // Draw sprite
+    fill(0, 0, 0, 0);
+    rect(x, y, WIDTH, HEIGHT);
+    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+    
+    // Move sprite
+    setTargetTile();
+    update();
+  }
+  
+  
+   // Set target tile
+   void setTargetTile() {
+    
+    this.targetCol = this.target.getCurrentNode()[0];
+    this.targetRow = this.target.getCurrentNode()[1]; 
+  }
+
+}
+
+
+class Pinky extends Ghost {
+  
+  int offsetX;
+  int offsetY;
+
+  
+  // Constructor
+  Pinky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+    super(startCol, startRow, pf, map, pacman);
+    
+    this.offsetY = 657;
+  }
+  
+  
+  // Draw Ghost
+  void draw() {
+    
+    this.frameCell = currentFrame * cellSize;
+    
+    switch ( this.direction ) {
+      case UP:
+        this.offsetX = 176 + frameCell;
+        break;
+      case RIGHT:
+        this.offsetX = 16 + frameCell;
+        break;
+      case DOWN:
+        this.offsetX = 256 + frameCell;
+        break;
+      case LEFT:
+        this.offsetX = 96 + frameCell;
+        break;
+      default:
+        println("Error in Pinky.draw()");
+        break;
+    }
+    
+    // Animate sprite
+    this.hold = ( this.hold + 1 ) % this.delay;
+    if ( hold == 0 ) {
+      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+    }
+    
+    // Draw sprite
+    fill(0, 0, 0, 0);
+    rect(x, y, WIDTH, HEIGHT);
+    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+    
+    // Move sprite
+    setTargetTile();
+    update();
+  }
+  
+  
+  // Set target tile
+  void setTargetTile() {
+    
+    switch ( this.target.direction ) {
+      
+      case UP:
+        if ( this.target.getCurrentNode()[1] <= 2 ) {
+          this.targetRow = 1;
+        }
+        else {
+          this.targetRow = this.target.getCurrentNode()[1] - 2;
+        }
+        this.targetCol = this.target.getCurrentNode()[0];
+        break;
+      
+      case RIGHT:
+        if ( this.target.getCurrentNode()[0] >= 25 ) {
+          this.targetCol = 26;
+        }
+        else {
+          this.targetCol = this.target.getCurrentNode()[0] + 2;
+        }
+        this.targetRow = this.target.getCurrentNode()[1];
+        break;
+      
+      case DOWN:
+        if ( this.target.getCurrentNode()[1] >= 28 ) {
+          this.targetRow = 29;
+        }
+        else {
+          this.targetRow = this.target.getCurrentNode()[1] + 2;
+        }
+        this.targetCol = this.target.getCurrentNode()[0];
+        break;
+      
+      case LEFT:
+        if ( this.target.getCurrentNode()[0] <= 2 ) {
+          this.targetCol = 1;
+        }
+        else {
+          this.targetCol = this.target.getCurrentNode()[0] - 2;
+        }
+        this.targetRow = this.target.getCurrentNode()[1];
+        break;
+      
+      default:
+        println("Error in Pinky.setTargetTile()");
+        break;
+    }
+  }
+
+}
+
+
+class Clyde extends Ghost {
+  
+  int offsetX;
+  int offsetY;
+
+  
+  // Constructor
+  Clyde(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+    super(startCol, startRow, pf, map, pacman);
+    
+    this.offsetY = 784;
+  }
+  
+  
+  // Draw Ghost
+  void draw() {
+    
+    this.frameCell = currentFrame * cellSize;
+    
+    switch ( this.direction ) {
+      case UP:
+        this.offsetX = 176 + frameCell;
+        break;
+      case RIGHT:
+        this.offsetX = 16 + frameCell;
+        break;
+      case DOWN:
+        this.offsetX = 256 + frameCell;
+        break;
+      case LEFT:
+        this.offsetX = 96 + frameCell;
+        break;
+      default:
+        println("Error in Clyde.draw()");
+        break;
+    }
+    
+    // Animate sprite
+    this.hold = ( this.hold + 1 ) % this.delay;
+    if ( hold == 0 ) {
+      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+    }
+    
+    // Draw sprite
+    fill(0, 0, 0, 0);
+    rect(x, y, WIDTH, HEIGHT);
+    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+    
+    // Move sprite
+    setTargetTile();
+    update();
+  }
+  
+  
+   // Set target tile
+   void setTargetTile() {
+    
+    this.targetCol = this.target.getCurrentNode()[0];
+    this.targetRow = this.target.getCurrentNode()[1]; 
+  }
+
+}
+
+/*
 //<<<<<<< main
 final int UP = 1;
 final int RIGHT = 2;
@@ -244,3 +570,4 @@ class Pinky extends Ghost {
     targetCol = target[0];
   }
 }
+*/

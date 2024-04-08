@@ -1,5 +1,8 @@
 Pacman myPacman;
 GameMap gameMap;
+PImage sprites;
+
+
 
 Blinky ghost1;
 Pinky ghost2;
@@ -63,6 +66,7 @@ void setup() {
   cancelButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Cancel", button_textSize);
 
   GRM = new GameRecordManager("game_records.txt", gameMap);
+  sprites = loadImage("data/spriteSheet.png");
 }
 
 void draw() {
@@ -116,10 +120,18 @@ void mouseClicked() {
       gamemod = gameInProgress;
       gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
       gameMap.setMap();
-      myPacman = new Pacman(1, 1, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
+      myPacman = new Pacman(14, 23, pf, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
+      myPacman.setDirection(LEFT);
+      myPacman.setState(EVADE);
       pf = new Pathfinder(gameMap);
-      ghost1 = new Blinky(26, 29, myPacman, gameMap, pf);
-      ghost2 = new Pinky(1, 29, myPacman, gameMap, pf);
+      ghost1 = new Blinky(1, 29, pf, gameMap, myPacman);
+      ghost1.setDirection(UP);
+      ghost1.setState(CHASE);
+      ghost1.setTarget(myPacman);
+      ghost2 = new Pinky(25, 29, pf, gameMap, myPacman);
+      ghost2.setDirection(RIGHT);
+      ghost2.setState(CHASE);
+      ghost2.setTarget(myPacman);
 
       gameended = false;
       finalscore = 0;
