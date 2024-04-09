@@ -2,6 +2,7 @@ import processing.sound.*;
 
 
 SoundFile teleportSound;
+SoundFile[] caughtSounds;
 
 
 // Initialise sounds effects and music

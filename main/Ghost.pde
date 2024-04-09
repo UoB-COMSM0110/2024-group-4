@@ -558,6 +558,7 @@ class Funky extends Ghost {
       
       if ( teleportCell == teleportFrames - 1 ) {
         teleport();
+        teleportSound.play();
         this.teleHold = 0;
         setState(REAPPEAR);
       }
@@ -617,7 +618,7 @@ class Funky extends Ghost {
       // 1 in 40 chance of teleporting
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
         int teleport = (int) random(1, 41);
-        if ( teleport % 20 == 0 ) {
+        if ( teleport % 40 == 0 ) {
           setState(TELEPORT);
         }
       }
