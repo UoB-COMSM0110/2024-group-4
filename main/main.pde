@@ -4,7 +4,7 @@ PImage sprites;
 
 
 
-Funky ghost1;
+Spunky ghost1;
 Inky ghost2;
 Pathfinder pf;
 GameRecordManager GRM;
@@ -125,7 +125,7 @@ void mouseClicked() {
       myPacman.setDirection(LEFT);
       myPacman.setState(EVADE);
       pf = new Pathfinder(gameMap);
-      ghost1 = new Funky(11, 14, pf, gameMap, myPacman);
+      ghost1 = new Spunky(11, 14, pf, gameMap, myPacman);
       ghost1.setDirection(LEFT);
       ghost1.setState(CHASE);
       ghost1.setTarget(myPacman);

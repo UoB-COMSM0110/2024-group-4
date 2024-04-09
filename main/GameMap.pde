@@ -13,6 +13,7 @@ boolean pause = false;
 int block_type = 1;
 int map_choice = 2;
 int PORTAL = 4;
+int BIG_DOT = 5;
 
 
 class GameMap {
@@ -108,6 +109,14 @@ class GameMap {
         if (map[i][j] == dot) {
           fill(245, 191, 147); // Dot color
           rect(j * cellSize + distance, i * cellSize + distance, dotSize, dotSize); // Draw dots
+        }
+        if (map[i][j] == PORTAL) {
+          fill(0);
+          rect(j * cellSize, i * cellSize, cellSize, cellSize);
+        }
+        if (map[i][j] == BIG_DOT) {
+          fill(245, 191, 147); // Dot color
+          ellipse(j * cellSize + cellSize / 2, i * cellSize + cellSize / 2, 20, 20);
         }
       }
     }
@@ -300,5 +309,11 @@ class GameMap {
   void changeBlock(int type) {
     block_type = type;
     tmp_wall = 2 * type;
-  }  
+  }
+  
+  
+  // Sets a dot at given location on map
+  void setDot(int col, int row) {
+    this.map[row][col] = dot;
+  }
 }

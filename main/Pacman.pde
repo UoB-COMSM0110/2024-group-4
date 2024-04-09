@@ -1,6 +1,7 @@
 class Pacman extends Entity {
   
-  int dotsEaten;
+  int totalDotsEaten;
+  int currentDotsEaten;
   
   int offsetX;
   int offsetY;
@@ -16,7 +17,8 @@ class Pacman extends Entity {
   Pacman(int startCol, int startRow, Pathfinder pf, GameMap map) {
     super(startCol, startRow, pf, map);
     
-    this.dotsEaten = 0;
+    this.totalDotsEaten = 0;
+    this.currentDotsEaten = 0;
     
     this.currentFrame = 0;
     this.totalFrames = 2;
@@ -67,12 +69,11 @@ class Pacman extends Entity {
     
     // Eat dot
     if ( ( x == this.col * map.cellSize ) && ( y == this.row * map.cellSize ) ) {
-      println("col = " + this.col + ", row = " + this.row);
       if (map.checkDot(this.col, this.row)) {
-        println("DOT: col = " + this.col + ", row = " + this.row);
         map.eatDot(this.col, this.row);
+        this.currentDotsEaten++;
+        this.totalDotsEaten++;
       }
-      println();
     }
     
     // Move pacman

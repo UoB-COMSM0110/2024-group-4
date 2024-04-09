@@ -26,6 +26,7 @@ class Entity {
   
   int direction;
   int speed;
+  boolean freeze;
   int state;
   
   Pathfinder pf;
@@ -41,6 +42,7 @@ class Entity {
     this.x = (startCol * map.cellSize);
     this.y = (startRow * map.cellSize);
     this.speed = 2;
+    this.freeze = false;
     this.pf = pf;
     this.map = map;
   
@@ -98,6 +100,13 @@ class Entity {
   }
   
   
+  // this.freeze setter
+  void freeze(boolean bool) {
+    
+    this.freeze = bool;
+  }
+  
+  
   // Update position on screen
   void update() {
   
@@ -136,6 +145,10 @@ class Entity {
         }
        
       }  
+    }
+    
+    if ( this.freeze ) {
+      return;
     }
     
     switch ( direction ) {
