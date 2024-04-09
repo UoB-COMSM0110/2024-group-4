@@ -10,7 +10,8 @@ final int EVADE = 0;
 final int CHASE = 1;
 final int SCATTER = 2;
 final int TELEPORT = 3;
-final int RETURN = 4;
+final int REAPPEAR = 4;
+final int RETURN = 5;
 
 
 class Entity {

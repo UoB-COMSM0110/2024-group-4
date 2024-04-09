@@ -532,10 +532,10 @@ class Funky extends Ghost {
     super(startCol, startRow, pf, map, pacman);
     
     this.offsetY = 365;
-    this.teleportCell = 0;
     this.teleportFrames = 4;
-    this.teleHold = 0;
     this.teleDelay = 3;
+    
+    resetTeleport();
   }
   
   
@@ -545,66 +545,82 @@ class Funky extends Ghost {
     this.frameCell = currentFrame * cellSize;
     
     if (this.state == TELEPORT) {
-      this.offsetTele = 1065 + teleportCell * cellSize;
       
       this.teleHold = ( this.teleHold + 1 ) % this.teleDelay;
-      if ( hold == 0 ) {
+      if ( teleHold == 0 ) {
         this.teleportCell = ( this.teleportCell + 1 ) % this.teleportFrames;
       }
+      this.offsetTele = 1065 + teleportCell * cellSize;
         
       fill(0, 0, 0, 0);
       rect(x, y, WIDTH, HEIGHT);
       copy(sprites, offsetTele, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
       
-      
-      teleportCell++;
-      if ( teleportCell == teleportFrames ) {
+      if ( teleportCell == teleportFrames - 1 ) {
         teleport();
+        this.teleHold = 0;
+        setState(REAPPEAR);
+      }
+    }
+    else if ( this.state == REAPPEAR ) {
+      
+      this.teleHold = ( this.teleHold + 1 ) % this.teleDelay;
+      if ( teleHold == 0 ) {
+        this.teleportCell = ( this.teleportCell - 1 ) % this.teleportFrames;
+      }
+      this.offsetTele = 1065 + teleportCell * cellSize;
+        
+      fill(0, 0, 0, 0);
+      rect(x, y, WIDTH, HEIGHT);
+      copy(sprites, offsetTele, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+      
+      if ( teleportCell == 0 ) {
+        resetTeleport();
         setState(CHASE);
       }
+      
     }
-    
     else {
-    switch ( this.direction ) {
-      case UP:
-        this.offsetX = 892 + frameCell;
-        break;
-      case RIGHT:
-        this.offsetX = 732 + frameCell;
-        break;
-      case DOWN:
-        this.offsetX = 972 + frameCell;
-        break;
-      case LEFT:
-        this.offsetX = 812 + frameCell;
-        break;
-      default:
-        println("Error in Inky.draw()");
-        break;
-    }
-    
-    // Animate sprite
-    this.hold = ( this.hold + 1 ) % this.delay;
-    if ( hold == 0 ) {
-      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
-    }
-    
-    // Draw sprite
-    fill(0, 0, 0, 0);
-    rect(x, y, WIDTH, HEIGHT);
-    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
-    
-    // Move sprite
-    setTargetTile();
-    update();
-    
-    // 1 in 40 chance of teleporting
-    if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
-      int teleport = (int) random(1, 41);
-      if ( teleport % 20 == 0 ) {
-        setState(TELEPORT);
+      switch ( this.direction ) {
+        case UP:
+          this.offsetX = 892 + frameCell;
+          break;
+        case RIGHT:
+          this.offsetX = 732 + frameCell;
+          break;
+        case DOWN:
+          this.offsetX = 972 + frameCell;
+          break;
+        case LEFT:
+          this.offsetX = 812 + frameCell;
+          break;
+        default:
+          println("Error in Inky.draw()");
+          break;
       }
-    }
+      
+      // Animate sprite
+      this.hold = ( this.hold + 1 ) % this.delay;
+      if ( hold == 0 ) {
+        this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+      }
+      
+      // Draw sprite
+      fill(0, 0, 0, 0);
+      rect(x, y, WIDTH, HEIGHT);
+      copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+      
+      // Move sprite
+      setTargetTile();
+      update();
+      
+      // 1 in 40 chance of teleporting
+      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
+        int teleport = (int) random(1, 41);
+        if ( teleport % 20 == 0 ) {
+          setState(TELEPORT);
+        }
+      }
     }
     
   }
@@ -677,6 +693,14 @@ class Funky extends Ghost {
     this.row = randomRow;
     this.x = this.col * cellSize;
     this.y = this.row * cellSize;
+  }
+  
+  
+  // Set parameters required to animate teleport
+  void resetTeleport() {
+    
+    this.teleportCell = 0;
+    this.teleHold = 0;
   }
 
 }
