@@ -8,6 +8,9 @@ final int HEIGHT = 40;
 
 final int EVADE = 0;
 final int CHASE = 1;
+final int SCATTER = 2;
+final int TELEPORT = 3;
+final int RETURN = 4;
 
 
 class Entity {
