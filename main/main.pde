@@ -67,6 +67,7 @@ void setup() {
 
   GRM = new GameRecordManager("game_records.txt", gameMap);
   sprites = loadImage("data/spriteSheet.png");
+  loadSounds();
 }
 
 void draw() {
