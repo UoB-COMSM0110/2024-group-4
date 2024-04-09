@@ -8,6 +8,9 @@ final int HEIGHT = 40;
 
 final int EVADE = 0;
 final int CHASE = 1;
+final int SCATTER = 2;
+final int TELEPORT = 3;
+final int RETURN = 4;
 
 
 class Entity {
@@ -96,27 +99,6 @@ class Entity {
   
   // Update position on screen
   void update() {
-
-    switch ( direction ) {
-      
-      case UP:
-        y -= speed;
-        break;
-      case RIGHT:
-        x += speed;
-        break;
-      case DOWN:
-        y += speed;
-        break;
-      case LEFT:
-        x -= speed;
-        break;
-      default:
-        println("ERROR: invalid direction code in Entity.update() - " + direction);
-        break;
-    }
-  
-    updateTile();
   
     if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
       
@@ -154,6 +136,27 @@ class Entity {
        
       }  
     }
+    
+    switch ( direction ) {
+      
+      case UP:
+        y -= speed;
+        break;
+      case RIGHT:
+        x += speed;
+        break;
+      case DOWN:
+        y += speed;
+        break;
+      case LEFT:
+        x -= speed;
+        break;
+      default:
+        println("ERROR: invalid direction code in Entity.update() - " + direction);
+        break;
+    }
+    
+    updateTile();
 
   }
   

@@ -106,7 +106,7 @@ class GameMap {
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
         if (map[i][j] == dot) {
-          fill(255, 255, 0); // Dot color
+          fill(245, 191, 147); // Dot color
           rect(j * cellSize + distance, i * cellSize + distance, dotSize, dotSize); // Draw dots
         }
       }
