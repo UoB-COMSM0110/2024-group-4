@@ -707,6 +707,204 @@ class Funky extends Ghost {
 }
 
 
+class Orson extends Ghost {
+  
+  int offsetX;
+  int offsetY;
+
+  
+  // Constructor
+  Orson(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+    super(startCol, startRow, pf, map, pacman);
+    
+    this.offsetY = 446;
+  }
+  
+  
+  // Draw Ghost
+  void draw() {
+    
+    this.frameCell = currentFrame * cellSize;
+    
+    switch ( this.direction ) {
+      case UP:
+        this.offsetX = 892 + frameCell;
+        break;
+      case RIGHT:
+        this.offsetX = 732 + frameCell;
+        break;
+      case DOWN:
+        this.offsetX = 972 + frameCell;
+        break;
+      case LEFT:
+        this.offsetX = 812 + frameCell;
+        break;
+      default:
+        println("Error in Orson.draw()");
+        break;
+    }
+    
+    // Animate sprite
+    this.hold = ( this.hold + 1 ) % this.delay;
+    if ( hold == 0 ) {
+      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+    }
+    
+    // Draw sprite
+    fill(0, 0, 0, 0);
+    rect(x, y, WIDTH, HEIGHT);
+    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+    
+    // Move sprite
+    if ( getDistance() >= 16 ) {
+      setState(CHASE);
+      setTargetTile();
+    }
+    else {
+      setState(EVADE);
+    }
+    update();
+    
+    // Place dots
+    if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
+      if ( this.pacman.currentDotsEaten >= 100 && this.pacman.currentDotsEaten <= 175 && this.map.map[this.row][this.col] == 0 ) {
+        this.map.setDot(this.col, this.row);
+      }
+    }
+  }
+  
+  
+  // Set target tile
+  void setTargetTile() {
+    
+    this.targetCol = this.target.getCurrentNode()[0];
+    this.targetRow = this.target.getCurrentNode()[1]; 
+  }
+  
+  
+  // Return Euclidian distance from target entity
+  int getDistance() {
+    
+    int dX = abs(this.col - this.target.getCurrentNode()[0]);
+    int dY = abs(this.row - this.target.getCurrentNode()[1]);
+    
+    return (int) sqrt( pow(dX, 2) + pow(dY, 2) );
+  }
+
+}
+
+
+class Spunky extends Ghost {
+  
+  int offsetX;
+  int offsetY;
+  
+  int offsetSleep;
+  int sleepCell;
+  int sleepFrames;
+  int sleepHold;
+  int sleepDelay;
+
+  
+  // Constructor
+  Spunky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+    super(startCol, startRow, pf, map, pacman);
+    
+    this.offsetY = 124;
+    this.sleepCell = 0;
+    this.sleepFrames = 2;
+    this.sleepHold = 2;
+    this.sleepDelay = 5;
+  }
+  
+  
+  // Draw Ghost
+  void draw() {
+    
+    this.frameCell = currentFrame * cellSize;
+    
+    if ( this.freeze ) {
+      
+      this.sleepHold = ( this.sleepHold + 1 ) % this.sleepDelay;
+      if ( sleepHold == 0 ) {
+        this.sleepCell = ( this.sleepCell + 1 ) % this.sleepFrames;
+      }
+      this.offsetSleep = 1091 + sleepCell * cellSize;
+        
+      fill(0, 0, 0, 0);
+      rect(x, y, WIDTH, HEIGHT);
+      copy(sprites, offsetSleep, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+      
+    }
+    else {
+      switch ( this.direction ) {
+        case UP:
+          this.offsetX = 931 + frameCell;
+          break;
+        case RIGHT:
+          this.offsetX = 771 + frameCell;
+          break;
+        case DOWN:
+          this.offsetX = 1011 + frameCell;
+          break;
+        case LEFT:
+          this.offsetX = 851 + frameCell;
+          break;
+        default:
+          println("Error in Clyde.draw()");
+          break;
+      }
+      
+      // Animate sprite
+      this.hold = ( this.hold + 1 ) % this.delay;
+      if ( hold == 0 ) {
+        this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+      }
+      
+      // Draw sprite
+      fill(0, 0, 0, 0);
+      rect(x, y, WIDTH, HEIGHT);
+      copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+    
+    }
+      
+    // Move sprite
+    if ( getDistance() <= 6 ) {
+      freeze(false);
+      setState(CHASE);
+      setTargetTile();
+    }
+    else {
+      setState(EVADE);
+      if ( millis() > 10000 ) {
+        freeze(true);
+      }
+    }
+    update();
+    
+  }
+  
+  
+  // Set target tile
+  void setTargetTile() {
+    
+    this.targetCol = this.target.getCurrentNode()[0];
+    this.targetRow = this.target.getCurrentNode()[1]; 
+  }
+  
+  
+  // Return Euclidian distance from target entity
+  int getDistance() {
+    
+    int dX = abs(this.col - this.target.getCurrentNode()[0]);
+    int dY = abs(this.row - this.target.getCurrentNode()[1]);
+    
+    return (int) sqrt( pow(dX, 2) + pow(dY, 2) );
+  }
+
+}
+
+
 /*
 //<<<<<<< main
 final int UP = 1;
