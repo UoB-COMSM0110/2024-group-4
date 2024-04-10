@@ -76,6 +76,11 @@ class Pacman extends Entity {
         this.currentDotsEaten++;
         this.totalDotsEaten++;
       }
+      else if (map.checkBigDot(this.row, this.col)) {
+        map.eatBigDot(this.row, this.col);
+        this.currentDotsEaten++;
+        this.totalDotsEaten++;
+      }
     }
     
     // Move pacman

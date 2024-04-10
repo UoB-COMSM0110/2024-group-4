@@ -8,6 +8,7 @@ final int empty_grid = 0;
 final int wall = 1;
 int tmp_wall = 2;
 final int basic_score = 10;
+final int bigScore = 300;
 final int wallstack_deep = 3;
 boolean pause = false;
 int block_type = 1;
@@ -252,7 +253,24 @@ class GameMap {
     map[y][x] = eat_dot; // Eat dot
     score += basic_score;
     money++;
-  }  
+  }
+  
+  
+  // Check if new tile contians big dot
+  boolean checkBigDot(int row, int col) {
+    if ( map[row][col] == BIG_DOT ) {
+      return true;
+    }
+    return false;
+  }
+  
+  
+  // Eat bigDot and remove from map
+  void eatBigDot(int row, int col) {
+    map[row][col] = eat_dot;
+    score += bigScore;
+  }
+  
   
   boolean setWall(int x, int y){
     if (map[y][x] == 2 || map[y][x] == 4 || map[y][x] == 6 ) {
@@ -315,5 +333,22 @@ class GameMap {
   // Sets a dot at given location on map
   void setDot(int col, int row) {
     this.map[row][col] = dot;
+  }
+  
+  
+  // Returns how many dots are remaining on map
+  int dotsRemaining() {
+    
+    int dots = 0;
+    
+    for ( int row = 0; row < map.length; row++ ) {
+      for ( int col = 0; col < map[0].length; col++ ) {
+        if ( map[row][col] == dot || map[row][col] == BIG_DOT ) {
+          dots++;
+        }
+      }
+    }
+    
+    return dots;
   }
 }
