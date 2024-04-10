@@ -10,6 +10,7 @@ class Ghost extends Entity {
   
   int scatterCorner;
   int scatterTile;
+  int[][][] scatterPaths;
  
  
   // Constructor
@@ -23,6 +24,8 @@ class Ghost extends Entity {
     this.hold = 0;
     this.delay = 6;
     
+    this.scatterPaths = scatterPaths1;
+    
     initialiseScatter();
 
   }
@@ -31,11 +34,11 @@ class Ghost extends Entity {
   // Set scatter target
   void setScatterParameters() {
     
-    this.targetRow = scatterPaths5[this.scatterCorner][this.scatterTile][0];
-    this.targetCol = scatterPaths5[this.scatterCorner][this.scatterTile][1];
+    this.targetRow = this.scatterPaths[this.scatterCorner][this.scatterTile][0];
+    this.targetCol = this.scatterPaths[this.scatterCorner][this.scatterTile][1];
     
     this.scatterTile++;
-    if ( this.scatterTile == scatterPaths5[this.scatterCorner].length ) {
+    if ( this.scatterTile == this.scatterPaths[this.scatterCorner].length ) {
       this.scatterTile = 0;
     }
   }
@@ -44,11 +47,11 @@ class Ghost extends Entity {
   // Set initial scatter parameters
   void initialiseScatter() {
     
-    this.scatterCorner = 3;
+    this.scatterCorner = 1;
     this.scatterTile = 0;
     
-    this.targetRow = scatterPaths5[this.scatterCorner][this.scatterTile][0];
-    this.targetCol = scatterPaths5[this.scatterCorner][this.scatterTile][1];
+    this.targetRow = this.scatterPaths[this.scatterCorner][this.scatterTile][0];
+    this.targetCol = this.scatterPaths[this.scatterCorner][this.scatterTile][1];
   }
   
 }
@@ -105,10 +108,7 @@ class Blinky extends Ghost {
     // Move sprite
     if ( state == SCATTER ) {
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
-        println("scatter tile = " + this.scatterTile);
-        //if ( reachedTargetTile() ) {
         setScatterParameters();
-      //}
       }
     }
     else {
@@ -179,7 +179,14 @@ class Inky extends Ghost {
     copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
     
     // Move sprite
-    setTargetTile();
+    if ( state == SCATTER ) {
+      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+        setScatterParameters();
+      }
+    }
+    else {
+      setTargetTile();
+    }
     update();
   }
   
@@ -337,7 +344,14 @@ class Pinky extends Ghost {
     copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
     
     // Move sprite
-    setTargetTile();
+    if ( state == SCATTER ) {
+      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+        setScatterParameters();
+      }
+    }
+    else {
+      setTargetTile();
+    }
     update();
   }
   
@@ -445,7 +459,12 @@ class Clyde extends Ghost {
     copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
     
     // Move sprite
-    if ( getDistance() >= 8 ) {
+    if ( state == SCATTER ) {
+      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+        setScatterParameters();
+      }
+    }
+    else if ( getDistance() >= 8 ) {
       setState(CHASE);
       setTargetTile();
     }
@@ -525,7 +544,12 @@ class Sue extends Ghost {
     copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
     
     // Move sprite
-    if ( getDistance() >= 4 ) {
+    if ( state == SCATTER ) {
+      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+        setScatterParameters();
+      }
+    }
+    else if ( getDistance() >= 4 ) {
       setState(CHASE);
       setTargetTile();
     }
@@ -652,7 +676,14 @@ class Funky extends Ghost {
       copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
       
       // Move sprite
-      setTargetTile();
+      if ( state == SCATTER ) {
+        if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+          setScatterParameters();
+        }
+      }
+      else {
+        setTargetTile();
+      }
       update();
       
       // 1 in 40 chance of teleporting
@@ -796,7 +827,12 @@ class Orson extends Ghost {
     copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
     
     // Move sprite
-    if ( getDistance() >= 16 ) {
+    if ( state == SCATTER ) {
+      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+        setScatterParameters();
+      }
+    }
+    else if ( getDistance() >= 16 ) {
       setState(CHASE);
       setTargetTile();
     }
@@ -909,7 +945,12 @@ class Spunky extends Ghost {
     }
       
     // Move sprite
-    if ( getDistance() <= 6 ) {
+    if ( state == SCATTER ) {
+      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+        setScatterParameters();
+      }
+    }
+    else if ( getDistance() <= 6 ) {
       freeze(false);
       setState(CHASE);
       setTargetTile();
