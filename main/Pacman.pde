@@ -1,5 +1,6 @@
 class Pacman extends Entity {
   
+  int lives;
   int totalDotsEaten;
   int currentDotsEaten;
   
@@ -17,6 +18,7 @@ class Pacman extends Entity {
   Pacman(int startCol, int startRow, Pathfinder pf, GameMap map) {
     super(startCol, startRow, pf, map);
     
+    this.lives = 3;
     this.totalDotsEaten = 0;
     this.currentDotsEaten = 0;
     

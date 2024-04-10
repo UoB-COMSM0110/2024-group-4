@@ -8,6 +8,7 @@ Spunky ghost1;
 Inky ghost2;
 Pathfinder pf;
 GameRecordManager GRM;
+GameManager gm;
 final int cellSize = 40;
 final int eazy = 4;
 final int middle = 3;
@@ -66,6 +67,7 @@ void setup() {
   cancelButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Cancel", button_textSize);
 
   GRM = new GameRecordManager("game_records.txt", gameMap);
+  gm = new GameManager();
   sprites = loadImage("data/spriteSheet.png");
   loadSounds();
 }
