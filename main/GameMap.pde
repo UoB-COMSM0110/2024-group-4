@@ -15,6 +15,7 @@ int block_type = 1;
 int map_choice = 2;
 int PORTAL = 4;
 int BIG_DOT = 5;
+int GHOST_HOME = 6;
 
 
 class GameMap {

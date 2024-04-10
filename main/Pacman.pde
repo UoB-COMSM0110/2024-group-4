@@ -1,3 +1,5 @@
+final int[] PACMAN_HOME = {14, 23};
+
 class Pacman extends Entity {
   
   int lives;
@@ -78,6 +80,7 @@ class Pacman extends Entity {
       }
       else if (map.checkBigDot(this.row, this.col)) {
         map.eatBigDot(this.row, this.col);
+        this.lives++;
         this.currentDotsEaten++;
         this.totalDotsEaten++;
       }

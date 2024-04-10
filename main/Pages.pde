@@ -17,7 +17,12 @@ void maingame() {
   gameMap.drawMap();
   myPacman.draw();
   ghost1.draw();
-  //ghost2.draw();
+  ghost2.draw();
+  ghost3.draw();
+  ghost4.draw();
+  
+  //gm.initGame();
+  //gm.runGame();
   
   if (ghost1.caughtTarget()) {
     gamemod = gameOver;

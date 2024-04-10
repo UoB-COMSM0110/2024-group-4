@@ -41,7 +41,7 @@ class Entity {
     this.row = startRow;
     this.x = (startCol * map.cellSize);
     this.y = (startRow * map.cellSize);
-    this.speed = 2;
+    this.speed = 2; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
     this.freeze = false;
     this.pf = pf;
     this.map = map;
@@ -214,7 +214,7 @@ class Entity {
         break;
     }
     
-    if ( map.checkMove(nextCol, nextRow) ) {
+    if ( map.checkMove(nextCol, nextRow) && !isGhostHome(nextRow, nextCol) ) {
       return false;
     }
     
@@ -347,6 +347,13 @@ class Entity {
   boolean reachedTargetTile() {
     
     return ( this.targetCol == this.col && this.targetRow == this.row );
+  }
+  
+  
+  // Check if tile is in ghost home
+  boolean isGhostHome(int row, int col) {
+    
+    return ( row >= 12 && row <= 16 && col >= 10 && col <= 17 );
   }
 
 }
