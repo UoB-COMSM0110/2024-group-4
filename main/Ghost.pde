@@ -31,11 +31,11 @@ class Ghost extends Entity {
   // Set scatter target
   void setScatterParameters() {
     
-    this.targetRow = scatterPaths1[this.scatterCorner][this.scatterTile][0];
-    this.targetCol = scatterPaths1[this.scatterCorner][this.scatterTile][1];
+    this.targetRow = scatterPaths5[this.scatterCorner][this.scatterTile][0];
+    this.targetCol = scatterPaths5[this.scatterCorner][this.scatterTile][1];
     
     this.scatterTile++;
-    if ( this.scatterTile == scatterPaths1[this.scatterCorner].length ) {
+    if ( this.scatterTile == scatterPaths5[this.scatterCorner].length ) {
       this.scatterTile = 0;
     }
   }
@@ -47,8 +47,8 @@ class Ghost extends Entity {
     this.scatterCorner = 3;
     this.scatterTile = 0;
     
-    this.targetRow = scatterPaths1[this.scatterCorner][this.scatterTile][0];
-    this.targetCol = scatterPaths1[this.scatterCorner][this.scatterTile][1];
+    this.targetRow = scatterPaths5[this.scatterCorner][this.scatterTile][0];
+    this.targetCol = scatterPaths5[this.scatterCorner][this.scatterTile][1];
   }
   
 }
@@ -105,6 +105,7 @@ class Blinky extends Ghost {
     // Move sprite
     if ( state == SCATTER ) {
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+        println("scatter tile = " + this.scatterTile);
         //if ( reachedTargetTile() ) {
         setScatterParameters();
       //}
