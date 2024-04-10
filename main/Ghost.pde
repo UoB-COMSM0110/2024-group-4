@@ -7,6 +7,9 @@ class Ghost extends Entity {
   int frameCell;
   int hold;
   int delay;
+  
+  int scatterCorner;
+  int scatterTile;
  
  
   // Constructor
@@ -19,6 +22,33 @@ class Ghost extends Entity {
     this.totalFrames = 2;
     this.hold = 0;
     this.delay = 6;
+    
+    initialiseScatter();
+
+  }
+  
+  
+  // Set scatter target
+  void setScatterParameters() {
+    
+    this.targetRow = scatterPaths1[this.scatterCorner][this.scatterTile][0];
+    this.targetCol = scatterPaths1[this.scatterCorner][this.scatterTile][1];
+    
+    this.scatterTile++;
+    if ( this.scatterTile == scatterPaths1[this.scatterCorner].length ) {
+      this.scatterTile = 0;
+    }
+  }
+  
+  
+  // Set initial scatter parameters
+  void initialiseScatter() {
+    
+    this.scatterCorner = 3;
+    this.scatterTile = 0;
+    
+    this.targetRow = scatterPaths1[this.scatterCorner][this.scatterTile][0];
+    this.targetCol = scatterPaths1[this.scatterCorner][this.scatterTile][1];
   }
   
 }
@@ -73,7 +103,16 @@ class Blinky extends Ghost {
     copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
     
     // Move sprite
-    setTargetTile();
+    if ( state == SCATTER ) {
+      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+        //if ( reachedTargetTile() ) {
+        setScatterParameters();
+      //}
+      }
+    }
+    else {
+      setTargetTile();
+    }
     update();
   }
   

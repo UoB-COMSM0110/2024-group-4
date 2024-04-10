@@ -4,11 +4,11 @@ PImage sprites;
 
 
 
-Spunky ghost1;
+Blinky ghost1;
 Inky ghost2;
 Pathfinder pf;
 GameRecordManager GRM;
-GameManager gm;
+//GameManager gm;
 final int cellSize = 40;
 final int eazy = 4;
 final int middle = 3;
@@ -67,7 +67,7 @@ void setup() {
   cancelButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Cancel", button_textSize);
 
   GRM = new GameRecordManager("game_records.txt", gameMap);
-  gm = new GameManager();
+  //gm = new GameManager();
   sprites = loadImage("data/spriteSheet.png");
   loadSounds();
 }
@@ -127,9 +127,9 @@ void mouseClicked() {
       myPacman.setDirection(LEFT);
       myPacman.setState(EVADE);
       pf = new Pathfinder(gameMap);
-      ghost1 = new Spunky(11, 14, pf, gameMap, myPacman);
+      ghost1 = new Blinky(11, 14, pf, gameMap, myPacman);
       ghost1.setDirection(LEFT);
-      ghost1.setState(CHASE);
+      ghost1.setState(SCATTER);
       ghost1.setTarget(myPacman);
       //ghost2 = new Inky(25, 29, pf, gameMap, myPacman);
       //ghost2.setDirection(RIGHT);

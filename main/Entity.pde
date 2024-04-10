@@ -127,7 +127,7 @@ class Entity {
         randomMove();
       }
       
-      if ( state == CHASE ) {
+      if ( state == CHASE || state == SCATTER ) {
         
         int nextCol;
         int nextRow;
@@ -144,7 +144,8 @@ class Entity {
           randomMove();
         }
        
-      }  
+      }
+      
     }
     
     if ( this.freeze ) {
@@ -339,6 +340,13 @@ class Entity {
       return true;
     }
     return false;
+  }
+  
+  
+  // Check if Entity is on target tile
+  boolean reachedTargetTile() {
+    
+    return ( this.targetCol == this.col && this.targetRow == this.row );
   }
 
 }
