@@ -84,7 +84,9 @@ class Pacman extends Entity {
     }
     
     // Move pacman
-    update();
+    if ( !map.checkPause() ) {
+      update();
+    }
     
   }
   

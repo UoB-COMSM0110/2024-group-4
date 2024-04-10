@@ -114,7 +114,10 @@ class Blinky extends Ghost {
     else {
       setTargetTile();
     }
-    update();
+    
+    if ( !map.checkPause() ) {
+      update();
+    }
   }
   
   
@@ -187,7 +190,10 @@ class Inky extends Ghost {
     else {
       setTargetTile();
     }
-    update();
+    
+    if ( !map.checkPause() ) {
+      update();
+    }
   }
   
   
@@ -352,7 +358,10 @@ class Pinky extends Ghost {
     else {
       setTargetTile();
     }
-    update();
+    
+    if ( !map.checkPause() ) {
+      update();
+    }
   }
   
   
@@ -471,7 +480,10 @@ class Clyde extends Ghost {
     else {
       setState(EVADE);
     }
-    update();
+    
+    if ( !map.checkPause() ) {
+      update();
+    }
   }
   
   
@@ -556,7 +568,10 @@ class Sue extends Ghost {
     else {
       setState(EVADE);
     }
-    update();
+    
+    if ( !map.checkPause() ) {
+      update();
+    }
   }
   
   
@@ -684,7 +699,10 @@ class Funky extends Ghost {
       else {
         setTargetTile();
       }
-      update();
+      
+      if ( !map.checkPause() ) {
+        update();
+      }
       
       // 1 in 40 chance of teleporting
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
@@ -839,7 +857,10 @@ class Orson extends Ghost {
     else {
       setState(EVADE);
     }
-    update();
+    
+    if ( !map.checkPause() ) {
+      update();
+    }
     
     // Place dots
     if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
@@ -961,7 +982,10 @@ class Spunky extends Ghost {
         freeze(true);
       }
     }
-    update();
+    
+    if ( !map.checkPause() ) {
+      update();
+    }
     
   }
   
