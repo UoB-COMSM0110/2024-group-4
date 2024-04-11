@@ -683,7 +683,7 @@ class Funky extends Ghost {
       
       if ( teleportCell == teleportFrames - 1 ) {
         teleport();
-        teleportSound.play();
+        //teleportSound.play();
         this.teleHold = 0;
         setState(REAPPEAR);
       }
