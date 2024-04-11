@@ -8,11 +8,14 @@ final int empty_grid = 0;
 final int wall = 1;
 int tmp_wall = 2;
 final int basic_score = 10;
+final int bigScore = 300;
 final int wallstack_deep = 3;
 boolean pause = false;
 int block_type = 1;
-int map_choice = 2;
-int PORTAL = 4;
+int map_choice = 0;
+int PORTAL = 7;
+int BIG_DOT = 5;
+int GHOST_HOME = 6;
 
 
 class GameMap {
@@ -63,33 +66,104 @@ class GameMap {
     for (int i = 0; i < map.length; i++) {
       for (int j = 0; j < map[i].length; j++) {
         if (map[i][j] == wall) {
-          if (map_choice == 1) {
+          if (map_choice == 0) {
             stroke(33, 33, 222); // Wall color 
           }  
-          else if (map_choice == 2) {
+          else if (map_choice == 1) {
             stroke(154, 205, 50); // Wall color 
           }  
-          else if (map_choice == 3) {
+          else if (map_choice == 2) {
             stroke(0, 250, 0); // Wall color 
           }
-          else if (map_choice == 4) {
+          else if (map_choice == 3) {
             stroke(255, 192, 203); // Wall color 
           }
           else {
             stroke(250, 0, 0); // Wall color 
           }
           strokeWeight(10);
-          if (map[max(0,i-1)][j] == 3 || map[max(0, i-1)][j] == 0) {   // up
-            line(j * cellSize, i * cellSize, (j+1) * cellSize, i * cellSize);
+          // check up
+          if (map[max(0,i-1)][j] == 3 || map[max(0, i-1)][j] == 0 || map[max(0, i-1)][j] == 2 || map[max(0, i-1)][j] == 4 || map[max(0, i-1)][j] == 6 || map[max(0, i-1)][j] == 5) {
+            if (map[i][max(0,j-1)] == 3 || map[i][max(0,j-1)] == 0 || map[i][max(0,j-1)] == 2 || map[i][max(0,j-1)] == 4 || map[i][max(0,j-1)] == 6 || map[i][max(0,j-1)] == 5) {
+              line(j * cellSize+10, i * cellSize+10, (j+1) * cellSize, i * cellSize+10);
+            }
+            else if (map[i][min(j+1, map[0].length-1)] == 3 || map[i][min(j+1, map[0].length-1)] == 0  || map[i][min(j+1, map[0].length-1)] == 2 || map[i][min(j+1, map[0].length-1)] == 4 || map[i][min(j+1, map[0].length-1)] == 6 || map[i][min(j+1, map[0].length-1)] == 5) {
+              line(j * cellSize, i * cellSize+10, (j+1) * cellSize-10, i * cellSize+10);
+            }  
+            else {
+              if (map[max(0,i-1)][j-1] == 1) {
+                line(j * cellSize-10, i * cellSize+10, (j+1) * cellSize, i * cellSize+10);
+              }
+              else if (map[max(0,i-1)][j+1] == 1) {
+                line(j * cellSize, i * cellSize+10, (j+1) * cellSize+10, i * cellSize+10);
+              }
+              else {
+                line(j * cellSize, i * cellSize+10, (j+1) * cellSize, i * cellSize+10);
+              }  
+            }
           }
-          if (map[min(i+1, map.length-1)][j] == 3 || map[min(i+1, map.length-1)][j] == 0) {   // down
-            line(j * cellSize, (i+1) * cellSize, (j+1) * cellSize, (i+1) * cellSize);
+          
+          // check down
+          if (map[min(i+1, map.length-1)][j] == 3 || map[min(i+1, map.length-1)][j] == 0 || map[min(i+1, map.length-1)][j] == 2 || map[min(i+1, map.length-1)][j] == 4 || map[min(i+1, map.length-1)][j] == 6 || map[min(i+1, map.length-1)][j] == 5) {
+            if (map[i][max(0,j-1)] == 3 || map[i][max(0,j-1)] == 0 || map[i][max(0,j-1)] == 2 || map[i][max(0,j-1)] == 4 || map[i][max(0,j-1)] == 6 || map[i][max(0,j-1)] == 5) {
+              line(j * cellSize+10, (i+1) * cellSize-10, (j+1) * cellSize+10, (i+1) * cellSize-10);
+            }
+            else if (map[i][min(j+1, map[0].length-1)] == 3 || map[i][min(j+1, map[0].length-1)] == 0 || map[i][min(j+1, map[0].length-1)] == 2 || map[i][min(j+1, map[0].length-1)] == 4 || map[i][min(j+1, map[0].length-1)] == 6 || map[i][min(j+1, map[0].length-1)] == 5) {
+              line(j * cellSize-10, (i+1) * cellSize-10, (j+1) * cellSize-10, (i+1) * cellSize-10);
+            }  
+            else {
+              if (map[min(i+1, map.length-1)][j-1] == 1) {
+                line(j * cellSize-10, (i+1) * cellSize-10, (j+1) * cellSize, (i+1) * cellSize-10);
+              }  
+              else if (map[min(i+1, map.length-1)][j+1] == 1) {
+                line(j * cellSize, (i+1) * cellSize-10, (j+1) * cellSize+10, (i+1) * cellSize-10);
+              }
+              else {
+                line(j * cellSize, (i+1) * cellSize-10, (j+1) * cellSize, (i+1) * cellSize-10);
+              }
+            }
           }
-          if (map[i][max(0,j-1)] == 3 || map[i][max(0,j-1)] == 0) {   // left
-            line(j * cellSize, i * cellSize, j * cellSize, (i+1) * cellSize);
+          
+          // check left
+          if (map[i][max(0,j-1)] == 3 || map[i][max(0,j-1)] == 0 || map[i][max(0,j-1)] == 2 || map[i][max(0,j-1)] == 4 || map[i][max(0,j-1)] == 6 || map[i][max(0,j-1)] == 5) {
+            if (map[max(0,i-1)][j] == 3 || map[max(0, i-1)][j] == 0 || map[max(0, i-1)][j] == 2 || map[max(0, i-1)][j] == 4 || map[max(0, i-1)][j] == 6 || map[max(0, i-1)][j] == 5) {
+              line(j * cellSize+10, i * cellSize+10, j * cellSize+10, (i+1) * cellSize);
+            }
+            else if (map[min(i+1, map.length-1)][j] == 3 || map[min(i+1, map.length-1)][j] == 0 || map[min(i+1, map.length-1)][j] == 2 || map[min(i+1, map.length-1)][j] == 4 || map[min(i+1, map.length-1)][j] == 6 || map[min(i+1, map.length-1)][j] == 5) {
+              line(j * cellSize+10, i * cellSize, j * cellSize+10, (i+1) * cellSize-10);
+            }  
+            else {
+              if (map[i-1][max(0,j-1)] == 1) {
+                line(j * cellSize+10, i * cellSize-10, j * cellSize+10, (i+1) * cellSize+10);
+              }  
+              else if (map[i+1][max(0,j-1)] == 1) {
+                line(j * cellSize+10, i * cellSize, j * cellSize+10, (i+1) * cellSize+10);
+              }
+              else {
+                line(j * cellSize+10, i * cellSize, j * cellSize+10, (i+1) * cellSize+10);
+              }
+            }
           }
-          if (map[i][min(j+1, map[0].length-1)] == 3 || map[i][min(j+1, map[0].length-1)] == 0) {   // right
-            line((j+1) * cellSize, i * cellSize, (j+1) * cellSize, (i+1) * cellSize);
+          
+          //check right
+          if (map[i][min(j+1, map[0].length-1)] == 3 || map[i][min(j+1, map[0].length-1)] == 0 || map[i][min(j+1, map[0].length-1)] == 2 || map[i][min(j+1, map[0].length-1)] == 4 || map[i][min(j+1, map[0].length-1)] == 6 || map[i][min(j+1, map[0].length-1)] == 5) {
+            if (map[max(0,i-1)][j] == 3 || map[max(0, i-1)][j] == 0 || map[max(0, i-1)][j] == 2 || map[max(0, i-1)][j] == 4 || map[max(0, i-1)][j] == 6 || map[max(0, i-1)][j] == 5) {
+              line((j+1) * cellSize-10, i * cellSize+10, (j+1) * cellSize-10, (i+1) * cellSize);
+            }
+            else if (map[min(i+1, map.length-1)][j] == 3 || map[min(i+1, map.length-1)][j] == 0 || map[min(i+1, map.length-1)][j] == 2 || map[min(i+1, map.length-1)][j] == 4 || map[min(i+1, map.length-1)][j] == 6 || map[min(i+1, map.length-1)][j] == 5) {
+              line((j+1) * cellSize-10, i * cellSize, (j+1) * cellSize-10, (i+1) * cellSize-10);
+            }  
+            else {
+              if (map[i-1][min(j+1, map[0].length-1)] == 1) {
+                line((j+1) * cellSize-10, i * cellSize-10, (j+1) * cellSize-10, (i+1) * cellSize+10);
+              }  
+              else if (map[i+1][min(j+1, map[0].length-1)] == 1) {
+                line((j+1) * cellSize-10, i * cellSize, (j+1) * cellSize-10, (i+1) * cellSize+10);
+              }
+              else {
+               line((j+1) * cellSize-10, i * cellSize, (j+1) * cellSize-10, (i+1) * cellSize+10);
+              }  
+            }
           }
           noStroke();
         }
@@ -106,8 +180,22 @@ class GameMap {
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
         if (map[i][j] == dot) {
-          fill(255, 255, 0); // Dot color
+          fill(245, 191, 147); // Dot color
           rect(j * cellSize + distance, i * cellSize + distance, dotSize, dotSize); // Draw dots
+        }
+        if (map[i][j] == PORTAL) {
+          fill(135, 206, 250); // Dot color
+          ellipse(j * cellSize + cellSize / 2, i * cellSize + cellSize / 2, 50, 50);
+          fill(22, 22, 148);
+          ellipse(j * cellSize + cellSize / 2, i * cellSize + cellSize / 2, 37, 37);
+          fill(135, 206, 250); // Dot color
+          ellipse(j * cellSize + cellSize / 2, i * cellSize + cellSize / 2, 24, 24);
+          fill(22, 22, 148);
+          ellipse(j * cellSize + cellSize / 2, i * cellSize + cellSize / 2, 11, 11);
+        }
+        if (map[i][j] == BIG_DOT) {
+          fill(245, 191, 147); // Dot color
+          ellipse(j * cellSize + cellSize / 2, i * cellSize + cellSize / 2, 20, 20);
         }
       }
     }
@@ -243,7 +331,24 @@ class GameMap {
     map[y][x] = eat_dot; // Eat dot
     score += basic_score;
     money++;
-  }  
+  }
+  
+  
+  // Check if new tile contians big dot
+  boolean checkBigDot(int row, int col) {
+    if ( map[row][col] == BIG_DOT ) {
+      return true;
+    }
+    return false;
+  }
+  
+  
+  // Eat bigDot and remove from map
+  void eatBigDot(int row, int col) {
+    map[row][col] = eat_dot;
+    score += bigScore;
+  }
+  
   
   boolean setWall(int x, int y){
     if (map[y][x] == 2 || map[y][x] == 4 || map[y][x] == 6 ) {
@@ -300,5 +405,28 @@ class GameMap {
   void changeBlock(int type) {
     block_type = type;
     tmp_wall = 2 * type;
-  }  
+  }
+  
+  
+  // Sets a dot at given location on map
+  void setDot(int col, int row) {
+    this.map[row][col] = dot;
+  }
+  
+  
+  // Returns how many dots are remaining on map
+  int dotsRemaining() {
+    
+    int dots = 0;
+    
+    for ( int row = 0; row < map.length; row++ ) {
+      for ( int col = 0; col < map[0].length; col++ ) {
+        if ( map[row][col] == dot || map[row][col] == BIG_DOT ) {
+          dots++;
+        }
+      }
+    }
+    
+    return dots;
+  }
 }

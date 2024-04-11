@@ -18,8 +18,13 @@ void maingame() {
   myPacman.draw();
   ghost1.draw();
   ghost2.draw();
+  ghost3.draw();
+  ghost4.draw();
   
-  if (ghost1.caughtTarget() || ghost2.caughtTarget()) {
+  //gm.initGame();
+  //gm.runGame();
+  
+  if (ghost1.caughtTarget()) {
     gamemod = gameOver;
 
     textAlign(CENTER, CENTER);
@@ -37,6 +42,7 @@ void statusUpdate() {
 }
 
 void endgame() {
+  
   if (!gameended) {
     String playerName = "Player";
     playerName = JOptionPane.showInputDialog(null, "Please enter your name:", playerName);

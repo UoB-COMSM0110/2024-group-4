@@ -1,6 +1,10 @@
+final int[] PACMAN_HOME = {14, 23};
+
 class Pacman extends Entity {
   
-  int pillsEaten;
+  int lives;
+  int totalDotsEaten;
+  int currentDotsEaten;
   
   int offsetX;
   int offsetY;
@@ -16,7 +20,9 @@ class Pacman extends Entity {
   Pacman(int startCol, int startRow, Pathfinder pf, GameMap map) {
     super(startCol, startRow, pf, map);
     
-    this.pillsEaten = 0;
+    this.lives = 3;
+    this.totalDotsEaten = 0;
+    this.currentDotsEaten = 0;
     
     this.currentFrame = 0;
     this.totalFrames = 2;
@@ -65,14 +71,24 @@ class Pacman extends Entity {
     rect(x, y, WIDTH, HEIGHT);
     copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
     
-    // Move pacman
-    update();
-    
     // Eat dot
-    if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
+    if ( ( x == this.col * map.cellSize ) && ( y == this.row * map.cellSize ) ) {
       if (map.checkDot(this.col, this.row)) {
         map.eatDot(this.col, this.row);
+        this.currentDotsEaten++;
+        this.totalDotsEaten++;
       }
+      else if (map.checkBigDot(this.row, this.col)) {
+        map.eatBigDot(this.row, this.col);
+        this.lives++;
+        this.currentDotsEaten++;
+        this.totalDotsEaten++;
+      }
+    }
+    
+    // Move pacman
+    if ( !map.checkPause() ) {
+      update();
     }
     
   }

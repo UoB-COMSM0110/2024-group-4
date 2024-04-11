@@ -8,6 +8,10 @@ final int HEIGHT = 40;
 
 final int EVADE = 0;
 final int CHASE = 1;
+final int SCATTER = 2;
+final int TELEPORT = 3;
+final int REAPPEAR = 4;
+final int RETURN_HOME = 5;
 
 
 class Entity {
@@ -22,6 +26,7 @@ class Entity {
   
   int direction;
   int speed;
+  boolean freeze;
   int state;
   
   Pathfinder pf;
@@ -36,7 +41,8 @@ class Entity {
     this.row = startRow;
     this.x = (startCol * map.cellSize);
     this.y = (startRow * map.cellSize);
-    this.speed = 2;
+    this.speed = 2; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
+    this.freeze = false;
     this.pf = pf;
     this.map = map;
   
@@ -94,29 +100,15 @@ class Entity {
   }
   
   
+  // this.freeze setter
+  void freeze(boolean bool) {
+    
+    this.freeze = bool;
+  }
+  
+  
   // Update position on screen
   void update() {
-
-    switch ( direction ) {
-      
-      case UP:
-        y -= speed;
-        break;
-      case RIGHT:
-        x += speed;
-        break;
-      case DOWN:
-        y += speed;
-        break;
-      case LEFT:
-        x -= speed;
-        break;
-      default:
-        println("ERROR: invalid direction code in Entity.update() - " + direction);
-        break;
-    }
-  
-    updateTile();
   
     if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
       
@@ -135,7 +127,7 @@ class Entity {
         randomMove();
       }
       
-      if ( state == CHASE ) {
+      if ( state == CHASE || state == SCATTER ) {
         
         int nextCol;
         int nextRow;
@@ -152,8 +144,34 @@ class Entity {
           randomMove();
         }
        
-      }  
+      }
+      
     }
+    
+    if ( this.freeze ) {
+      return;
+    }
+    
+    switch ( direction ) {
+      
+      case UP:
+        y -= speed;
+        break;
+      case RIGHT:
+        x += speed;
+        break;
+      case DOWN:
+        y += speed;
+        break;
+      case LEFT:
+        x -= speed;
+        break;
+      default:
+        println("ERROR: invalid direction code in Entity.update() - " + direction);
+        break;
+    }
+    
+    updateTile();
 
   }
   
@@ -196,7 +214,7 @@ class Entity {
         break;
     }
     
-    if ( map.checkMove(nextCol, nextRow) ) {
+    if ( map.checkMove(nextCol, nextRow) && !isGhostHome(nextRow, nextCol) ) {
       return false;
     }
     
@@ -322,6 +340,20 @@ class Entity {
       return true;
     }
     return false;
+  }
+  
+  
+  // Check if Entity is on target tile
+  boolean reachedTargetTile() {
+    
+    return ( this.targetCol == this.col && this.targetRow == this.row );
+  }
+  
+  
+  // Check if tile is in ghost home
+  boolean isGhostHome(int row, int col) {
+    
+    return ( row >= 12 && row <= 16 && col >= 10 && col <= 17 );
   }
 
 }

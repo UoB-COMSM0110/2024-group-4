@@ -5,7 +5,10 @@ PImage sprites;
 
 
 Blinky ghost1;
-Pinky ghost2;
+Inky ghost2;
+Pinky ghost3;
+Clyde ghost4;
+
 Pathfinder pf;
 GameRecordManager GRM;
 final int cellSize = 40;
@@ -67,6 +70,7 @@ void setup() {
 
   GRM = new GameRecordManager("game_records.txt", gameMap);
   sprites = loadImage("data/spriteSheet.png");
+  loadSounds();
 }
 
 void draw() {
@@ -120,18 +124,35 @@ void mouseClicked() {
       gamemod = gameInProgress;
       gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
       gameMap.setMap();
-      myPacman = new Pacman(14, 23, pf, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
+      myPacman = new Pacman(PACMAN_HOME[0], PACMAN_HOME[1], pf, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
       myPacman.setDirection(LEFT);
       myPacman.setState(EVADE);
       pf = new Pathfinder(gameMap);
-      ghost1 = new Blinky(1, 29, pf, gameMap, myPacman);
+      ghost1 = new Blinky(12, 14, pf, gameMap, myPacman);
+      ghost2 = new Inky(13, 14, pf, gameMap, myPacman);
+      ghost3 = new Pinky(14, 14, pf, gameMap, myPacman);
+      ghost4 = new Clyde(15, 14, pf, gameMap, myPacman);
+
+      // Initialise ghosts
       ghost1.setDirection(UP);
-      ghost1.setState(CHASE);
+      ghost1.setState(SCATTER);
       ghost1.setTarget(myPacman);
-      ghost2 = new Pinky(25, 29, pf, gameMap, myPacman);
-      ghost2.setDirection(RIGHT);
-      ghost2.setState(CHASE);
+      ghost1.freeze(false);
+
+      ghost2.setDirection(UP);
+      ghost2.setState(SCATTER);
       ghost2.setTarget(myPacman);
+      ghost2.freeze(true);
+
+      ghost3.setDirection(UP);
+      ghost3.setState(SCATTER);
+      ghost3.setTarget(myPacman);
+      ghost3.freeze(true);
+
+      ghost4.setDirection(UP);
+      ghost4.setState(SCATTER);
+      ghost4.setTarget(myPacman);
+      ghost4.freeze(true);
 
       gameended = false;
       finalscore = 0;
