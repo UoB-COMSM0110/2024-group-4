@@ -8,9 +8,11 @@ Blinky ghost1;
 Inky ghost2;
 Pinky ghost3;
 Clyde ghost4;
+Ghost[] ghosts;
 
 Pathfinder pf;
 GameRecordManager GRM;
+
 final int cellSize = 40;
 final int eazy = 4;
 final int middle = 3;
@@ -125,14 +127,17 @@ void mouseClicked() {
       gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
       gameMap.setMap();
       myPacman = new Pacman(PACMAN_HOME[0], PACMAN_HOME[1], pf, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
-      myPacman.setDirection(LEFT);
-      myPacman.setState(EVADE);
+      //myPacman.setDirection(LEFT);
+      //myPacman.setState(EVADE);
       pf = new Pathfinder(gameMap);
       ghost1 = new Blinky(12, 14, pf, gameMap, myPacman);
       ghost2 = new Inky(13, 14, pf, gameMap, myPacman);
       ghost3 = new Pinky(14, 14, pf, gameMap, myPacman);
       ghost4 = new Clyde(15, 14, pf, gameMap, myPacman);
-
+      ghosts = new Ghost[] {ghost1, ghost2, ghost3, ghost4};
+      
+      initGame();
+/*
       // Initialise ghosts
       ghost1.setDirection(UP);
       ghost1.setState(SCATTER);
@@ -153,7 +158,7 @@ void mouseClicked() {
       ghost4.setState(SCATTER);
       ghost4.setTarget(myPacman);
       ghost4.freeze(true);
-
+*/
       gameended = false;
       finalscore = 0;
       return;

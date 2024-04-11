@@ -11,6 +11,8 @@ class Ghost extends Entity {
   int scatterCorner;
   int scatterTile;
   int[][][] scatterPaths;
+  
+  Ghost targetGhost;
  
  
   // Constructor
@@ -22,12 +24,24 @@ class Ghost extends Entity {
     this.currentFrame = 0;
     this.totalFrames = 2;
     this.hold = 0;
-    this.delay = 6;
+    this.delay = 4;
     
-    this.scatterPaths = scatterPaths1;
+    this.onScatterPath = false;
     
-    initialiseScatter();
-
+  }
+  
+  
+  // Set scatter path
+  void setScatterPath(int[][][] path) {
+    
+    this.scatterPaths = path;
+  }
+  
+  
+  // Set scatter corner
+  void setScatterCorner(int corner) {
+    
+    this.scatterCorner = corner;
   }
   
   
@@ -47,11 +61,18 @@ class Ghost extends Entity {
   // Set initial scatter parameters
   void initialiseScatter() {
     
-    this.scatterCorner = 1;
     this.scatterTile = 0;
+    this.onScatterPath = true;
     
     this.targetRow = this.scatterPaths[this.scatterCorner][this.scatterTile][0];
     this.targetCol = this.scatterPaths[this.scatterCorner][this.scatterTile][1];
+  }
+  
+  
+  // Set relative ghost
+  void setGhost(Ghost ghost) {
+    
+    this.targetGhost = ghost;
   }
   
 }
@@ -107,6 +128,9 @@ class Blinky extends Ghost {
     
     // Move sprite
     if ( state == SCATTER ) {
+      if ( this.onScatterPath == false ) {
+        initialiseScatter();
+      }
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
         setScatterParameters();
       }
@@ -183,6 +207,9 @@ class Inky extends Ghost {
     
     // Move sprite
     if ( state == SCATTER ) {
+      if ( this.onScatterPath == false ) {
+        initialiseScatter();
+      }
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
         setScatterParameters();
       }
@@ -285,7 +312,12 @@ class Inky extends Ghost {
     int west = abs(tempCol - 1);
     
     int tempMin = min(north, south, east); // function only takes 3 values :/
-    return min(tempMin, west);
+    tempMin = min(tempMin, west);
+    
+    if ( tempMin == 0 ) {
+      return 1;
+    }
+    return tempMin;
   }
     
     
@@ -295,7 +327,12 @@ class Inky extends Ghost {
     int dX = abs(tempCol - this.targetGhost.getCurrentNode()[0]);
     int dY = abs(tempRow - this.targetGhost.getCurrentNode()[1]);
     
-    return (int) sqrt( pow(dX, 2) + pow(dY, 2) );
+    int d = (int) sqrt( pow(dX, 2) + pow(dY, 2) ); 
+    
+    if ( d == 0 ) {
+      return 1;
+    }
+    return d;
   }
 
 }
@@ -351,6 +388,9 @@ class Pinky extends Ghost {
     
     // Move sprite
     if ( state == SCATTER ) {
+      if ( this.onScatterPath == false ) {
+        initialiseScatter();
+      }
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
         setScatterParameters();
       }
@@ -469,6 +509,9 @@ class Clyde extends Ghost {
     
     // Move sprite
     if ( state == SCATTER ) {
+      if ( this.onScatterPath == false ) {
+        initialiseScatter();
+      }
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
         setScatterParameters();
       }
@@ -557,6 +600,9 @@ class Sue extends Ghost {
     
     // Move sprite
     if ( state == SCATTER ) {
+      if ( this.onScatterPath == false ) {
+        initialiseScatter();
+      }
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
         setScatterParameters();
       }
@@ -692,6 +738,9 @@ class Funky extends Ghost {
       
       // Move sprite
       if ( state == SCATTER ) {
+        if ( this.onScatterPath == false ) {
+          initialiseScatter();
+        }
         if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
           setScatterParameters();
         }
@@ -846,6 +895,9 @@ class Orson extends Ghost {
     
     // Move sprite
     if ( state == SCATTER ) {
+      if ( this.onScatterPath == false ) {
+        initialiseScatter();
+      }
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
         setScatterParameters();
       }
@@ -967,6 +1019,9 @@ class Spunky extends Ghost {
       
     // Move sprite
     if ( state == SCATTER ) {
+      if ( this.onScatterPath == false ) {
+        initialiseScatter();
+      }
       if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
         setScatterParameters();
       }

@@ -28,6 +28,7 @@ class Entity {
   int speed;
   boolean freeze;
   int state;
+  boolean onScatterPath;
   
   Pathfinder pf;
   GameMap map;
@@ -41,7 +42,7 @@ class Entity {
     this.row = startRow;
     this.x = (startCol * map.cellSize);
     this.y = (startRow * map.cellSize);
-    this.speed = 2; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
+    this.speed = 4; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
     this.freeze = false;
     this.pf = pf;
     this.map = map;
@@ -62,6 +63,16 @@ class Entity {
   int[] getPosition() {
     int[] pos = {this.x, this.y};
     return pos;
+  }
+  
+  
+  // Sets position of Entity on map
+  void setPosition(int col, int row) {
+    
+    this.col = col;
+    this.row = row;
+    this.x = (col * cellSize);
+    this.y = (row * cellSize);
   }
   
   
@@ -88,6 +99,10 @@ class Entity {
   
   // this.state setter
   void setState(int state) {
+    
+    if ( this.state == SCATTER ) {
+      this.onScatterPath = false;
+    }
     
     this.state = state;
   }
