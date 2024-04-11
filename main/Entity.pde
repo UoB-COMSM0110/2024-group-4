@@ -42,7 +42,7 @@ class Entity {
     this.row = startRow;
     this.x = (startCol * map.cellSize);
     this.y = (startRow * map.cellSize);
-    this.speed = 4; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
+    this.speed = 2; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
     this.freeze = false;
     this.pf = pf;
     this.map = map;

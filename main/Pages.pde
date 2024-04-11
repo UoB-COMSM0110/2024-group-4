@@ -31,11 +31,6 @@ void maingame() {
   
   if ( GAME_RUNNING ) {
     
-    println(waveTime);
-    println("Wave = " + wave);
-    println("Ghost state = " + GHOST_STATE);
-    println("Ghost1 state = " + ghost1.state);
-    
     // Check game over
     if ( myPacman.lives == 0 ) {
       GAME_RUNNING = false;
@@ -50,7 +45,6 @@ void maingame() {
         ghost4.setState(CHASE);
         lastWave += 15000;
         GHOST_STATE = CHASE;
-        println("CHASE");
       }
       else if ( waveTime - lastWave > 20000 && GHOST_STATE == CHASE ) {
         ghost1.setState(SCATTER);
@@ -59,26 +53,21 @@ void maingame() {
         ghost4.setState(SCATTER);
         lastWave += 20000;
         GHOST_STATE = SCATTER;
-        println("SCATTER");
       }
-      println("last wave = " + lastWave);
       wave++;
     }
     
     // Release ghosts
     releaseNextGhost();
     if ( myPacman.currentDotsEaten >= (int) (0.25 * TOTAL_DOTS) ) {
-      println("EATEN DOTS 1");
       releaseNextGhost();
     }
     else if ( myPacman.currentDotsEaten >= (int) (0.5 * TOTAL_DOTS) ) {
       releaseNextGhost();
       increaseSpeed();
-      println("EATEN DOTS 2");
     }
     else if ( myPacman.currentDotsEaten >= (int) (0.75 * TOTAL_DOTS) ) {
       releaseNextGhost();
-      println("EATEN DOTS 3");
     }
     
     // Draw map
