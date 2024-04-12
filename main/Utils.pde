@@ -17,7 +17,7 @@ public static int[][] deepCopy2D(int[][] original) {
 
 String truncateString(String input, int maxLength) {
     if (input.length() > maxLength) {
-        return input.substring(0, maxLength - 3) + "..."; // 确保总长度不超过最大长度
+        return input.substring(0, maxLength - 3) + "...";
     } else {
         return input;
     }
