@@ -112,7 +112,7 @@ void endgame() {
     String playerName = "Player";
     playerName = JOptionPane.showInputDialog(null, "Please enter your name:", playerName);
     if (playerName == null) {
-      playerName = "Player";
+      return;
     } else if (playerName.trim().isEmpty()) {
       playerName = "Player";
     }
