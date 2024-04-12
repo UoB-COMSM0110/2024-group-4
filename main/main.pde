@@ -70,7 +70,7 @@ void setup() {
   levelupButton = new Button((gamewidth-button_w)/2 + 200, startButton_Y + button_gap * 2, button_w, button_h, "->", button_textSize);
   levelenterButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Confirm", button_textSize);
 
-  cancelButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Cancel", button_textSize);
+  cancelButton = new Button(gamewidth * 0.8, gameheight - 120, button_w, button_h, "Cancel", button_textSize);
 
   pauseContinueButton = new Button((gamewidth-button_w)/2*0.4 + 85, startButton_Y + button_gap * 2, button_w*0.8, button_h, "Continue", button_textSize);
   pauseCancelButton = new Button((gamewidth-button_w)/2*0.8 + 85, startButton_Y + button_gap * 2, button_w*0.8, button_h, "Cancel", button_textSize);

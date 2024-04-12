@@ -1,4 +1,7 @@
 import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
 
 boolean GAME_RUNNING = true;
 int GHOST_STATE = SCATTER;
@@ -151,10 +154,9 @@ void chooselevel() {
 void recordmenu() {
   background(0);
   // Help
-  textAlign(CENTER, CENTER);
-  fill(200, 100, 200);
-  textSize(100);
-  text("Record // TODO", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-200);
+  List<String> records = GRM.loadRecords();
+  drawLeaderboard(records, gamewidth*0.2, gameheight*0.1);
+
   // Buttons
   cancelButton.display();
   return;
@@ -226,9 +228,57 @@ void releaseNextGhost() {
 // Increases speed for all Entities
 void increaseSpeed() {
   
-   myPacman.speed += 2;
-   
-   for ( int i = 0; i < ghosts.length; i++ ) {
+  myPacman.speed += 2;
+  
+  for ( int i = 0; i < ghosts.length; i++ ) {
     ghosts[i].speed += 2;
+  }
+}
+
+void drawLeaderboard(List<String> records, float x, float y) {
+  textAlign(LEFT, TOP);
+  // textAlign(CENTER, CENTER);
+
+  fill(200,255,200);
+  textSize(button_textSize*3);
+  text("Leaderboard", x + gamewidth*0.05, y);
+  y += button_textSize*3;
+  
+  fill(100,150,200);
+  textSize(button_textSize*2);
+  text("Rank", x - gamewidth * 0.15, y);
+  text("Name", x + gamewidth * 0.0, y);
+  text("Score", x + gamewidth * 0.3, y);
+  text("Date", x + gamewidth * 0.6, y);
+  
+  textSize(button_textSize*2);
+  y += button_textSize*3;
+  
+  if (records.size() == 0) {
+    text(" -\\-", x - gamewidth * 0.15, y);
+    text(" -\\-", x + gamewidth * 0.0, y);
+    text("  -\\-", x + gamewidth * 0.3, y);
+    text(" -\\-", x + gamewidth * 0.6, y);
+    return;
+  }
+  for (int i = 0; i < records.size(); i++) {
+    String[] parts = records.get(i).split(",");
+    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat outputFormat = new SimpleDateFormat("MM-dd");
+    String formattedDate = "  -  ";
+    try {
+      Date date = inputFormat.parse(parts[2].trim());
+      formattedDate = outputFormat.format(date);
+    } catch (ParseException e) {
+        e.printStackTrace();
+        text("Invalid date", x + 700, y);
+    }
+    
+    text((i + 1) + ".", x - gamewidth * 0.15, y);
+    text(truncateString(parts[0].trim(), 11), x + gamewidth * 0.0, y);
+    text(parts[1].trim(), x + gamewidth * 0.3, y);
+    text(formattedDate, x + gamewidth * 0.6, y);
+    
+    y += button_textSize*3;
   }
 }
