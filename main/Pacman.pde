@@ -20,7 +20,7 @@ class Pacman extends Entity {
 	Pacman(int startCol, int startRow, Pathfinder pf, GameMap map) {
 	super(startCol, startRow, pf, map);
 	
-	this.lives = 3;
+	this.lives = 0;
 	this.totalDotsEaten = 0;
 	this.currentDotsEaten = 0;
 	

@@ -13,7 +13,6 @@ int PORTAL = 7;
 int BIG_DOT = 5;
 int GHOST_HOME = 6;
 
-
 class GameMap {
     Ghost ghost;
     int cellSize; // Cell size
@@ -59,23 +58,23 @@ class GameMap {
     
     // Method to draw the map
     void drawMap() {
-        for (int i = 0; i < map.length; i++) {
+      for (int i = 0; i < map.length; i++) {
         for (int j = 0; j < map[i].length; j++) {
-            if (map[i][j] == wall) {
+          if (map[i][j] == wall) {
             if (map_choice == 0) {
                 stroke(33, 33, 222); // Wall color 
             }  
             else if (map_choice == 1) {
-                stroke(154, 205, 50); // Wall color 
+                stroke(69, 60, 182); // Wall color 
             }  
             else if (map_choice == 2) {
-                stroke(0, 250, 0); // Wall color 
+                stroke(48, 117, 141); // Wall color 
             }
             else if (map_choice == 3) {
-                stroke(255, 192, 203); // Wall color 
+                stroke(47, 130, 76); // Wall color 
             }
             else {
-                stroke(250, 0, 0); // Wall color 
+                stroke(158, 74, 124); // Wall color 
             }
             strokeWeight(10);
             // check up
@@ -138,7 +137,7 @@ class GameMap {
                 else {
                     line(j * cellSize+10, i * cellSize, j * cellSize+10, (i+1) * cellSize+10);
                 }
-                }
+              }
             }
             
             //check right
@@ -196,6 +195,24 @@ class GameMap {
         }
         }
         // draw edges
+        if (map_choice == 0) {
+            stroke(33, 33, 222); // Wall color 
+        }  
+        else if (map_choice == 1) {
+            stroke(154, 205, 50); // Wall color 
+        }  
+        else if (map_choice == 2) {
+            stroke(0, 250, 0); // Wall color 
+        }
+        else if (map_choice == 3) {
+            stroke(255, 192, 203); // Wall color 
+        }
+        else {
+            stroke(250, 0, 0); // Wall color 
+        }
+        strokeWeight(10);
+        line(1, 1, 1000, 1);
+        noStroke();
         for (int i = 0; i < map.length; i++) {
         fill(33, 33, 222); // Wall color
         rect(28 * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
@@ -223,17 +240,15 @@ class GameMap {
         // Show score
         textAlign(LEFT, BASELINE);
         fill(255); // White
-        textSize(52); 
+        textSize(20); 
         text("SCORE: " + score, 1180, 95);
         // Show money
         fill(255, 255, 0); // Yellow
-        textSize(52);
         text("MONEY: $ " + money, 1180, 300);
         // Draw pause button
         drawPauseButton();
         // Show current block type
         fill(135, 206, 250);
-        textSize(52); 
         text("BLOCK TYPE: ", 1180, 420);
         if (block_type == 1) {
         fill(22, 22, 148);
@@ -247,9 +262,9 @@ class GameMap {
         rect(1490, 370, 1.5*cellSize, 1.5*cellSize);
         // Show block shop
         fill(135, 206, 250);
-        textSize(80); 
+        textSize(40); 
         text("BLOCK SHOP", 1160, 200);
-        textSize(30); 
+        textSize(10); 
         text("V    V    V    V    V    V    V    V    V    V    V", 1170, 230);
         fill(33, 33, 222); // Wall color
         rect(32 * cellSize, 12 * cellSize, cellSize, cellSize);
@@ -266,12 +281,11 @@ class GameMap {
         rect(37.75 * cellSize, 12.75 * cellSize, 1.5*cellSize, 1.5*cellSize);
         // Show block information
         fill(135, 206, 250);
-        textSize(52); 
+        textSize(20); 
         text("BLOCK PRICE: ", 1180, 700);
         fill(255, 255, 0);
         text("$ "+ String.valueOf(10*block_type), 1490, 700);
-        fill(135, 206, 250);
-        textSize(52); 
+        fill(135, 206, 250); 
         text("BLOCK FUNCTION: ", 1180, 820);
         if (block_type == 1) {
         text("Block both pacman", 1180, 900);

@@ -2,8 +2,6 @@ Pacman myPacman;
 GameMap gameMap;
 PImage sprites;
 
-
-
 Blinky ghost1;
 Inky ghost2;
 Pinky ghost3;
@@ -51,51 +49,36 @@ final int button_h = 100;
 final int button_textSize = 50;
 final int startButton_Y = (gameheight-button_h)/2 - 100;
 final int button_gap = 120;
+PFont font;
 
 boolean gameended = true;
-
-// exhibit
-GameMap displaygamemap;
-Pacman dispaypacman;
-Pathfinder displaypf;
-Blinky displayghost1;
-Inky displayghost2;
 
 void setup() {
     // TODO Make pacman smarter
     size(1640, 1240);
+    font = createFont("assets/ka1.ttf", 48);
+    textFont(font);
     gamemod = StartScreen;
     level = map_choice;
-    startButton = new Button((gamewidth-button_w)/2, startButton_Y, button_w, button_h, "Start", button_textSize);
-    levelButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 1, button_w, button_h, "Level", button_textSize);
-    recordButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 2, button_w, button_h, "Ranking List", button_textSize);
-    helpButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 3, button_w, button_h, "Help", button_textSize);
-    exitButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 4, button_w, button_h, "Exit", button_textSize);
-    endButton = new Button((gamewidth-button_w)/2, (gameheight-button_h-200)/2, button_w*2, button_h, "Return to main menu", button_textSize);
+    startButton = new Button((gamewidth-button_w)/2, startButton_Y+140, button_w, button_h, "Start", button_textSize);
+    levelButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 1+140, button_w, button_h, "Level", button_textSize);
+    recordButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 2+140, button_w, button_h, "Ranking", button_textSize);
+    helpButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 3+140, button_w, button_h, "Help", button_textSize);
+    exitButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 4+140, button_w, button_h, "Exit", button_textSize);
+    endButton = new Button((gamewidth-button_w)/2-200, (gameheight-button_h-200)/2+240, button_w*2.5, button_h, "Return to main menu", button_textSize);
 
-    leveldownButton = new Button((gamewidth-button_w)/2 - 200, startButton_Y + button_gap * 2, button_w, button_h, "<-", button_textSize);
-    levelupButton = new Button((gamewidth-button_w)/2 + 200, startButton_Y + button_gap * 2, button_w, button_h, "->", button_textSize);
+    leveldownButton = new Button((gamewidth-button_w)/2 - 200, startButton_Y + button_gap * 2, button_w, button_h, "PREV", button_textSize);
+    levelupButton = new Button((gamewidth-button_w)/2 + 200, startButton_Y + button_gap * 2, button_w, button_h, "NEXT", button_textSize);
     levelenterButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Confirm", button_textSize);
 
     cancelButton = new Button(gamewidth * 0.8, gameheight - 120, button_w, button_h, "Cancel", button_textSize);
 
-    pauseContinueButton = new Button((gamewidth-button_w)/2*0.4 + 85, startButton_Y + button_gap * 2, button_w*0.8, button_h, "Continue", button_textSize);
-    pauseCancelButton = new Button((gamewidth-button_w)/2*0.8 + 85, startButton_Y + button_gap * 2, button_w*0.8, button_h, "Cancel", button_textSize);
+    pauseContinueButton = new Button((gamewidth-button_w)/2*0.4 - 100, startButton_Y + button_gap * 2, button_w*1.2, button_h, "Continue", button_textSize);
+    pauseCancelButton = new Button((gamewidth-button_w)/2*0.8 + 60, startButton_Y + button_gap * 2, button_w*1.2, button_h, "End Game", button_textSize);
 
     GRM = new GameRecordManager("game_records.txt", gameMap);
     sprites = loadImage("data/spriteSheet.png");
     loadSounds();
-
-    // exhibit
-    displaygamemap = new GameMap(cellSize);
-    displaygamemap.setMap();
-    displaypf = new Pathfinder(displaygamemap);
-    dispaypacman = new Pacman(0, 0, displaypf, displaygamemap);
-    displayghost1 = new Blinky(0, 0, displaypf, displaygamemap, dispaypacman);
-    displayghost2 = new Inky(0, 0, displaypf, displaygamemap, dispaypacman);
-    displayghost1.setTarget(dispaypacman);
-    displayghost2.setTarget(dispaypacman);
-    displayghost2.setGhost(displayghost1);
 }
 
 void draw() {
@@ -146,6 +129,7 @@ void keyPressed() {
 void mouseClicked() {
     if (gamemod == StartScreen) {
         if (startButton.clicked()) {
+        GAME_RUNNING = true;
         gamemod = gameInProgress;
         gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
         gameMap.setMap();

@@ -8,26 +8,30 @@ int GHOST_STATE = SCATTER;
 int lastWave = 20000;
 final int TOTAL_WAVES = 5;
 final int TOTAL_DOTS = 244;
+PImage img1;
+PImage img2;
+PImage img3;
+PImage img4;
 
 void menu() {
     background(0);
+    img1 = loadImage("assets/PacmanTitle.png");
+    img1.resize(1250, 300);
+    image(img1, (1640-1250)/2, 100);
+    img2 = loadImage("assets/SaviorTitle.png");
+    img2.resize(672, 130);
+    image(img2, (1640-672)/2, 380);
+    img3 = loadImage("assets/Pacman.png");
+    img3.resize(300, 300);
+    image(img3, 160, 750);
+    img4 = loadImage("assets/Ghosts.jpg");
+    img4.resize(500, 600);
+    image(img4, 1100, 600);
     startButton.display();
     levelButton.display();
     recordButton.display();
     helpButton.display();
     exitButton.display();
-
-    dispaypacman.setPosition(7, 20);
-    dispaypacman.setDirection(RIGHT);
-    dispaypacman.draw();
-    
-    displayghost1.setPosition(25,10);
-    displayghost1.setDirection(LEFT);
-    displayghost2.setPosition(8,8);
-    displayghost2.setDirection(DOWN);
-    // println(displayghost1.target);
-    displayghost1.draw();
-    displayghost2.draw();
 }
 
 void maingame() {
@@ -112,7 +116,7 @@ void maingame() {
     textAlign(CENTER, CENTER);
     fill(255, 0, 0);
     textSize(100);
-    text("GAME OVER" , gamewidth/2 -200, gameheight/2 - 400);
+    text("GAME OVER" , gamewidth/2 - 250, gameheight/2 - 400);
     endButton.display();
     }
     
@@ -158,8 +162,9 @@ void chooselevel() {
     // Hint
     fill(80, 80, 80);
     textSize(30);
-    String hinttext = "Click the left and right arrows or enter the number directly(maximum 5) to select the difficulty.";
-    text(hinttext, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2+400);
+    String hinttext = "Click PREV or NEXT  or  Enter a number from 1 to 5 to select level";
+    text(hinttext, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2+340);
+    text("Higher level means higher difficulty and higher score", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2+380);
     return;
 }
 
@@ -187,13 +192,11 @@ void helpmenu() {
 }
 
 void pauseMenu() {
-    fill(200, 0, 0);
-    rect(370, 535, 470, 90);
     fill(20, 20, 20);
     rect(375, 540, 460, 80);
     fill(255);
     textSize(80); 
-    text("GAME PAUSE", 385, 605);
+    text("GAME PAUSE", 230, 605);
     pauseContinueButton.display();
     pauseCancelButton.display();
     // textAlign(LEFT, BASELINE);
@@ -252,19 +255,19 @@ void drawLeaderboard(List<String> records, float x, float y) {
     // textAlign(CENTER, CENTER);
 
     fill(200,255,200);
-    textSize(button_textSize*3);
-    text("Leaderboard", x + gamewidth*0.05, y);
-    y += button_textSize*3;
+    textSize(button_textSize*2);
+    text("Leaderboard", x + gamewidth*0.05-80, y-60);
+    y += button_textSize*2.5;
     
     fill(100,150,200);
-    textSize(button_textSize*2);
-    text("Rank", x - gamewidth * 0.15, y);
+    textSize(button_textSize*1.2);
+    text("No", x - gamewidth * 0.15, y);
     text("Name", x + gamewidth * 0.0, y);
     text("Score", x + gamewidth * 0.3, y);
     text("Date", x + gamewidth * 0.6, y);
     
-    textSize(button_textSize*2);
-    y += button_textSize*3;
+    textSize(button_textSize*1.2);
+    y += button_textSize*2.5;
     
     if (records.size() == 0) {
     text(" -\\-", x - gamewidth * 0.15, y);
