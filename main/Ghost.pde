@@ -1,339 +1,337 @@
 class Ghost extends Entity {
-  
-  Pacman pacman;
-  
-  int currentFrame;
-  int totalFrames;
-  int frameCell;
-  int hold;
-  int delay;
-  
-  int scatterCorner;
-  int scatterTile;
-  int[][][] scatterPaths;
-  
-  Ghost targetGhost;
- 
- 
-  // Constructor
-  Ghost(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
-    super(startCol, startRow, pf, map);
     
-    this.pacman = pacman;
+    Pacman pacman;
     
-    this.currentFrame = 0;
-    this.totalFrames = 2;
-    this.hold = 0;
-    this.delay = 4;
+    int currentFrame;
+    int totalFrames;
+    int frameCell;
+    int hold;
+    int delay;
     
-    this.onScatterPath = false;
+    int scatterCorner;
+    int scatterTile;
+    int[][][] scatterPaths;
     
-  }
-  
-  
-  // Set scatter path
-  void setScatterPath(int[][][] path) {
-    
-    this.scatterPaths = path;
-  }
-  
-  
-  // Set scatter corner
-  void setScatterCorner(int corner) {
-    
-    this.scatterCorner = corner;
-  }
-  
-  
-  // Set scatter target
-  void setScatterParameters() {
-    
-    this.targetRow = this.scatterPaths[this.scatterCorner][this.scatterTile][0];
-    this.targetCol = this.scatterPaths[this.scatterCorner][this.scatterTile][1];
-    
-    this.scatterTile++;
-    if ( this.scatterTile == this.scatterPaths[this.scatterCorner].length ) {
-      this.scatterTile = 0;
+    Ghost targetGhost;
+    // Constructor
+    Ghost(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+        super(startCol, startRow, pf, map);
+        
+        this.pacman = pacman;
+        
+        this.currentFrame = 0;
+        this.totalFrames = 2;
+        this.hold = 0;
+        this.delay = 4;
+        
+        this.onScatterPath = false;
+        
     }
-  }
-  
-  
-  // Set initial scatter parameters
-  void initialiseScatter() {
     
-    this.scatterTile = 0;
-    this.onScatterPath = true;
     
-    this.targetRow = this.scatterPaths[this.scatterCorner][this.scatterTile][0];
-    this.targetCol = this.scatterPaths[this.scatterCorner][this.scatterTile][1];
-  }
-  
-  
-  // Set relative ghost
-  void setGhost(Ghost ghost) {
+    // Set scatter path
+    void setScatterPath(int[][][] path) {
+        
+        this.scatterPaths = path;
+    }
     
-    this.targetGhost = ghost;
-  }
-  
+    
+    // Set scatter corner
+    void setScatterCorner(int corner) {
+        
+        this.scatterCorner = corner;
+    }
+    
+    
+    // Set scatter target
+    void setScatterParameters() {
+        
+        this.targetRow = this.scatterPaths[this.scatterCorner][this.scatterTile][0];
+        this.targetCol = this.scatterPaths[this.scatterCorner][this.scatterTile][1];
+        
+        this.scatterTile++;
+        if ( this.scatterTile == this.scatterPaths[this.scatterCorner].length ) {
+        this.scatterTile = 0;
+        }
+    }
+    
+    
+    // Set initial scatter parameters
+    void initialiseScatter() {
+        
+        this.scatterTile = 0;
+        this.onScatterPath = true;
+        
+        this.targetRow = this.scatterPaths[this.scatterCorner][this.scatterTile][0];
+        this.targetCol = this.scatterPaths[this.scatterCorner][this.scatterTile][1];
+    }
+    
+    
+    // Set relative ghost
+    void setGhost(Ghost ghost) {
+        
+        this.targetGhost = ghost;
+    }
+    
 }
 
 
 class Blinky extends Ghost {
-  
-  int offsetX;
-  int offsetY;
+    
+    int offsetX;
+    int offsetY;
 
-  
-  // Constructor
-  Blinky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
-    super(startCol, startRow, pf, map, pacman);
     
-    this.offsetY = 530;
-  }
-  
-  
-  // Draw Ghost
-  void draw() {
-    
-    this.frameCell = currentFrame * cellSize;
-    
-    switch ( this.direction ) {
-      case UP:
-        this.offsetX = 176 + frameCell;
-        break;
-      case RIGHT:
-        this.offsetX = 16 + frameCell;
-        break;
-      case DOWN:
-        this.offsetX = 256 + frameCell;
-        break;
-      case LEFT:
-        this.offsetX = 96 + frameCell;
-        break;
-      default:
-        println("Error in Blinky.draw()");
-        break;
+    // Constructor
+    Blinky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+        super(startCol, startRow, pf, map, pacman);
+        
+        this.offsetY = 530;
     }
     
-    // Animate sprite
-    this.hold = ( this.hold + 1 ) % this.delay;
-    if ( hold == 0 ) {
-      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+    
+    // Draw Ghost
+    void draw() {
+        
+        this.frameCell = currentFrame * cellSize;
+        
+        switch ( this.direction ) {
+        case UP:
+            this.offsetX = 176 + frameCell;
+            break;
+        case RIGHT:
+            this.offsetX = 16 + frameCell;
+            break;
+        case DOWN:
+            this.offsetX = 256 + frameCell;
+            break;
+        case LEFT:
+            this.offsetX = 96 + frameCell;
+            break;
+        default:
+            println("Error in Blinky.draw()");
+            break;
+        }
+        
+        // Animate sprite
+        this.hold = ( this.hold + 1 ) % this.delay;
+        if ( hold == 0 ) {
+        this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+        }
+        
+        // Draw sprite
+        fill(0, 0, 0, 0);
+        rect(x, y, WIDTH, HEIGHT);
+        copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+        
+        // Move sprite
+        if ( state == SCATTER ) {
+        if ( this.onScatterPath == false ) {
+            initialiseScatter();
+        }
+        if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+            setScatterParameters();
+        }
+        }
+        else {
+        setTargetTile();
+        }
+        
+        if ( !map.checkPause() ) {
+        update();
+        }
     }
     
-    // Draw sprite
-    fill(0, 0, 0, 0);
-    rect(x, y, WIDTH, HEIGHT);
-    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
     
-    // Move sprite
-    if ( state == SCATTER ) {
-      if ( this.onScatterPath == false ) {
-        initialiseScatter();
-      }
-      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
-        setScatterParameters();
-      }
+    // Set target tile
+    void setTargetTile() {
+        
+        this.targetCol = this.target.getCurrentNode()[0];
+        this.targetRow = this.target.getCurrentNode()[1]; 
     }
-    else {
-      setTargetTile();
-    }
-    
-    if ( !map.checkPause() ) {
-      update();
-    }
-  }
-  
-  
-  // Set target tile
-  void setTargetTile() {
-    
-    this.targetCol = this.target.getCurrentNode()[0];
-    this.targetRow = this.target.getCurrentNode()[1]; 
-  }
 
 }
 
 
 class Inky extends Ghost {
-  
-  int offsetX;
-  int offsetY;
-  
-  Ghost targetGhost; // Uses relative position of a given ghost to calculate target tile
+    
+    int offsetX;
+    int offsetY;
+    
+    Ghost targetGhost; // Uses relative position of a given ghost to calculate target tile
 
-  
-  // Constructor
-  Inky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
-    super(startCol, startRow, pf, map, pacman);
     
-    this.offsetY = 402;
-  }
-  
-  
-  // Draw Ghost
-  void draw() {
-    
-    this.frameCell = currentFrame * cellSize;
-    
-    switch ( this.direction ) {
-      case UP:
-        this.offsetX = 176 + frameCell;
-        break;
-      case RIGHT:
-        this.offsetX = 16 + frameCell;
-        break;
-      case DOWN:
-        this.offsetX = 256 + frameCell;
-        break;
-      case LEFT:
-        this.offsetX = 96 + frameCell;
-        break;
-      default:
-        println("Error in Inky.draw()");
-        break;
+    // Constructor
+    Inky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+        super(startCol, startRow, pf, map, pacman);
+        
+        this.offsetY = 402;
     }
     
-    // Animate sprite
-    this.hold = ( this.hold + 1 ) % this.delay;
-    if ( hold == 0 ) {
-      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
-    }
     
-    // Draw sprite
-    fill(0, 0, 0, 0);
-    rect(x, y, WIDTH, HEIGHT);
-    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
-    
-    // Move sprite
-    if ( state == SCATTER ) {
-      if ( this.onScatterPath == false ) {
-        initialiseScatter();
-      }
-      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
-        setScatterParameters();
-      }
-    }
-    else {
-      setTargetTile();
-    }
-    
-    if ( !map.checkPause() ) {
-      update();
-    }
-  }
-  
-  
-  // Set relative ghost
-  void setGhost(Ghost ghost) {
-    
-    this.targetGhost = ghost;
-  }
-  
-  
-  // Set target tile
-  void setTargetTile() {
-    
-    int tempCol = -1;
-    int tempRow = -1;
-    int totalDist;
-    
-    switch ( this.target.direction ) {
-      
-      case UP:
-        if ( this.target.getCurrentNode()[1] <= 2 ) {
-          tempRow = 1;
+    // Draw Ghost
+    void draw() {
+        
+        this.frameCell = currentFrame * cellSize;
+        
+        switch ( this.direction ) {
+        case UP:
+            this.offsetX = 176 + frameCell;
+            break;
+        case RIGHT:
+            this.offsetX = 16 + frameCell;
+            break;
+        case DOWN:
+            this.offsetX = 256 + frameCell;
+            break;
+        case LEFT:
+            this.offsetX = 96 + frameCell;
+            break;
+        default:
+            println("Error in Inky.draw()");
+            break;
+        }
+        
+        // Animate sprite
+        this.hold = ( this.hold + 1 ) % this.delay;
+        if ( hold == 0 ) {
+        this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+        }
+        
+        // Draw sprite
+        fill(0, 0, 0, 0);
+        rect(x, y, WIDTH, HEIGHT);
+        copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+        
+        // Move sprite
+        if ( state == SCATTER ) {
+        if ( this.onScatterPath == false ) {
+            initialiseScatter();
+        }
+        if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
+            setScatterParameters();
+        }
         }
         else {
-          tempRow = this.target.getCurrentNode()[1] - 2;
+        setTargetTile();
         }
-        tempCol = this.target.getCurrentNode()[0];
-        break;
-      
-      case RIGHT:
-        if ( this.target.getCurrentNode()[0] >= 25 ) {
-          tempCol = 26;
+        
+        if ( !map.checkPause() ) {
+        update();
+        }
+    }
+    
+    
+    // Set relative ghost
+    void setGhost(Ghost ghost) {
+        
+        this.targetGhost = ghost;
+    }
+    
+    
+    // Set target tile
+    void setTargetTile() {
+        
+        int tempCol = -1;
+        int tempRow = -1;
+        int totalDist;
+        
+        switch ( this.target.direction ) {
+        
+        case UP:
+            if ( this.target.getCurrentNode()[1] <= 2 ) {
+            tempRow = 1;
+            }
+            else {
+            tempRow = this.target.getCurrentNode()[1] - 2;
+            }
+            tempCol = this.target.getCurrentNode()[0];
+            break;
+        
+        case RIGHT:
+            if ( this.target.getCurrentNode()[0] >= 25 ) {
+            tempCol = 26;
+            }
+            else {
+            tempCol = this.target.getCurrentNode()[0] + 2;
+            }
+            tempRow = this.target.getCurrentNode()[1];
+            break;
+        
+        case DOWN:
+            if ( this.target.getCurrentNode()[1] >= 28 ) {
+            tempRow = 29;
+            }
+            else {
+            tempRow = this.target.getCurrentNode()[1] + 2;
+            }
+            tempCol = this.target.getCurrentNode()[0];
+            break;
+        
+        case LEFT:
+            if ( this.target.getCurrentNode()[0] <= 2 ) {
+            tempCol = 1;
+            }
+            else {
+            tempCol = this.target.getCurrentNode()[0] - 2;
+            }
+            tempRow = this.target.getCurrentNode()[1];
+            break;
+        
+        default:
+            println("Error in Pinky.setTargetTile()");
+            break;
+        }
+        
+        int d = getDistance(tempCol, tempRow);
+        int edgeDist = getShortestEdge(tempCol, tempRow);
+        if ( d < edgeDist ) {
+        totalDist = 2 * d;
         }
         else {
-          tempCol = this.target.getCurrentNode()[0] + 2;
-        }
-        tempRow = this.target.getCurrentNode()[1];
-        break;
-      
-      case DOWN:
-        if ( this.target.getCurrentNode()[1] >= 28 ) {
-          tempRow = 29;
-        }
-        else {
-          tempRow = this.target.getCurrentNode()[1] + 2;
-        }
-        tempCol = this.target.getCurrentNode()[0];
-        break;
-      
-      case LEFT:
-        if ( this.target.getCurrentNode()[0] <= 2 ) {
-          tempCol = 1;
-        }
-        else {
-          tempCol = this.target.getCurrentNode()[0] - 2;
-        }
-        tempRow = this.target.getCurrentNode()[1];
-        break;
-      
-      default:
-        println("Error in Pinky.setTargetTile()");
-        break;
+        totalDist = 2 * edgeDist;
+        } 
+        
+        int targetCol = this.targetGhost.getCurrentNode()[0] + ( (tempCol - this.targetGhost.getCurrentNode()[0] ) / d ) * totalDist;
+        int targetRow = this.targetGhost.getCurrentNode()[1] + ( (tempRow - this.targetGhost.getCurrentNode()[1] ) / d ) * totalDist;
+        
+        this.targetCol = targetCol;
+        this.targetRow = targetRow;
+        
     }
     
-    int d = getDistance(tempCol, tempRow);
-    int edgeDist = getShortestEdge(tempCol, tempRow);
-    if ( d < edgeDist ) {
-      totalDist = 2 * d;
+    
+    // Return the shortest distance to an edge
+    int getShortestEdge(int tempCol, int tempRow) {
+        
+        int north = abs(tempRow - 1);
+        int east = abs(tempCol - 26);
+        int south = abs(tempRow - 29);
+        int west = abs(tempCol - 1);
+        
+        int tempMin = min(north, south, east); // function only takes 3 values :/
+        tempMin = min(tempMin, west);
+        
+        if ( tempMin == 0 ) {
+        return 1;
+        }
+        return tempMin;
     }
-    else {
-      totalDist = 2 * edgeDist;
-    } 
-    
-    int targetCol = this.targetGhost.getCurrentNode()[0] + ( (tempCol - this.targetGhost.getCurrentNode()[0] ) / d ) * totalDist;
-    int targetRow = this.targetGhost.getCurrentNode()[1] + ( (tempRow - this.targetGhost.getCurrentNode()[1] ) / d ) * totalDist;
-    
-    this.targetCol = targetCol;
-    this.targetRow = targetRow;
-    
-  }
-  
-  
-  // Return the shortest distance to an edge
-  int getShortestEdge(int tempCol, int tempRow) {
-    
-    int north = abs(tempRow - 1);
-    int east = abs(tempCol - 26);
-    int south = abs(tempRow - 29);
-    int west = abs(tempCol - 1);
-    
-    int tempMin = min(north, south, east); // function only takes 3 values :/
-    tempMin = min(tempMin, west);
-    
-    if ( tempMin == 0 ) {
-      return 1;
+        
+        
+    // Return Euclidian distance from target ghost
+    int getDistance(int tempCol, int tempRow) {
+        
+        int dX = abs(tempCol - this.targetGhost.getCurrentNode()[0]);
+        int dY = abs(tempRow - this.targetGhost.getCurrentNode()[1]);
+        
+        int d = (int) sqrt( pow(dX, 2) + pow(dY, 2) ); 
+        
+        if ( d == 0 ) {
+        return 1;
+        }
+        return d;
     }
-    return tempMin;
-  }
-    
-    
-  // Return Euclidian distance from target ghost
-  int getDistance(int tempCol, int tempRow) {
-    
-    int dX = abs(tempCol - this.targetGhost.getCurrentNode()[0]);
-    int dY = abs(tempRow - this.targetGhost.getCurrentNode()[1]);
-    
-    int d = (int) sqrt( pow(dX, 2) + pow(dY, 2) ); 
-    
-    if ( d == 0 ) {
-      return 1;
-    }
-    return d;
-  }
 
 }
 
