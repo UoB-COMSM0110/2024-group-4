@@ -1,5 +1,5 @@
 class Node {
-  // Holds information used for calculating A* best path
+    // Holds information used for calculating A* best path
     
     int x;
     int y;
