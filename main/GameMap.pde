@@ -235,11 +235,6 @@ class GameMap {
     text("MONEY: $ " + money, 1180, 300);
     // Draw pause button
     drawPauseButton();
-    if (pause) {
-      fill(255);
-      textSize(80); 
-      text("GAME PAUSE", 385, 605);
-    }  
     // Show current block type
     fill(135, 206, 250);
     textSize(52); 
@@ -299,7 +294,7 @@ class GameMap {
       text("stop all the ghosts", 1180, 1060);
       text("when it exists.", 1180, 1140);
     }
- }  
+}  
   
   void drawPauseButton() {
     if (pause == false) {

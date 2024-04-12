@@ -41,6 +41,9 @@ Button levelenterButton;
 
 Button cancelButton;
 
+Button pauseContinueButton;
+Button pauseCancelButton;
+
 final int gamewidth = 1640;
 final int gameheight = 1240;
 final int button_w = 300;
@@ -69,6 +72,9 @@ void setup() {
   levelenterButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Confirm", button_textSize);
 
   cancelButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Cancel", button_textSize);
+
+  pauseContinueButton = new Button((gamewidth-button_w)/2*0.4 + 85, startButton_Y + button_gap * 2, button_w*0.8, button_h, "Continue", button_textSize);
+  pauseCancelButton = new Button((gamewidth-button_w)/2*0.8 + 85, startButton_Y + button_gap * 2, button_w*0.8, button_h, "Cancel", button_textSize);
 
   GRM = new GameRecordManager("game_records.txt", gameMap);
   sprites = loadImage("data/spriteSheet.png");
@@ -159,6 +165,7 @@ void mouseClicked() {
       ghost4.setTarget(myPacman);
       ghost4.freeze(true);
 */
+      pause = false;
       gameended = false;
       finalscore = 0;
       return;
@@ -226,6 +233,15 @@ void mouseClicked() {
     }
     if (gridX >= 37 && gridX < 40 && gridY >= 12 && gridY < 15) {
       gameMap.changeBlock(3); 
+    }
+    if (pauseContinueButton.clicked()){
+      pause = false;
+      return;
+    }
+    if (pauseCancelButton.clicked()){
+      endgame();
+      gamemod = StartScreen;
+      return;
     }
     return;
   }

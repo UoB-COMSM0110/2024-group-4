@@ -78,6 +78,9 @@ void maingame() {
     ghost2.draw();
     ghost3.draw();
     ghost4.draw();
+    if (pause) {
+      pauseMenu();
+    }
     
     // Reset pacman
     if ( ghost1.caughtTarget() || ghost2.caughtTarget() || ghost3.caughtTarget() || ghost4.caughtTarget() ) {
@@ -168,6 +171,19 @@ void helpmenu() {
   // Buttons
   cancelButton.display();
   return;
+}
+
+void pauseMenu() {
+  fill(200, 0, 0);
+  rect(370, 535, 470, 90);
+  fill(20, 20, 20);
+  rect(375, 540, 460, 80);
+  fill(255);
+  textSize(80); 
+  text("GAME PAUSE", 385, 605);
+  pauseContinueButton.display();
+  pauseCancelButton.display();
+  // textAlign(LEFT, BASELINE);
 }
 
 
