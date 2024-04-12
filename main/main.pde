@@ -54,6 +54,13 @@ final int button_gap = 120;
 
 boolean gameended = true;
 
+// exhibit
+GameMap displaygamemap;
+Pacman dispaypacman;
+Pathfinder displaypf;
+Blinky displayghost1;
+Inky displayghost2;
+
 void setup() {
     // TODO Make pacman smarter
     size(1640, 1240);
@@ -78,6 +85,17 @@ void setup() {
     GRM = new GameRecordManager("game_records.txt", gameMap);
     sprites = loadImage("data/spriteSheet.png");
     loadSounds();
+
+    // exhibit
+    displaygamemap = new GameMap(cellSize);
+    displaygamemap.setMap();
+    displaypf = new Pathfinder(displaygamemap);
+    dispaypacman = new Pacman(0, 0, displaypf, displaygamemap);
+    displayghost1 = new Blinky(0, 0, displaypf, displaygamemap, dispaypacman);
+    displayghost2 = new Inky(0, 0, displaypf, displaygamemap, dispaypacman);
+    displayghost1.setTarget(dispaypacman);
+    displayghost2.setTarget(dispaypacman);
+    displayghost2.setGhost(displayghost1);
 }
 
 void draw() {

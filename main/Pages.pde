@@ -16,6 +16,18 @@ void menu() {
     recordButton.display();
     helpButton.display();
     exitButton.display();
+
+    dispaypacman.setPosition(7, 20);
+    dispaypacman.setDirection(RIGHT);
+    dispaypacman.draw();
+    
+    displayghost1.setPosition(25,10);
+    displayghost1.setDirection(LEFT);
+    displayghost2.setPosition(8,8);
+    displayghost2.setDirection(DOWN);
+    // println(displayghost1.target);
+    displayghost1.draw();
+    displayghost2.draw();
 }
 
 void maingame() {

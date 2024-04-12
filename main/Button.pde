@@ -19,12 +19,7 @@ class Button {
 
     void display() {
         if (hover()) {
-            fill(hoverbackgroundcolour); // color
-            rect(x, y, width, height, 10);
-            fill(hovertextcolour); // text color
-            textSize(this.textSize);
-            textAlign(CENTER, CENTER);
-            text(label, x + width / 2, y + height / 2);
+            hoverdisplay();
             return;
         }
         fill(backgroundcolour); // color
@@ -39,15 +34,43 @@ class Button {
         return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
     }
 
+    void hoverdisplay() {
+        fill(hoverbackgroundcolour); // color
+        rect(x, y, width, height, 10);
+        fill(hovertextcolour); // text color
+        textSize(this.textSize);
+        textAlign(CENTER, CENTER);
+        text(label, x + width / 2, y + height / 2);
+    }
+
     boolean clicked() {
         return hover();
     }
+}
 
-    void backgroundcolour(int backgroundcolour) {
-        this.backgroundcolour = backgroundcolour;
+class ImageButton extends Button {
+    PImage img;
+
+    ImageButton(float x, float y, float width, float height, PImage img) {
+        super(x, y, width, height, "", 0);
+        this.img = img;
     }
 
-    void textcolour(int textcolour) {
-        this.textcolour = textcolour;
+    @Override
+    void display() {
+        if (hover()) {
+            hoverdisplay();
+        } else {
+            fill(backgroundcolour);
+        }
+        rect(x, y, width, height, 10);
+
+        imageMode(CENTER);
+        image(img, x + width / 2, y + height / 2, width, height);
+    }
+
+    @Override
+    void hoverdisplay() {
+        fill(hoverbackgroundcolour);
     }
 }
