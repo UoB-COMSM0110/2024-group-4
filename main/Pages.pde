@@ -110,7 +110,6 @@ void statusUpdate() {
 }
 
 void endgame() {
-  
   if (!gameended) {
     String playerName = "Player";
     playerName = JOptionPane.showInputDialog(null, "Please enter your name:", playerName);

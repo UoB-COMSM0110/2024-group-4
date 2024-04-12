@@ -1,2 +1,0 @@
-Player Name,Score,Time
-Player, 2160, 2024-04-12 02:26:28

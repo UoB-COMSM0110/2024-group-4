@@ -53,7 +53,6 @@ final int startButton_Y = (gameheight-button_h)/2 - 100;
 final int button_gap = 120;
 
 boolean gameended = true;
-int finalscore = 0;
 
 void setup() {
   // TODO Make pacman smarter
@@ -167,7 +166,6 @@ void mouseClicked() {
 */
       pause = false;
       gameended = false;
-      finalscore = 0;
       return;
     }
     if (levelButton.clicked()) {
