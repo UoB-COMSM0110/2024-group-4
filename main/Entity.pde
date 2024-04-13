@@ -174,13 +174,8 @@ class Entity {
 
   // Return true if Entity is on new tile and update attributes
   void updateTile() {
-    int currentCol = (int) ( x / map.cellSize );
-    int currentRow = (int) ( y / map.cellSize );
-
-    if ( currentCol != col || currentRow != row ) {
-      col = currentCol;
-      row = currentRow;
-    }
+      col = (int) ( x / map.cellSize );
+      row = (int) ( y / map.cellSize );
   }
 
 
