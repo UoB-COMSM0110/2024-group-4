@@ -35,19 +35,11 @@ class Button {
         text(label, x + width / 2, y + height / 2);
     }
 
-    boolean hover() {
+    private boolean hover() {
         return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
     }
 
     boolean clicked() {
         return hover();
-    }
-
-    void backgroundcolour(int backgroundcolour) {
-        this.backgroundcolour = backgroundcolour;
-    }
-
-    void textcolour(int textcolour) {
-        this.textcolour = textcolour;
     }
 }

@@ -62,19 +62,17 @@ class Pathfinder {
     
     // Set non-traversable nodes in grid
     void setWalls() {
-    
-    for (int row = 0; row < MAX_ROWS; row++) {
-        for (int col = 0; col < MAX_COLS; col++) {
-        if ( map.map[row][col] == WALL ) {
-            grid[row][col].isWall = true;
+        for (int row = 0; row < MAX_ROWS; row++) {
+            for (int col = 0; col < MAX_COLS; col++) {
+            if ( map.map[row][col] == WALL ) {
+                grid[row][col].isWall = true;
+            }
+            else if ( map.map[row][col] == TMP_WALL ) {
+                grid[row][col].isWall = true;
+            }
+            else;
+            }
         }
-        else if ( map.map[row][col] == TMP_WALL ) {
-            grid[row][col].isWall = true;
-        }
-        else;
-        }
-    }
-    
     }
     
     
