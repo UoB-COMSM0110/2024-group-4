@@ -7,7 +7,7 @@ final int basic_score = 10;
 final int bigScore = 300;
 final int wallstack_deep = 3;
 boolean pause = false;
-int block_type = 1;
+
 int map_choice = 0;
 int PORTAL = 7;
 int BIG_DOT = 5;
@@ -17,6 +17,7 @@ class GameMap {
   int cellSize; // Cell size
   int dotSize;
   int distance;
+  int block_type = 1;
 
   int[][] map = deepCopy2D(map1);
   // player can build 3 walls
@@ -204,11 +205,11 @@ class GameMap {
     line(1115 + 175*2, 440, 1115 + 175*2, 465);
     line(1115 + 175, 452, 1115 + 175*2, 452);
     line(1115, 574, 1640, 574);
-    line(1115, 700, 1640, 700);
-    line(1250, 574, 1250, 700);
-    line(1380, 574, 1380, 700);
-    line(1510, 574, 1510, 700);
-    line(1115, 784, 1640, 784);
+    line(1115, 704, 1640, 704);
+    line(1246, 574, 1246, 700);
+    line(1376, 574, 1376, 700);
+    line(1506, 574, 1506, 700);
+    line(1115, 792, 1640, 792);
     
     noStroke();
     
@@ -267,39 +268,55 @@ class GameMap {
     }
     rect(1535, 490, 1.5*cellSize, 1.5*cellSize);
     // choose block
+    if (mouseX >= 1120 && mouseX < 1240 && mouseY >= 574 && mouseY < 700) {
+      fill(200);
+      rect(1121, 580, 120, 120);
+    }
+    if (mouseX >= 1250 && mouseX < 1370 && mouseY >= 574 && mouseY < 700) {
+      fill(200);
+      rect(1251, 580, 120, 120);
+    }
+    if (mouseX >= 1380 && mouseX < 1500 && mouseY >= 574 && mouseY < 700) {
+      fill(200);
+      rect(1381, 580, 120, 120);
+    }
+    if (mouseX >= 1510 && mouseX < 1630 && mouseY >= 574 && mouseY < 700) {
+      fill(200);
+      rect(1511, 580, 120, 120);
+    }
     fill(22, 22, 148);
-    rect(1153, 607, 1.5*cellSize, 1.5*cellSize);
+    rect(1150, 610, 1.5*cellSize, 1.5*cellSize);
     fill(135, 206, 250);
-    rect(1286, 607, 1.5*cellSize, 1.5*cellSize);
+    rect(1282, 610, 1.5*cellSize, 1.5*cellSize);
     fill(255);
-    rect(1416, 607, 1.5*cellSize, 1.5*cellSize);
+    rect(1412, 610, 1.5*cellSize, 1.5*cellSize);
     fill(255, 255, 0);
-    rect(1546, 607, 1.5*cellSize, 1.5*cellSize);
+    rect(1542, 610, 1.5*cellSize, 1.5*cellSize);
     // Show block information
     fill(246, 209, 7); // Yellow
     textSize(40);
-    text("PRICE: ", 1140, 754);
-    image(coin, 1380, 720);
-    text("X  " + String.valueOf(10*block_type), 1450, 754);
+    text("PRICE: ", 1140, 760);
+    image(coin, 1380, 726);
+    text("X  " + String.valueOf(10*block_type), 1450, 760);
     fill(135, 206, 250);
-    text("BLOCK   FUNCTION: ", 1140, 840);
+    text("BLOCK   FUNCTION: ", 1140, 850);
     textSize(40);
-    text("V    V    V    V    V", 1196, 900);
+    text("V    V    V    V    V", 1196, 910);
     if (block_type == 1) {
-      text("Block path", 1140, 980);
-      text("when it exists.", 1140, 1060);
+      text("Block path", 1140, 990);
+      text("when it exists.", 1140, 1070);
     } else if (block_type == 2) {
-      text("Block path and", 1140, 980);
-      text("slow the ghosts", 1140, 1060);
-      text("when it exists.", 1140, 1140);
+      text("Block path and", 1140, 990);
+      text("slow the ghosts", 1140, 1070);
+      text("when it exists.", 1140, 1150);
     } else if (block_type == 3) {
-      text("Block path and", 1140, 980);
-      text("stop all ghosts", 1140, 1060);
-      text("when it exists.", 1140, 1140);
+      text("Block path and", 1140, 990);
+      text("stop all ghosts", 1140, 1070);
+      text("when it exists.", 1140, 1150);
     } else {
-      text("Transport Pac-", 1140, 980);
-      text("man to the", 1140, 1060);
-      text("select place.", 1140, 1140);
+      text("Transport Pac-", 1140, 990);
+      text("man to the", 1140, 1070);
+      text("select place.", 1140, 1150);
     }  
   }
 
@@ -383,6 +400,12 @@ class GameMap {
     }
     return false;
   }
+  
+  void transport(int gridx, int gridy) {
+    myPacman.x = gridx * 40;
+    myPacman.y = gridy * 40;
+    money -= 40;
+  }  
 
   int getScore() {
     return score;

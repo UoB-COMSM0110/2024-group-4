@@ -243,7 +243,14 @@ void mouseClicked() {
 
     if (gridX >= 0 && gridX < 1120/cellSize && gridY >= 0 && gridY < 1240/cellSize) {
       println(gridX, gridY);
-      gameMap.setWall(gridX, gridY);
+      if (gameMap.block_type == 4) {
+        if (gameMap.map[gridY][gridX] == 3 || gameMap.map[gridY][gridX] == 0) {
+          gameMap.transport(gridX, gridY);       
+        }
+      }
+      else {
+        gameMap.setWall(gridX, gridY);
+      }
     }
     if (mouseX >= 1550 && mouseX < 1630 && mouseY >= 10 && mouseY < 90) {
       gameMap.pause();
