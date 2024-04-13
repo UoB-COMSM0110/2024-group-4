@@ -112,7 +112,7 @@ class Entity {
   }
 
 
-  // Update position on screen
+  // Update position in the map
   void update() {
     if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
       if ( state == EVADE ) {
@@ -174,8 +174,8 @@ class Entity {
 
   // Return true if Entity is on new tile and update attributes
   void updateTile() {
-      col = (int) ( x / map.cellSize );
-      row = (int) ( y / map.cellSize );
+    col = (int) ( x / map.cellSize );
+    row = (int) ( y / map.cellSize );
   }
 
 
