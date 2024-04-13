@@ -53,6 +53,10 @@ PFont font;
 
 boolean gameended = true;
 
+// Animations
+AnimationPacman animPacman;
+AnimationGhosts animGhosts;
+
 void setup() {
     // TODO Make pacman smarter
     size(1640, 1240);
@@ -77,8 +81,11 @@ void setup() {
     pauseCancelButton = new Button((gamewidth-button_w)/2*0.8 + 60, startButton_Y + button_gap * 2, button_w*1.2, button_h, "End Game", button_textSize);
 
     GRM = new GameRecordManager("game_records.txt", gameMap);
-    sprites = loadImage("data/spriteSheet.png");
+    sprites = loadImage("src/spriteSheet.png");
     loadSounds();
+
+    animPacman = new AnimationPacman(160, 750, 400);
+    animGhosts = new AnimationGhosts(1050, 600, 101);
 }
 
 void draw() {

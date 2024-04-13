@@ -15,18 +15,25 @@ PImage img4;
 
 void menu() {
     background(0);
+
+    // Animations
+    animPacman.display();
+    animGhosts.display();
+
+    // Pictures
     img1 = loadImage("assets/PacmanTitle.png");
     img1.resize(1250, 300);
     image(img1, (1640-1250)/2, 100);
     img2 = loadImage("assets/SaviorTitle.png");
     img2.resize(672, 130);
     image(img2, (1640-672)/2, 380);
-    img3 = loadImage("assets/Pacman.png");
-    img3.resize(300, 300);
-    image(img3, 160, 750);
-    img4 = loadImage("assets/Ghosts.jpg");
-    img4.resize(500, 600);
-    image(img4, 1100, 600);
+    // img3 = loadImage("assets/Pacman.png");
+    // img3.resize(300, 300);
+    // image(img3, 160, 750);
+    // img4 = loadImage("src/ghosts1.png");
+    // img4.resize(500, 600);
+    // image(img4, 1050, 600);
+    // Buttons
     startButton.display();
     levelButton.display();
     recordButton.display();
