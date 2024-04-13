@@ -22,6 +22,8 @@ class Entity {
   int row;
   int targetCol;
   int targetRow;
+  int interval;
+  int lastUpdateTime;
 
   int direction;
   int speed;
@@ -44,6 +46,8 @@ class Entity {
     this.freeze = false;
     this.pf = pf;
     this.map = map;
+    this.interval = 10;
+    this.lastUpdateTime = 0;
   }
 
 
@@ -150,18 +154,22 @@ class Entity {
       return;
     }
 
+    int currentTime = millis();
+    int times = (currentTime - lastUpdateTime) / interval;
+    lastUpdateTime = currentTime;
+    times=1;
     switch ( direction ) {
     case UP:
-      y -= speed;
+      y -= speed * times;
       break;
     case RIGHT:
-      x += speed;
+      x += speed * times;
       break;
     case DOWN:
-      y += speed;
+      y += speed * times;
       break;
     case LEFT:
-      x -= speed;
+      x -= speed * times;
       break;
     default:
       println("ERROR: invalid direction code in Entity.update() - " + direction);
