@@ -55,7 +55,7 @@ class Pacman extends Entity {
 		this.offsetY = 245;
 		break;
 		default:
-		println("Error in Ghost.drawGhost()");
+		println("Error in Pacman.draw()");
 		break;
 	}
 	
