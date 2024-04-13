@@ -12,10 +12,6 @@ Pathfinder pf;
 GameRecordManager GRM;
 
 final int cellSize = 40;
-final int eazy = 4;
-final int middle = 3;
-final int hard = 2;
-final int difficulty = eazy;
 
 final int StartScreen = 0;
 final int gameInProgress = 1;
@@ -62,6 +58,7 @@ AnimationGhosts animGhosts;
 void setup() {
   // TODO Make pacman smarter
   size(1640, 1240);
+  frameRate(60);
   font = createFont("assets/ka1.ttf", 48);
   textFont(font);
   heart = loadImage("assets/Heart.png");
@@ -81,12 +78,12 @@ void setup() {
   levelupButton = new Button((gamewidth-button_w)/2 + 200, startButton_Y + button_gap * 2, button_w, button_h, "NEXT", button_textSize);
   levelenterButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Confirm", button_textSize);
 
-  cancelButton = new Button(gamewidth * 0.8, gameheight - 120, button_w, button_h, "Cancel", button_textSize);
+  cancelButton = new Button(gamewidth * 0.8, gameheight - 120, button_w, button_h, "Back", button_textSize);
 
   pauseContinueButton = new Button((gamewidth-button_w)/2*0.4 - 100, startButton_Y + button_gap * 2, button_w*1.2, button_h, "Continue", button_textSize);
   pauseCancelButton = new Button((gamewidth-button_w)/2*0.8 + 60, startButton_Y + button_gap * 2, button_w*1.2, button_h, "End Game", button_textSize);
 
-  GRM = new GameRecordManager("game_records.txt", gameMap);
+  GRM = new GameRecordManager("game_records.txt");
   sprites = loadImage("src/spriteSheet.png");
   loadSounds();
 
@@ -244,11 +241,10 @@ void mouseClicked() {
     if (gridX >= 0 && gridX < 1120/cellSize && gridY >= 0 && gridY < 1240/cellSize) {
       println(gridX, gridY);
       if (gameMap.block_type == 4) {
-        if (gameMap.map[gridY][gridX] == 3 || gameMap.map[gridY][gridX] == 0) {
-          gameMap.transport(gridX, gridY);       
+        if ((gameMap.map[gridY][gridX] == 3 || gameMap.map[gridY][gridX] == 0) && gameMap.money > 40) {
+          gameMap.transport(gridX, gridY);
         }
-      }
-      else {
+      } else {
         gameMap.setWall(gridX, gridY);
       }
     }
@@ -267,14 +263,16 @@ void mouseClicked() {
     if (mouseX >= 1510 && mouseX < 1630 && mouseY >= 574 && mouseY < 700) {
       gameMap.changeBlock(4);
     }
-    if (pauseContinueButton.clicked()) {
-      pause = false;
-      return;
-    }
-    if (pauseCancelButton.clicked()) {
-      endgame();
-      gamemod = StartScreen;
-      return;
+    if (pause == true) {
+      if (pauseContinueButton.clicked()) {
+        pause = false;
+        return;
+      }
+      if (pauseCancelButton.clicked()) {
+        endgame();
+        gamemod = StartScreen;
+        return;
+      }
     }
     return;
   }

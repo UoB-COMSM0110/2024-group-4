@@ -1,26 +1,26 @@
 public static int[][] deepCopy2D(int[][] original) {
-    if (original == null) {
-        return null;
+  if (original == null) {
+    return null;
+  }
+
+  int[][] result = new int[original.length][];
+
+  for (int i = 0; i < original.length; i++) {
+    result[i] = new int[original[i].length];
+    for (int j = 0; j < original[i].length; j++) {
+      result[i][j] = original[i][j];
     }
-    
-    int[][] result = new int[original.length][];
-    
-    for (int i = 0; i < original.length; i++) {
-        result[i] = new int[original[i].length];
-        for (int j = 0; j < original[i].length; j++) {
-            result[i][j] = original[i][j];
-        }
-    }
-    
-    return result;
+  }
+
+  return result;
 }
 
 String truncateString(String input, int maxLength) {
-    if (input.length() > maxLength) {
-        return input.substring(0, maxLength - 3) + "...";
-    } else {
-        return input;
-    }
+  if (input.length() > maxLength) {
+    return input.substring(0, maxLength - 3) + "...";
+  } else {
+    return input;
+  }
 }
 
 // PImage enlargeImage(PImage img, flost factor) {
@@ -33,7 +33,7 @@ String truncateString(String input, int maxLength) {
 
 //     img.loadPixels();
 //     result.loadPixels();
-    
+
 //     for (int y = 0; y < newHeight; y++) {
 //         for (int x = 0; x < newWidth; x++) {
 //             int oldX = x / factor;
@@ -41,7 +41,7 @@ String truncateString(String input, int maxLength) {
 //             result.pixels[y * newWidth + x] = img.pixels[oldY * img.width + oldX]; // 复制像素
 //         }
 //     }
-    
+
 //     result.updatePixels();
 //     return result;
 // }

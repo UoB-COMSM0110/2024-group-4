@@ -12,6 +12,7 @@ int map_choice = 0;
 int PORTAL = 7;
 int BIG_DOT = 5;
 int GHOST_HOME = 6;
+int[] price = {10, 50, 200, 50};
 
 class GameMap {
   int cellSize; // Cell size
@@ -50,10 +51,10 @@ class GameMap {
   // Method to check if a move to a new position is possible
   boolean checkMove(int x, int y) {
     // Ensure the move is within the bounds of the map
-    if (x < 0 || x >= map[0].length || y < 0 || y >= map.length) {
+    if (x < 1 || x >= map[0].length || y < 1 || y >= map.length) {
       return false;
     }
-    return map[y][x] != wall && map[y][x] != tmp_wall; // 1 represents a wall
+    return map[y][x] != wall && map[y][x] != 2 && map[y][x] != 4 && map[y][x] != 6; // make sure next move won't go into a wall
   }
 
   // Method to draw the map
@@ -174,6 +175,25 @@ class GameMap {
         }
       }
     }
+
+    int gridX = mouseX / cellSize;
+    int gridY = mouseY / cellSize;
+
+    if (gridX >= 0 && gridX < 1120/cellSize && gridY >= 0 && gridY < 1240/cellSize) {
+      if (map[gridY][gridX] == 3 || map[gridY][gridX] == 0) {
+        if (block_type == 1) {
+          fill(22, 22, 148);
+        } else if (block_type == 2) {
+          fill(135, 206, 250);
+        } else if (block_type == 3) {
+          fill(255);
+        } else {
+          fill(255, 255, 0);
+        }
+        rect(gridX * cellSize, gridY * cellSize, cellSize, cellSize);
+      }
+    }
+
     // draw edges
     if (map_choice == 0) {
       stroke(33, 33, 222); // Wall color
@@ -210,15 +230,14 @@ class GameMap {
     line(1376, 574, 1376, 700);
     line(1506, 574, 1506, 700);
     line(1115, 792, 1640, 792);
-    
+
     noStroke();
-    
+
     // Pause button background color
     if (mouseX >= 1550 && mouseX < 1630 && mouseY >= 10 && mouseY < 90) {
       fill(105, 196, 250);
-    }
-    else {
-      fill(135, 206, 250); 
+    } else {
+      fill(135, 206, 250);
     }
     rect(1640-90, 10, cellSize, cellSize);
     rect(1640-50, 10, cellSize, cellSize);
@@ -226,26 +245,26 @@ class GameMap {
     rect(1640-50, 10+cellSize, cellSize, cellSize);
     // Draw pause button
     drawPauseButton();
-    
+
     // Show score
     textAlign(LEFT, BASELINE);
     fill(255); // White
     textSize(40);
     text("SCORE    " + score, 1140, 62);
-    
+
     // Show lives
     fill(237, 44, 44);
     textSize(40);
     text("HEALTH", 1140, 154);
     image(heart, 1380, 120);
     text("X  " + myPacman.lives, 1450, 154);
-    
+
     // Show money
     fill(246, 209, 7); // Yellow
     text("MONEY", 1140, 242);
     image(coin, 1380, 208);
     text("X  " + money, 1450, 242);
-    
+
     // Show block shop
     fill(135, 206, 250);
     textSize(55);
@@ -297,7 +316,7 @@ class GameMap {
     textSize(40);
     text("PRICE: ", 1140, 760);
     image(coin, 1380, 726);
-    text("X  " + String.valueOf(10*block_type), 1450, 760);
+    text("X  " + price[block_type-1], 1450, 760);
     fill(135, 206, 250);
     text("BLOCK   FUNCTION: ", 1140, 850);
     textSize(40);
@@ -317,7 +336,7 @@ class GameMap {
       text("Transport Pac-", 1140, 990);
       text("man to the", 1140, 1070);
       text("select place.", 1140, 1150);
-    }  
+    }
   }
 
   void drawPauseButton() {
@@ -364,6 +383,7 @@ class GameMap {
   void eatBigDot(int row, int col) {
     map[row][col] = eat_dot;
     score += bigScore;
+    money += 10;
   }
 
 
@@ -386,7 +406,7 @@ class GameMap {
       }
       return true;
     }
-    if (map[y][x] != wall && money >= 10 * block_type) {
+    if (map[y][x] != wall && money >= price[block_type-1]) {
       if (wallstack[wallindex][0] != -1) {
         map[wallstack[wallindex][1]][wallstack[wallindex][0]] = empty_grid;
       }
@@ -395,17 +415,17 @@ class GameMap {
       wallindex++;
       wallindex%=wallstack_deep;
       map[y][x] = 2 * block_type;
-      money -= 10 * block_type;
+      money -= price[block_type-1];
       return true;
     }
     return false;
   }
-  
+
   void transport(int gridx, int gridy) {
     myPacman.x = gridx * 40;
     myPacman.y = gridy * 40;
-    money -= 40;
-  }  
+    money -= price[block_type-1];
+  }
 
   int getScore() {
     return score;
@@ -423,6 +443,28 @@ class GameMap {
     return pause;
   }
 
+  boolean checkSlow() {
+    for ( int row = 0; row < map.length; row++ ) {
+      for ( int col = 0; col < map[0].length; col++ ) {
+        if ( map[row][col] == 4 ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  boolean checkStop() {
+    for ( int row = 0; row < map.length; row++ ) {
+      for ( int col = 0; col < map[0].length; col++ ) {
+        if ( map[row][col] == 6 ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   void changeBlock(int type) {
     block_type = type;
     tmp_wall = 2 * type;
@@ -435,19 +477,17 @@ class GameMap {
   }
 
 
-  // Returns how many dots are remaining on map
-  int dotsRemaining() {
-
-    int dots = 0;
+  // Returns if there is dot remains on map
+  boolean dotsRemaining() {
 
     for ( int row = 0; row < map.length; row++ ) {
       for ( int col = 0; col < map[0].length; col++ ) {
         if ( map[row][col] == dot || map[row][col] == BIG_DOT ) {
-          dots++;
+          return true;
         }
       }
     }
 
-    return dots;
+    return false;
   }
 }

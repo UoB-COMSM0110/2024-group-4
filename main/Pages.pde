@@ -5,7 +5,6 @@ import java.text.ParseException;
 
 boolean GAME_RUNNING = true;
 int GHOST_STATE = SCATTER;
-int GHOSTS_RELEASED = 0;
 int lastWave = 20000;
 final int TOTAL_WAVES = 5;
 final int TOTAL_DOTS = 244;
@@ -14,6 +13,7 @@ PImage img1;
 PImage img2;
 PImage img3;
 PImage img4;
+PImage help;
 
 void menu() {
   background(0);
@@ -51,12 +51,10 @@ void maingame() {
   // Draw
 
   // Initialise ghosts
-  if ( GHOSTS_RELEASED == 0 ) {
-    ghost1.freeze(true);
-    ghost2.freeze(true);
-    ghost3.freeze(true);
-    ghost4.freeze(true);
-  }
+  ghost1.freeze(true);
+  ghost2.freeze(true);
+  ghost3.freeze(true);
+  ghost4.freeze(true);
 
   int waveTime = millis();
   int wave = 0;
@@ -64,7 +62,7 @@ void maingame() {
   if ( GAME_RUNNING ) {
 
     // Check game over
-    if ( myPacman.lives == 0 ) {
+    if ( myPacman.lives == 0 || !gameMap.dotsRemaining()) {
       println("DEBUG: here");
       GAME_RUNNING = false;
     }
@@ -90,70 +88,43 @@ void maingame() {
     }
 
     // Release ghosts
-    ghost1.freeze(false);
-    if ( GHOSTS_RELEASED == 0 ) {
-      GHOSTS_RELEASED++;
+    releaseNextGhost();
+    if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 1) ) {
+      releaseNextGhost();
     }
-    if ( GHOSTS_RELEASED == 1 && myPacman.currentDotsEaten >= (int) (0.25 * TOTAL_DOTS) ) {
-      ghost2.freeze(false);
-      if ( myPacman.speed == 2 ) {
-        increaseSpeed(myPacman, 2);
-      }
-      if ( ghost1.speed == 2 ) {
-        increaseSpeed(ghost1, 2);
-      }
-      if ( ghost2.speed == 2 ) {
-        increaseSpeed(ghost2, 2);
-      }
-      if ( ghost3.speed == 2 ) {
-        increaseSpeed(ghost3, 2);
-      }
-      if ( ghost4.speed == 2 ) {
-        increaseSpeed(ghost4, 2);
-      }
-      updateGhostsReleased(4);
-    } else if ( GHOSTS_RELEASED == 2 && myPacman.currentDotsEaten >= (int) (0.5 * TOTAL_DOTS) ) {
-      ghost3.freeze(false);
-      if ( myPacman.speed == 4 ) {
-        increaseSpeed(myPacman, 1);
-      }
-      if ( ghost1.speed == 4 ) {
-        increaseSpeed(ghost1, 1);
-      }
-      if ( ghost2.speed == 4 ) {
-        increaseSpeed(ghost2, 1);
-      }
-      if ( ghost3.speed == 4 ) {
-        increaseSpeed(ghost3, 1);
-      }
-      if ( ghost4.speed == 4 ) {
-        increaseSpeed(ghost4, 1);
-      }
-      updateGhostsReleased(5);
-    } if ( GHOSTS_RELEASED == 3 && myPacman.currentDotsEaten >= (int) (0.75 * TOTAL_DOTS) ) {
-      ghost4.freeze(false);
-      if ( myPacman.speed == 5 ) {
-        increaseSpeed(myPacman, 3);
-      }
-      if ( ghost1.speed == 5 ) {
-        increaseSpeed(ghost1, 3);
-      }
-      if ( ghost2.speed == 5 ) {
-        increaseSpeed(ghost2, 3);
-      }
-      if ( ghost3.speed == 5 ) {
-        increaseSpeed(ghost3, 3);
-      }
-      if ( ghost4.speed == 5 ) {
-        increaseSpeed(ghost4, 3);
-      }
-      updateGhostsReleased(8);
+    if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 2) ) {
+      releaseNextGhost();
+      changeSpeed(myPacman, 4);
+      changeSpeed(ghost1, 4);
+      changeSpeed(ghost2, 4);
+      changeSpeed(ghost3, 4);
+      changeSpeed(ghost4, 4);
+    }
+    if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 3) ) {
+      releaseNextGhost();
     }
 
     // Draw map
     background(0);
     gameMap.drawMap();
     myPacman.draw();
+
+    changeSpeed(ghost1, 2);
+    changeSpeed(ghost2, 2);
+    changeSpeed(ghost3, 2);
+    changeSpeed(ghost4, 2);
+    if (gameMap.checkSlow() && !gameMap.checkStop()) {
+      changeSpeed(ghost1, ghost1.speed / 2);
+      changeSpeed(ghost2, ghost2.speed / 2);
+      changeSpeed(ghost3, ghost3.speed / 2);
+      changeSpeed(ghost4, ghost4.speed / 2);
+    }
+    if (gameMap.checkStop()) {
+      changeSpeed(ghost1, 0);
+      changeSpeed(ghost2, 0);
+      changeSpeed(ghost3, 0);
+      changeSpeed(ghost4, 0);
+    }
     ghost1.draw();
     ghost2.draw();
     ghost3.draw();
@@ -174,9 +145,14 @@ void maingame() {
   if ( !GAME_RUNNING ) {
     gamemod = gameOver;
     textAlign(CENTER, CENTER);
-    fill(255, 0, 0);
     textSize(100);
-    text("GAME OVER", gamewidth/2 - 250, gameheight/2 - 400);
+    if (gameMap.dotsRemaining()) {
+      fill(255, 0, 0);
+      text("GAME OVER", gamewidth/2 - 250, gameheight/2 - 400);
+    } else {
+      fill(255, 255, 0);
+      text("YOU WIN", gamewidth/2 - 250, gameheight/2 - 400);
+    }
     endButton.display();
   }
 }
@@ -209,11 +185,23 @@ void chooselevel() {
   textAlign(CENTER, CENTER);
   fill(200, 100, 200);
   textSize(100);
-  text("L E V E L", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-200);
+  text("L E V E L", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-300);
   // Level number
-  fill(0, 100, 200);
+  if (level == 0) {
+    fill(33, 33, 222);
+  } else if (level == 1) {
+    fill(69, 60, 182);
+  } else if (level == 2) {
+    fill(48, 117, 141);
+  } else if (level == 3) {
+    fill(47, 130, 76);
+  } else {
+    fill(158, 74, 124);
+  }
   textSize(100);
-  text(level + 1, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2);
+  text(level + 1, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-120);
+  textSize(60);
+  text("Final score x 1." + level, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2+20);
   // Buttons
   levelupButton.display();
   leveldownButton.display();
@@ -241,10 +229,13 @@ void recordmenu() {
 void helpmenu() {
   background(0);
   // Help
-  textAlign(CENTER, CENTER);
-  fill(200, 100, 200);
-  textSize(100);
-  text("Help // TODO", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-200);
+  //textAlign(CENTER, CENTER);
+  //fill(200, 100, 200);
+  //textSize(100);
+  //text("Help // TODO", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-200);
+  help = loadImage("assets/Help.png");
+  help.resize(1640, 1240);
+  image(help, 0, 0);
   // Buttons
   cancelButton.display();
   return;
@@ -298,20 +289,10 @@ void releaseNextGhost() {
 }
 
 
-// Increases speed for all Entities
-void increaseSpeed(Entity e, int speedIncrease) {
-
+// Change speed for all Entities
+void changeSpeed(Entity e, int newSpeed) {
   if ( ( e.x == e.col * gameMap.cellSize ) && ( e.y == e.row * gameMap.cellSize ) ) {
-    e.speed += speedIncrease;
-  }
-}
-
-
-// Update GHOSTS_RELEASED only after all Entities speed has been updated
-void updateGhostsReleased(int speed) {
-  
-  if ( myPacman.speed == speed && ghost1.speed == speed && ghost2.speed == speed && ghost3.speed == speed && ghost4.speed == speed ) {
-    GHOSTS_RELEASED++;
+    e.speed = newSpeed;
   }
 }
 
@@ -342,6 +323,15 @@ void drawLeaderboard(List<String> records, float x, float y) {
     return;
   }
   for (int i = 0; i < records.size(); i++) {
+    if (i == 0) {
+      fill(255, 215, 0);
+    } else if (i == 1) {
+      fill(192, 192, 192);
+    } else if (i == 2) {
+      fill(184, 115, 51);
+    } else {
+      fill(100, 150, 200);
+    }
     String[] parts = records.get(i).split(",");
     SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     SimpleDateFormat outputFormat = new SimpleDateFormat("MM-dd");
