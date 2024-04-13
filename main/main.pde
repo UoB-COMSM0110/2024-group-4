@@ -118,10 +118,20 @@ void keyPressed() {
         } else if (keyCode == 32) {
         gameMap.pause();
         }
-    // TODO: Add hint;
+    if (gamemod == StartScreen) {
+        if (key == ESC) {
+            key = 0;
+        }
+    }
     if (gamemod == gameLevel) {
         if (key >= '1' && key < '1' + max_level) {
-        level = key - '1';
+            level = key - '1';
+        }
+    }
+    if (gamemod == gameInProgress) {
+        if (key == ESC) {
+            pause = !pause;
+            key = 0;
         }
     }
 }  
