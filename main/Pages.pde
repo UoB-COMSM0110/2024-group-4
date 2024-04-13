@@ -5,6 +5,7 @@ import java.text.ParseException;
 
 boolean GAME_RUNNING = true;
 int GHOST_STATE = SCATTER;
+int GHOSTS_RELEASED = 0;
 int lastWave = 20000;
 final int TOTAL_WAVES = 5;
 final int TOTAL_DOTS = 244;
@@ -50,10 +51,12 @@ void maingame() {
   // Draw
 
   // Initialise ghosts
-  ghost1.freeze(true);
-  ghost2.freeze(true);
-  ghost3.freeze(true);
-  ghost4.freeze(true);
+  if ( GHOSTS_RELEASED == 0 ) {
+    ghost1.freeze(true);
+    ghost2.freeze(true);
+    ghost3.freeze(true);
+    ghost4.freeze(true);
+  }
 
   int waveTime = millis();
   int wave = 0;
@@ -87,14 +90,64 @@ void maingame() {
     }
 
     // Release ghosts
-    releaseNextGhost();
-    if ( myPacman.currentDotsEaten >= (int) (0.25 * TOTAL_DOTS) ) {
-      releaseNextGhost();
-    } else if ( myPacman.currentDotsEaten >= (int) (0.5 * TOTAL_DOTS) ) {
-      releaseNextGhost();
-      increaseSpeed();
-    } else if ( myPacman.currentDotsEaten >= (int) (0.75 * TOTAL_DOTS) ) {
-      releaseNextGhost();
+    ghost1.freeze(false);
+    if ( GHOSTS_RELEASED == 0 ) {
+      GHOSTS_RELEASED++;
+    }
+    if ( GHOSTS_RELEASED == 1 && myPacman.currentDotsEaten >= (int) (0.25 * TOTAL_DOTS) ) {
+      ghost2.freeze(false);
+      if ( myPacman.speed == 2 ) {
+        increaseSpeed(myPacman, 2);
+      }
+      if ( ghost1.speed == 2 ) {
+        increaseSpeed(ghost1, 2);
+      }
+      if ( ghost2.speed == 2 ) {
+        increaseSpeed(ghost2, 2);
+      }
+      if ( ghost3.speed == 2 ) {
+        increaseSpeed(ghost3, 2);
+      }
+      if ( ghost4.speed == 2 ) {
+        increaseSpeed(ghost4, 2);
+      }
+      updateGhostsReleased(4);
+    } else if ( GHOSTS_RELEASED == 2 && myPacman.currentDotsEaten >= (int) (0.5 * TOTAL_DOTS) ) {
+      ghost3.freeze(false);
+      if ( myPacman.speed == 4 ) {
+        increaseSpeed(myPacman, 1);
+      }
+      if ( ghost1.speed == 4 ) {
+        increaseSpeed(ghost1, 1);
+      }
+      if ( ghost2.speed == 4 ) {
+        increaseSpeed(ghost2, 1);
+      }
+      if ( ghost3.speed == 4 ) {
+        increaseSpeed(ghost3, 1);
+      }
+      if ( ghost4.speed == 4 ) {
+        increaseSpeed(ghost4, 1);
+      }
+      updateGhostsReleased(5);
+    } if ( GHOSTS_RELEASED == 3 && myPacman.currentDotsEaten >= (int) (0.75 * TOTAL_DOTS) ) {
+      ghost4.freeze(false);
+      if ( myPacman.speed == 5 ) {
+        increaseSpeed(myPacman, 3);
+      }
+      if ( ghost1.speed == 5 ) {
+        increaseSpeed(ghost1, 3);
+      }
+      if ( ghost2.speed == 5 ) {
+        increaseSpeed(ghost2, 3);
+      }
+      if ( ghost3.speed == 5 ) {
+        increaseSpeed(ghost3, 3);
+      }
+      if ( ghost4.speed == 5 ) {
+        increaseSpeed(ghost4, 3);
+      }
+      updateGhostsReleased(8);
     }
 
     // Draw map
@@ -246,12 +299,19 @@ void releaseNextGhost() {
 
 
 // Increases speed for all Entities
-void increaseSpeed() {
+void increaseSpeed(Entity e, int speedIncrease) {
 
-  myPacman.speed += 2;
+  if ( ( e.x == e.col * gameMap.cellSize ) && ( e.y == e.row * gameMap.cellSize ) ) {
+    e.speed += speedIncrease;
+  }
+}
 
-  for ( int i = 0; i < ghosts.length; i++ ) {
-    ghosts[i].speed += 2;
+
+// Update GHOSTS_RELEASED only after all Entities speed has been updated
+void updateGhostsReleased(int speed) {
+  
+  if ( myPacman.speed == speed && ghost1.speed == speed && ghost2.speed == speed && ghost3.speed == speed && ghost4.speed == speed ) {
+    GHOSTS_RELEASED++;
   }
 }
 
