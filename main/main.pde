@@ -65,7 +65,7 @@ void setup() {
     recordButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 2+140, button_w, button_h, "Ranking", button_textSize);
     helpButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 3+140, button_w, button_h, "Help", button_textSize);
     exitButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 4+140, button_w, button_h, "Exit", button_textSize);
-    endButton = new Button((gamewidth-button_w)/2-200, (gameheight-button_h-200)/2+240, button_w*2.5, button_h, "Return to main menu", button_textSize);
+    endButton = new Button((gamewidth-button_w)/2*0.3, (gameheight-button_h-200)/2+240, button_w*2.5, button_h, "Return to main menu", button_textSize);
 
     leveldownButton = new Button((gamewidth-button_w)/2 - 200, startButton_Y + button_gap * 2, button_w, button_h, "PREV", button_textSize);
     levelupButton = new Button((gamewidth-button_w)/2 + 200, startButton_Y + button_gap * 2, button_w, button_h, "NEXT", button_textSize);

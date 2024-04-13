@@ -50,64 +50,65 @@ void maingame() {
     
     if ( GAME_RUNNING ) {
     
-    // Check game over
-    if ( myPacman.lives == 0 ) {
-        GAME_RUNNING = false;
-    }
+        // Check game over
+        if ( myPacman.lives == 0 ) {
+            println("DEBUG: here");
+            GAME_RUNNING = false;
+        }
+            
+        // Set wave
+        if ( wave < TOTAL_WAVES ) {
+            if ( waveTime - lastWave > 15000 && GHOST_STATE == SCATTER ) {
+            ghost1.setState(CHASE);
+            ghost2.setState(CHASE);
+            ghost3.setState(CHASE);
+            ghost4.setState(CHASE);
+            lastWave += 15000;
+            GHOST_STATE = CHASE;
+            }
+            else if ( waveTime - lastWave > 20000 && GHOST_STATE == CHASE ) {
+            ghost1.setState(SCATTER);
+            ghost2.setState(SCATTER);
+            ghost3.setState(SCATTER);
+            ghost4.setState(SCATTER);
+            lastWave += 20000;
+            GHOST_STATE = SCATTER;
+            }
+            wave++;
+        }
         
-    // Set wave
-    if ( wave < TOTAL_WAVES ) {
-        if ( waveTime - lastWave > 15000 && GHOST_STATE == SCATTER ) {
-        ghost1.setState(CHASE);
-        ghost2.setState(CHASE);
-        ghost3.setState(CHASE);
-        ghost4.setState(CHASE);
-        lastWave += 15000;
-        GHOST_STATE = CHASE;
+        // Release ghosts
+        releaseNextGhost();
+        if ( myPacman.currentDotsEaten >= (int) (0.25 * TOTAL_DOTS) ) {
+            releaseNextGhost();
         }
-        else if ( waveTime - lastWave > 20000 && GHOST_STATE == CHASE ) {
-        ghost1.setState(SCATTER);
-        ghost2.setState(SCATTER);
-        ghost3.setState(SCATTER);
-        ghost4.setState(SCATTER);
-        lastWave += 20000;
-        GHOST_STATE = SCATTER;
+        else if ( myPacman.currentDotsEaten >= (int) (0.5 * TOTAL_DOTS) ) {
+            releaseNextGhost();
+            increaseSpeed();
         }
-        wave++;
-    }
-    
-    // Release ghosts
-    releaseNextGhost();
-    if ( myPacman.currentDotsEaten >= (int) (0.25 * TOTAL_DOTS) ) {
-        releaseNextGhost();
-    }
-    else if ( myPacman.currentDotsEaten >= (int) (0.5 * TOTAL_DOTS) ) {
-        releaseNextGhost();
-        increaseSpeed();
-    }
-    else if ( myPacman.currentDotsEaten >= (int) (0.75 * TOTAL_DOTS) ) {
-        releaseNextGhost();
-    }
-    
-    // Draw map
-    background(0);
-    gameMap.drawMap();
-    myPacman.draw();
-    ghost1.draw();
-    ghost2.draw();
-    ghost3.draw();
-    ghost4.draw();
-    if (pause) {
-        pauseMenu();
-    }
-    
-    // Reset pacman
-    if ( ghost1.caughtTarget() || ghost2.caughtTarget() || ghost3.caughtTarget() || ghost4.caughtTarget() ) {
-        myPacman.lives--;
-        myPacman.setDirection(LEFT);
-        myPacman.setState(EVADE);
-        myPacman.setPosition(PACMAN_HOME[0], PACMAN_HOME[1]);
-    }
+        else if ( myPacman.currentDotsEaten >= (int) (0.75 * TOTAL_DOTS) ) {
+            releaseNextGhost();
+        }
+        
+        // Draw map
+        background(0);
+        gameMap.drawMap();
+        myPacman.draw();
+        ghost1.draw();
+        ghost2.draw();
+        ghost3.draw();
+        ghost4.draw();
+        if (pause) {
+            pauseMenu();
+        }
+        
+        // Reset pacman
+        if ( ghost1.caughtTarget() || ghost2.caughtTarget() || ghost3.caughtTarget() || ghost4.caughtTarget() ) {
+            myPacman.lives--;
+            myPacman.setDirection(LEFT);
+            myPacman.setState(EVADE);
+            myPacman.setPosition(PACMAN_HOME[0], PACMAN_HOME[1]);
+        }
     
     }
     
@@ -130,6 +131,7 @@ void statusUpdate() {
 
 void endgame() {
     if (!gameended) {
+    gameended = true;
     String playerName = "Player";
     playerName = JOptionPane.showInputDialog(null, "Please enter your name:", playerName);
     if (playerName == null) {
@@ -139,7 +141,6 @@ void endgame() {
     }
     playerName = playerName.replace(",", "").replace("\n", "");
     GRM.saveRecord(playerName);
-    gameended = true;
     return;
     }
 }
