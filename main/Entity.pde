@@ -26,7 +26,7 @@ class Entity {
   int lastUpdateTime;
 
   int direction;
-  int speed;
+  float speed;
   boolean freeze;
   int state;
   boolean onScatterPath;
@@ -35,6 +35,8 @@ class Entity {
   GameMap map;
   Entity target;
 
+  boolean reachedNext = true;
+
 
   // Constructor
   Entity(int startCol, int startRow, Pathfinder pf, GameMap map) {
@@ -42,11 +44,12 @@ class Entity {
     this.row = startRow;
     this.x = (startCol * map.cellSize);
     this.y = (startRow * map.cellSize);
-    this.speed = 2; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
+    // this.speed = 2; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
+    this.speed = 7;  // Number of grids/second   // Now you can set the speed to any integer
     this.freeze = false;
     this.pf = pf;
     this.map = map;
-    this.interval = 10;
+    this.interval = 5;  // 200 fps
     this.lastUpdateTime = 0;
   }
 
@@ -118,7 +121,8 @@ class Entity {
 
   // Update position in the map
   void update() {
-    if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) ) {
+    if (reachedNext) {
+      reachedNext = false;
       if ( state == EVADE ) {
         if ( isPortal() ) { // Assuming all non-temporary portals teleport to opposite side of map, but same row
           if ( this.col == 1 ) {
@@ -157,35 +161,25 @@ class Entity {
     int currentTime = millis();
     int times = (currentTime - lastUpdateTime) / interval;
     lastUpdateTime = currentTime;
-    times=1;
-    switch ( direction ) {
-    case UP:
-      y -= speed * times;
-      break;
-    case RIGHT:
-      x += speed * times;
-      break;
-    case DOWN:
-      y += speed * times;
-      break;
-    case LEFT:
-      x -= speed * times;
-      break;
-    default:
-      println("ERROR: invalid direction code in Entity.update() - " + direction);
-      break;
+    // println(times);
+    println(speed);
+    // times=1;
+    // Move
+    x += (3-direction)%2 * speed * map.cellSize * times / 1000 * interval;
+    y += (direction-2)%2 * speed * map.cellSize * times / 1000 * interval;
+    // x += (3-direction)%2 * speed * times;
+    // y += (direction-2)%2 * speed * times;
+    reachedNext = abs(x - col * map.cellSize) >= map.cellSize || abs(y - row * map.cellSize) >= map.cellSize;
+    if (reachedNext) {
+      col += (3-direction)%2;
+      row += (direction-2)%2;
+      x = col * map.cellSize;
+      y = row * map.cellSize;
     }
-
-    updateTile();
   }
-
-
-  // Return true if Entity is on new tile and update attributes
-  void updateTile() {
-    col = (int) ( x / map.cellSize );
-    row = (int) ( y / map.cellSize );
+  void changeSpeed(float newSpeed) {
+    speed = newSpeed;
   }
-
 
   // Return true if next cell is non-traversable
   boolean checkCollision(int direction) {

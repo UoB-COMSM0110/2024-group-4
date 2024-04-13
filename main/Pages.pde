@@ -114,10 +114,10 @@ void maingame() {
     changeSpeed(ghost3, 2);
     changeSpeed(ghost4, 2);
     if (gameMap.checkSlow() && !gameMap.checkStop()) {
-      changeSpeed(ghost1, ghost1.speed / 2);
-      changeSpeed(ghost2, ghost2.speed / 2);
-      changeSpeed(ghost3, ghost3.speed / 2);
-      changeSpeed(ghost4, ghost4.speed / 2);
+      changeSpeed(ghost1, (int)ghost1.speed / 2);
+      changeSpeed(ghost2, (int)ghost2.speed / 2);
+      changeSpeed(ghost3, (int)ghost3.speed / 2);
+      changeSpeed(ghost4, (int)ghost4.speed / 2);
     }
     if (gameMap.checkStop()) {
       changeSpeed(ghost1, 0);
