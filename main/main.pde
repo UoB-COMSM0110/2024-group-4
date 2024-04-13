@@ -127,6 +127,14 @@ void keyPressed() {
     myPacman.move(1, 0);
   } else if (keyCode == 32) {
     gameMap.pause();
+  } else if (key == '1') {
+    gameMap.changeBlock(1);
+  } else if (key == '2') {
+    gameMap.changeBlock(2);
+  } else if (key == '3') {
+    gameMap.changeBlock(3);
+  } else if (key == '4') {
+    gameMap.changeBlock(4);
   }
   if (gamemod == StartScreen) {
     if (key == ESC) {
