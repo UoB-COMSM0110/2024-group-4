@@ -432,11 +432,7 @@ class GameMap {
   }
 
   void pause() {
-    if (pause == false) {
-      pause = true;
-    } else {
-      pause = false;
-    }
+    pause = !pause;
   }
 
   boolean checkPause() {

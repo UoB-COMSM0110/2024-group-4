@@ -116,41 +116,29 @@ void draw() {
 }
 
 void keyPressed() {
-  // Update Pacman's direction and attempt to move
-  if (keyCode == UP) {
-    myPacman.move(0, -1);
-  } else if (keyCode == DOWN) {
-    myPacman.move(0, 1);
-  } else if (keyCode == LEFT) {
-    myPacman.move(-1, 0);
-  } else if (keyCode == RIGHT) {
-    myPacman.move(1, 0);
-  } else if (keyCode == 32) {
-    gameMap.pause();
-  } else if (key == '1') {
-    gameMap.changeBlock(1);
-  } else if (key == '2') {
-    gameMap.changeBlock(2);
-  } else if (key == '3') {
-    gameMap.changeBlock(3);
-  } else if (key == '4') {
-    gameMap.changeBlock(4);
-  }
-  if (gamemod == StartScreen) {
-    if (key == ESC) {
-      key = 0;
-    }
-  }
-  if (gamemod == gameLevel) {
-    if (key >= '1' && key < '1' + max_level) {
-      level = key - '1';
-    }
-  }
-  if (gamemod == gameInProgress) {
-    if (key == ESC) {
-      pause = !pause;
-      key = 0;
-    }
+  switch (gamemod) {
+    case StartScreen:
+      if (key == ESC) {
+        key = 0; // Prevent exit
+      }
+      break;
+  
+    case gameLevel:
+        if (key >= '1' && key < '1' + max_level) {
+          level = key - '1';
+        }
+        break;
+    
+    case gameInProgress:
+        if (key >= '1' && key <= '4') {
+          int blockType = key - '0';
+          gameMap.changeBlock(blockType);
+        }
+        if (keyCode == 32 || key == ESC) {
+          gameMap.pause();
+          key = 0; // Prevent exit
+        }
+        break;
   }
 }
 
