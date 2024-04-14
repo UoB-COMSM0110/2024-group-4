@@ -45,7 +45,7 @@ class Entity {
     this.x = (startCol * map.cellSize);
     this.y = (startRow * map.cellSize);
     // this.speed = 2; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
-    this.speed = 7;  // Number of grids/second   // Now you can set the speed to any integer
+    this.speed = 7;  // Number of grids/second   // Now you can set the speed to any number(int/float)
     this.freeze = false;
     this.pf = pf;
     this.map = map;
@@ -161,15 +161,11 @@ class Entity {
     int currentTime = millis();
     int times = (currentTime - lastUpdateTime) / interval;
     lastUpdateTime = currentTime;
-    // println(times);
-    println(speed);
-    // times=1;
     // Move
-    x += (3-direction)%2 * speed * map.cellSize * times / 1000 * interval;
-    y += (direction-2)%2 * speed * map.cellSize * times / 1000 * interval;
-    // x += (3-direction)%2 * speed * times;
-    // y += (direction-2)%2 * speed * times;
+    x += (3-direction)%2 * speed * map.cellSize / 1000 * interval * times;
+    y += (direction-2)%2 * speed * map.cellSize / 1000 * interval * times;
     reachedNext = abs(x - col * map.cellSize) >= map.cellSize || abs(y - row * map.cellSize) >= map.cellSize;
+    // update tile
     if (reachedNext) {
       col += (3-direction)%2;
       row += (direction-2)%2;
@@ -177,9 +173,12 @@ class Entity {
       y = row * map.cellSize;
     }
   }
+
+
   void changeSpeed(float newSpeed) {
     speed = newSpeed;
   }
+
 
   // Return true if next cell is non-traversable
   boolean checkCollision(int direction) {

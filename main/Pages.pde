@@ -94,11 +94,11 @@ void maingame() {
     }
     if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 2) ) {
       releaseNextGhost();
-      changeSpeed(myPacman, 4);
-      changeSpeed(ghost1, 4);
-      changeSpeed(ghost2, 4);
-      changeSpeed(ghost3, 4);
-      changeSpeed(ghost4, 4);
+      myPacman.changeSpeed(4);
+      ghost1.changeSpeed(4);
+      ghost2.changeSpeed(4);
+      ghost3.changeSpeed(4);
+      ghost4.changeSpeed(4);
     }
     if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 3) ) {
       releaseNextGhost();
@@ -109,21 +109,21 @@ void maingame() {
     gameMap.drawMap();
     myPacman.draw();
 
-    changeSpeed(ghost1, 2);
-    changeSpeed(ghost2, 2);
-    changeSpeed(ghost3, 2);
-    changeSpeed(ghost4, 2);
+    ghost1.changeSpeed(2);
+    ghost2.changeSpeed(2);
+    ghost3.changeSpeed(2);
+    ghost4.changeSpeed(2);
     if (gameMap.checkSlow() && !gameMap.checkStop()) {
-      changeSpeed(ghost1, (int)ghost1.speed / 2);
-      changeSpeed(ghost2, (int)ghost2.speed / 2);
-      changeSpeed(ghost3, (int)ghost3.speed / 2);
-      changeSpeed(ghost4, (int)ghost4.speed / 2);
+      ghost1.changeSpeed(ghost1.speed / 2);
+      ghost2.changeSpeed(ghost2.speed / 2);
+      ghost3.changeSpeed(ghost3.speed / 2);
+      ghost4.changeSpeed(ghost4.speed / 2);
     }
     if (gameMap.checkStop()) {
-      changeSpeed(ghost1, 0);
-      changeSpeed(ghost2, 0);
-      changeSpeed(ghost3, 0);
-      changeSpeed(ghost4, 0);
+      ghost1.changeSpeed(0);
+      ghost2.changeSpeed(0);
+      ghost3.changeSpeed(0);
+      ghost4.changeSpeed(0);
     }
     ghost1.draw();
     ghost2.draw();
@@ -289,12 +289,12 @@ void releaseNextGhost() {
 }
 
 
-// Change speed for all Entities
-void changeSpeed(Entity e, int newSpeed) {
-  if ( ( e.x == e.col * gameMap.cellSize ) && ( e.y == e.row * gameMap.cellSize ) ) {
-    e.speed = newSpeed;
-  }
-}
+// // Change speed for all Entities
+// void changeSpeed(Entity e, int newSpeed) {
+//   if ( ( e.x == e.col * gameMap.cellSize ) && ( e.y == e.row * gameMap.cellSize ) ) {
+//     e.speed = newSpeed;
+//   }
+// }
 
 void drawLeaderboard(List<String> records, float x, float y) {
   textAlign(LEFT, TOP);
