@@ -177,6 +177,9 @@ void endgame() {
     GRM.saveRecord(playerName);
     return;
   }
+  else {
+    endButton.display();
+  }
 }
 
 void chooselevel() {
