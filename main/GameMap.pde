@@ -422,8 +422,9 @@ class GameMap {
   }
 
   void transport(int gridx, int gridy) {
-    myPacman.x = gridx * 40;
-    myPacman.y = gridy * 40;
+    myPacman.setPosition(gridx, gridy);
+    // myPacman.x = gridx * cellSize;
+    // myPacman.y = gridy * cellSize;
     money -= price[block_type-1];
   }
 

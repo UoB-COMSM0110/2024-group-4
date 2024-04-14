@@ -16,8 +16,10 @@ final int RETURN_HOME = 5;
 
 class Entity {
   // Properties
-  int x;
-  int y;
+  protected int x;
+  protected int y;
+  private float true_x;
+  private float true_y;
   int col;
   int row;
   int targetCol;
@@ -49,6 +51,8 @@ class Entity {
     this.row = startRow;
     this.x = (startCol * map.cellSize);
     this.y = (startRow * map.cellSize);
+    this.true_x = x;
+    this.true_y = y;
     // this.speed = 2; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
     this.speed = 7;  // Number of grids/second   // Now you can set the speed to any number(int/float)
     this.freeze = false;
@@ -80,6 +84,8 @@ class Entity {
     this.row = row;
     this.x = (col * cellSize);
     this.y = (row * cellSize);
+    this.true_x = this.x;
+    this.true_y = this.y;
   }
 
 
@@ -137,6 +143,7 @@ class Entity {
             this.col = 1;
             this.x = (1 * map.cellSize);
           }
+          this.true_x = this.x;
         }
         randomMove();
       }
@@ -167,8 +174,12 @@ class Entity {
     int times = (currentTime - lastUpdateTime) / interval;
     lastUpdateTime = currentTime;
     // Move
-    x += (3-direction)%2 * round(speed * map.cellSize * interval * times / 1000.0);
-    y += (direction-2)%2 * round(speed * map.cellSize * interval * times / 1000.0);
+    true_x += (3-direction)%2 * speed * map.cellSize * interval * times / 1000.0;
+    true_y += (direction-2)%2 * speed * map.cellSize * interval * times / 1000.0;
+    x = round(true_x);
+    y = round(true_y);
+    // x += (3-direction)%2 * round(speed * map.cellSize * interval * times / 1000.0);
+    // y += (direction-2)%2 * round(speed * map.cellSize * interval * times / 1000.0);
     reachedNext = abs(x - col * map.cellSize) >= map.cellSize || abs(y - row * map.cellSize) >= map.cellSize;
     // update tile
     if (reachedNext) {
@@ -176,6 +187,8 @@ class Entity {
       row += (direction-2)%2;
       x = col * map.cellSize;
       y = row * map.cellSize;
+      true_x = x;
+      true_y = y;
     }
   }
 
