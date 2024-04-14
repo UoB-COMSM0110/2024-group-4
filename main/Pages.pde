@@ -229,10 +229,6 @@ void recordmenu() {
 void helpmenu() {
   background(0);
   // Help
-  //textAlign(CENTER, CENTER);
-  //fill(200, 100, 200);
-  //textSize(100);
-  //text("Help // TODO", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-200);
   help = loadImage("assets/Help.png");
   help.resize(1640, 1240);
   image(help, 0, 0);
@@ -288,13 +284,6 @@ void releaseNextGhost() {
   }
 }
 
-
-// // Change speed for all Entities
-// void changeSpeed(Entity e, int newSpeed) {
-//   if ( ( e.x == e.col * gameMap.cellSize ) && ( e.y == e.row * gameMap.cellSize ) ) {
-//     e.speed = newSpeed;
-//   }
-// }
 
 void drawLeaderboard(List<String> records, float x, float y) {
   textAlign(LEFT, TOP);

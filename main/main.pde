@@ -172,28 +172,7 @@ void mouseClicked() {
       ghosts = new Ghost[] {ghost1, ghost2, ghost3, ghost4};
 
       initGame();
-      /*
-        // Initialise ghosts
-       ghost1.setDirection(UP);
-       ghost1.setState(SCATTER);
-       ghost1.setTarget(myPacman);
-       ghost1.freeze(false);
-       
-       ghost2.setDirection(UP);
-       ghost2.setState(SCATTER);
-       ghost2.setTarget(myPacman);
-       ghost2.freeze(true);
-       
-       ghost3.setDirection(UP);
-       ghost3.setState(SCATTER);
-       ghost3.setTarget(myPacman);
-       ghost3.freeze(true);
-       
-       ghost4.setDirection(UP);
-       ghost4.setState(SCATTER);
-       ghost4.setTarget(myPacman);
-       ghost4.freeze(true);
-       */
+      
       pause = false;
       gameended = false;
       return;
