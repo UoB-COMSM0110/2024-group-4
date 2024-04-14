@@ -176,10 +176,8 @@ class Inky extends Ghost {
     int totalDist;
 
     // 1 <= tempCol <= 26   1 <= tempRow <= 29
-    if(tempCol<1) {tempCol=1;}
-    if(tempRow<1) {tempRow=1;}
-    if(tempCol>26) {tempCol=26;}
-    if(tempRow>29) {tempRow=29;}
+    targetCol = min(max(targetCol, 1), 26);
+    targetRow = min(max(targetRow, 1), 29);
 
     int d = getDistance(tempCol, tempRow);
     int edgeDist = getShortestEdge(tempCol, tempRow);
@@ -252,10 +250,8 @@ class Pinky extends Ghost {
     int targetRow = target.getCurrentNode()[1] + 4 * (target.direction-2)%2;
 
     // 1 <= targetCol <= 26   1 <= targetRow <= 29
-    if(targetCol<1) {targetCol=1;}
-    if(targetRow<1) {targetRow=1;}
-    if(targetCol>26) {targetCol=26;}
-    if(targetRow>29) {targetRow=29;}
+    targetCol = min(max(targetCol, 1), 26);
+    targetRow = min(max(targetRow, 1), 29);
   }
 }
 
