@@ -167,8 +167,8 @@ class Entity {
     int times = (currentTime - lastUpdateTime) / interval;
     lastUpdateTime = currentTime;
     // Move
-    x += (3-direction)%2 * speed * map.cellSize / 1000 * interval * times;
-    y += (direction-2)%2 * speed * map.cellSize / 1000 * interval * times;
+    x += (3-direction)%2 * round(speed * map.cellSize * interval * times / 1000.0);
+    y += (direction-2)%2 * round(speed * map.cellSize * interval * times / 1000.0);
     reachedNext = abs(x - col * map.cellSize) >= map.cellSize || abs(y - row * map.cellSize) >= map.cellSize;
     // update tile
     if (reachedNext) {
