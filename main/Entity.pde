@@ -39,7 +39,7 @@ class Entity {
   GameMap map;
   Entity target;
 
-  boolean reachedNext = true;
+  private boolean reachedNext = true;
 
   PImage[] frames;
   int frameIndex;
@@ -86,6 +86,7 @@ class Entity {
     this.y = (row * cellSize);
     this.true_x = this.x;
     this.true_y = this.y;
+    this.reachedNext = true;
   }
 
 
@@ -143,7 +144,6 @@ class Entity {
             this.col = 1;
             this.x = (1 * map.cellSize);
           }
-          this.true_x = this.x;
         }
         randomMove();
       }
