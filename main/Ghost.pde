@@ -23,8 +23,20 @@ class Ghost extends Entity {
     this.totalFrames = 2;
     this.hold = 0;
     this.delay = 4;
+    this.animInterval = 60;
+    this.lastAnimTime = 0;
 
     this.onScatterPath = false;
+
+    final int frameCount = 8;
+    this.frames = new PImage[frameCount];
+
+    int baseoffsetX = 16;
+    int offsetY = 530;
+    for (int i=0; i<frameCount; i++) {
+      this.frames[i] = createImage(WIDTH, HEIGHT, ARGB);
+      this.frames[i].copy(sprites, baseoffsetX + cellSize*i, offsetY, WIDTH, HEIGHT, 0, 0, WIDTH, HEIGHT);
+    }
   }
 
 
@@ -71,56 +83,22 @@ class Ghost extends Entity {
 
     this.targetGhost = ghost;
   }
-}
-
-
-class Blinky extends Ghost {
-
-  int offsetX;
-  int offsetY;
-
-
-  // Constructor
-  Blinky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
-    super(startCol, startRow, pf, map, pacman);
-
-    this.offsetY = 530;
-  }
 
 
   // Draw Ghost
   void draw() {
-
-    this.frameCell = currentFrame * cellSize;
-
-    switch ( this.direction ) {
-    case UP:
-      this.offsetX = 176 + frameCell;
-      break;
-    case RIGHT:
-      this.offsetX = 16 + frameCell;
-      break;
-    case DOWN:
-      this.offsetX = 256 + frameCell;
-      break;
-    case LEFT:
-      this.offsetX = 96 + frameCell;
-      break;
-    default:
-      println("Error in Blinky.draw()");
-      break;
-    }
-
     // Animate sprite
-    this.hold = ( this.hold + 1 ) % this.delay;
-    if ( hold == 0 ) {
-      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
+    int currentTime = millis();
+    if (currentTime > lastAnimTime + animInterval) {
+      currentFrame = ( currentFrame + 1 ) % totalFrames;
+      lastAnimTime = currentTime;
     }
 
     // Draw sprite
+    int i = direction-2+5*(direction%2) + currentFrame;
     fill(0, 0, 0, 0);
     rect(x, y, WIDTH, HEIGHT);
-    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
+    copy(frames[i], 0, 0, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
 
     // Move sprite
     if ( state == SCATTER ) {
@@ -139,20 +117,32 @@ class Blinky extends Ghost {
     }
   }
 
-
   // Set target tile
   void setTargetTile() {
-
     this.targetCol = this.target.getCurrentNode()[0];
     this.targetRow = this.target.getCurrentNode()[1];
+  }
+
+  // Return Euclidian distance from target entity
+  int getDistance() {
+
+    int dX = abs(this.col - this.target.getCurrentNode()[0]);
+    int dY = abs(this.row - this.target.getCurrentNode()[1]);
+
+    return (int) sqrt( pow(dX, 2) + pow(dY, 2) );
+  }
+}
+
+
+class Blinky extends Ghost {
+  // Constructor
+  Blinky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
+    super(startCol, startRow, pf, map, pacman);
   }
 }
 
 
 class Inky extends Ghost {
-
-  int offsetX;
-  int offsetY;
 
   Ghost targetGhost; // Uses relative position of a given ghost to calculate target tile
 
@@ -161,58 +151,11 @@ class Inky extends Ghost {
   Inky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
     super(startCol, startRow, pf, map, pacman);
 
-    this.offsetY = 402;
-  }
-
-
-  // Draw Ghost
-  void draw() {
-
-    this.frameCell = currentFrame * cellSize;
-
-    switch ( this.direction ) {
-    case UP:
-      this.offsetX = 176 + frameCell;
-      break;
-    case RIGHT:
-      this.offsetX = 16 + frameCell;
-      break;
-    case DOWN:
-      this.offsetX = 256 + frameCell;
-      break;
-    case LEFT:
-      this.offsetX = 96 + frameCell;
-      break;
-    default:
-      println("Error in Inky.draw()");
-      break;
-    }
-
-    // Animate sprite
-    this.hold = ( this.hold + 1 ) % this.delay;
-    if ( hold == 0 ) {
-      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
-    }
-
-    // Draw sprite
-    fill(0, 0, 0, 0);
-    rect(x, y, WIDTH, HEIGHT);
-    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
-
-    // Move sprite
-    if ( state == SCATTER ) {
-      if ( this.onScatterPath == false ) {
-        initialiseScatter();
-      }
-      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
-        setScatterParameters();
-      }
-    } else {
-      setTargetTile();
-    }
-
-    if ( !map.checkPause() ) {
-      update();
+    final int frameCount = 8;
+    int baseoffsetX = 16;
+    int offsetY = 402;
+    for (int i=0; i<frameCount; i++) {
+      this.frames[i].copy(sprites, baseoffsetX + cellSize*i, offsetY, WIDTH, HEIGHT, 0, 0, WIDTH, HEIGHT);
     }
   }
 
@@ -225,54 +168,18 @@ class Inky extends Ghost {
 
 
   // Set target tile
+  @Override
   void setTargetTile() {
 
-    int tempCol = -1;
-    int tempRow = -1;
+    int tempCol = target.getCurrentNode()[0] + 2 * (3-target.direction)%2;
+    int tempRow = target.getCurrentNode()[1] + 2 * (target.direction-2)%2;
     int totalDist;
 
-    switch ( this.target.direction ) {
-
-    case UP:
-      if ( this.target.getCurrentNode()[1] <= 2 ) {
-        tempRow = 1;
-      } else {
-        tempRow = this.target.getCurrentNode()[1] - 2;
-      }
-      tempCol = this.target.getCurrentNode()[0];
-      break;
-
-    case RIGHT:
-      if ( this.target.getCurrentNode()[0] >= 25 ) {
-        tempCol = 26;
-      } else {
-        tempCol = this.target.getCurrentNode()[0] + 2;
-      }
-      tempRow = this.target.getCurrentNode()[1];
-      break;
-
-    case DOWN:
-      if ( this.target.getCurrentNode()[1] >= 28 ) {
-        tempRow = 29;
-      } else {
-        tempRow = this.target.getCurrentNode()[1] + 2;
-      }
-      tempCol = this.target.getCurrentNode()[0];
-      break;
-
-    case LEFT:
-      if ( this.target.getCurrentNode()[0] <= 2 ) {
-        tempCol = 1;
-      } else {
-        tempCol = this.target.getCurrentNode()[0] - 2;
-      }
-      tempRow = this.target.getCurrentNode()[1];
-      break;
-
-    default:
-      println("Error in Pinky.setTargetTile()");
-      break;
-    }
+    // 1 <= tempCol <= 26   1 <= tempRow <= 29
+    if(tempCol<1) {tempCol=1;}
+    if(tempRow<1) {tempRow=1;}
+    if(tempCol>26) {tempCol=26;}
+    if(tempRow>29) {tempRow=29;}
 
     int d = getDistance(tempCol, tempRow);
     int edgeDist = getShortestEdge(tempCol, tempRow);
@@ -282,11 +189,11 @@ class Inky extends Ghost {
       totalDist = 2 * edgeDist;
     }
 
-    int targetCol = this.targetGhost.getCurrentNode()[0] + ( (tempCol - this.targetGhost.getCurrentNode()[0] ) / d ) * totalDist;
-    int targetRow = this.targetGhost.getCurrentNode()[1] + ( (tempRow - this.targetGhost.getCurrentNode()[1] ) / d ) * totalDist;
+    int targetCol = targetGhost.getCurrentNode()[0] + ( (tempCol - targetGhost.getCurrentNode()[0] ) / d ) * totalDist;
+    int targetRow = targetGhost.getCurrentNode()[1] + ( (tempRow - targetGhost.getCurrentNode()[1] ) / d ) * totalDist;
 
-    this.targetCol = targetCol;
-    this.targetRow = targetRow;
+    targetCol = targetCol;
+    targetRow = targetRow;
   }
 
 
@@ -325,292 +232,60 @@ class Inky extends Ghost {
 
 
 class Pinky extends Ghost {
-
-  int offsetX;
-  int offsetY;
-
-
   // Constructor
   Pinky(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
     super(startCol, startRow, pf, map, pacman);
 
-    this.offsetY = 657;
-  }
-
-
-  // Draw Ghost
-  void draw() {
-
-    this.frameCell = currentFrame * cellSize;
-
-    switch ( this.direction ) {
-    case UP:
-      this.offsetX = 176 + frameCell;
-      break;
-    case RIGHT:
-      this.offsetX = 16 + frameCell;
-      break;
-    case DOWN:
-      this.offsetX = 256 + frameCell;
-      break;
-    case LEFT:
-      this.offsetX = 96 + frameCell;
-      break;
-    default:
-      println("Error in Pinky.draw()");
-      break;
-    }
-
-    // Animate sprite
-    this.hold = ( this.hold + 1 ) % this.delay;
-    if ( hold == 0 ) {
-      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
-    }
-
-    // Draw sprite
-    fill(0, 0, 0, 0);
-    rect(x, y, WIDTH, HEIGHT);
-    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
-
-    // Move sprite
-    if ( state == SCATTER ) {
-      if ( this.onScatterPath == false ) {
-        initialiseScatter();
-      }
-      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
-        setScatterParameters();
-      }
-    } else {
-      setTargetTile();
-    }
-
-    if ( !map.checkPause() ) {
-      update();
+    final int frameCount = 8;
+    int baseoffsetX = 16;
+    int offsetY = 657;
+    for (int i=0; i<frameCount; i++) {
+      this.frames[i].copy(sprites, baseoffsetX + cellSize*i, offsetY, WIDTH, HEIGHT, 0, 0, WIDTH, HEIGHT);
     }
   }
 
 
   // Set target tile
+  @Override
   void setTargetTile() {
+    int targetCol = target.getCurrentNode()[0] + 4 * (3-target.direction)%2;
+    int targetRow = target.getCurrentNode()[1] + 4 * (target.direction-2)%2;
 
-    switch ( this.target.direction ) {
-
-    case UP:
-      if ( this.target.getCurrentNode()[1] <= 4 ) {
-        this.targetRow = 1;
-      } else {
-        this.targetRow = this.target.getCurrentNode()[1] - 4;
-      }
-      this.targetCol = this.target.getCurrentNode()[0];
-      break;
-
-    case RIGHT:
-      if ( this.target.getCurrentNode()[0] >= 23 ) {
-        this.targetCol = 26;
-      } else {
-        this.targetCol = this.target.getCurrentNode()[0] + 4;
-      }
-      this.targetRow = this.target.getCurrentNode()[1];
-      break;
-
-    case DOWN:
-      if ( this.target.getCurrentNode()[1] >= 26 ) {
-        this.targetRow = 29;
-      } else {
-        this.targetRow = this.target.getCurrentNode()[1] + 4;
-      }
-      this.targetCol = this.target.getCurrentNode()[0];
-      break;
-
-    case LEFT:
-      if ( this.target.getCurrentNode()[0] <= 4 ) {
-        this.targetCol = 1;
-      } else {
-        this.targetCol = this.target.getCurrentNode()[0] - 4;
-      }
-      this.targetRow = this.target.getCurrentNode()[1];
-      break;
-
-    default:
-      println("Error in Pinky.setTargetTile()");
-      break;
-    }
+    // 1 <= targetCol <= 26   1 <= targetRow <= 29
+    if(targetCol<1) {targetCol=1;}
+    if(targetRow<1) {targetRow=1;}
+    if(targetCol>26) {targetCol=26;}
+    if(targetRow>29) {targetRow=29;}
   }
 }
 
 
 class Clyde extends Ghost {
-
-  int offsetX;
-  int offsetY;
-
-
   // Constructor
   Clyde(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
     super(startCol, startRow, pf, map, pacman);
 
-    this.offsetY = 784;
-  }
-
-
-  // Draw Ghost
-  void draw() {
-
-    this.frameCell = currentFrame * cellSize;
-
-    switch ( this.direction ) {
-    case UP:
-      this.offsetX = 176 + frameCell;
-      break;
-    case RIGHT:
-      this.offsetX = 16 + frameCell;
-      break;
-    case DOWN:
-      this.offsetX = 256 + frameCell;
-      break;
-    case LEFT:
-      this.offsetX = 96 + frameCell;
-      break;
-    default:
-      println("Error in Clyde.draw()");
-      break;
+    final int frameCount = 8;
+    int baseoffsetX = 16;
+    int offsetY = 784;
+    for (int i=0; i<frameCount; i++) {
+      this.frames[i].copy(sprites, baseoffsetX + cellSize*i, offsetY, WIDTH, HEIGHT, 0, 0, WIDTH, HEIGHT);
     }
-
-    // Animate sprite
-    this.hold = ( this.hold + 1 ) % this.delay;
-    if ( hold == 0 ) {
-      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
-    }
-
-    // Draw sprite
-    fill(0, 0, 0, 0);
-    rect(x, y, WIDTH, HEIGHT);
-    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
-
-    // Move sprite
-    if ( state == SCATTER ) {
-      if ( this.onScatterPath == false ) {
-        initialiseScatter();
-      }
-      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
-        setScatterParameters();
-      }
-    } else if ( getDistance() >= 8 ) {
-      setState(CHASE);
-      setTargetTile();
-    } else {
-      setState(EVADE);
-    }
-
-    if ( !map.checkPause() ) {
-      update();
-    }
-  }
-
-
-  // Set target tile
-  void setTargetTile() {
-
-    this.targetCol = this.target.getCurrentNode()[0];
-    this.targetRow = this.target.getCurrentNode()[1];
-  }
-
-
-  // Return Euclidian distance from target entity
-  int getDistance() {
-
-    int dX = abs(this.col - this.target.getCurrentNode()[0]);
-    int dY = abs(this.row - this.target.getCurrentNode()[1]);
-
-    return (int) sqrt( pow(dX, 2) + pow(dY, 2) );
   }
 }
 
 
 class Sue extends Ghost {
-
-  int offsetX;
-  int offsetY;
-
-
   // Constructor
   Sue(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
     super(startCol, startRow, pf, map, pacman);
 
-    this.offsetY = 285;
-  }
-
-
-  // Draw Ghost
-  void draw() {
-
-    this.frameCell = currentFrame * cellSize;
-
-    switch ( this.direction ) {
-    case UP:
-      this.offsetX = 892 + frameCell;
-      break;
-    case RIGHT:
-      this.offsetX = 732 + frameCell;
-      break;
-    case DOWN:
-      this.offsetX = 972 + frameCell;
-      break;
-    case LEFT:
-      this.offsetX = 812 + frameCell;
-      break;
-    default:
-      println("Error in Clyde.draw()");
-      break;
+    final int frameCount = 8;
+    int baseoffsetX = 732;
+    int offsetY = 285;
+    for (int i=0; i<frameCount; i++) {
+      this.frames[i].copy(sprites, baseoffsetX + cellSize*i, offsetY, WIDTH, HEIGHT, 0, 0, WIDTH, HEIGHT);
     }
-
-    // Animate sprite
-    this.hold = ( this.hold + 1 ) % this.delay;
-    if ( hold == 0 ) {
-      this.currentFrame = ( this.currentFrame + 1 ) % this.totalFrames;
-    }
-
-    // Draw sprite
-    fill(0, 0, 0, 0);
-    rect(x, y, WIDTH, HEIGHT);
-    copy(sprites, offsetX, offsetY, WIDTH, HEIGHT, x, y, WIDTH, HEIGHT);
-
-    // Move sprite
-    if ( state == SCATTER ) {
-      if ( this.onScatterPath == false ) {
-        initialiseScatter();
-      }
-      if ( ( x == col * map.cellSize ) && ( y == row * map.cellSize ) && reachedTargetTile() ) {
-        setScatterParameters();
-      }
-    } else if ( getDistance() >= 4 ) {
-      setState(CHASE);
-      setTargetTile();
-    } else {
-      setState(EVADE);
-    }
-
-    if ( !map.checkPause() ) {
-      update();
-    }
-  }
-
-
-  // Set target tile
-  void setTargetTile() {
-
-    this.targetCol = this.target.getCurrentNode()[0];
-    this.targetRow = this.target.getCurrentNode()[1];
-  }
-
-
-  // Return Euclidian distance from target entity
-  int getDistance() {
-
-    int dX = abs(this.col - this.target.getCurrentNode()[0]);
-    int dY = abs(this.row - this.target.getCurrentNode()[1]);
-
-    return (int) sqrt( pow(dX, 2) + pow(dY, 2) );
   }
 }
 

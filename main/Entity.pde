@@ -24,6 +24,8 @@ class Entity {
   int targetRow;
   int interval;
   int lastUpdateTime;
+  int animInterval;
+  int lastAnimTime;
 
   int direction;
   float speed;
@@ -37,6 +39,9 @@ class Entity {
 
   boolean reachedNext = true;
 
+  PImage[] frames;
+  int frameIndex;
+  int frameCount;
 
   // Constructor
   Entity(int startCol, int startRow, Pathfinder pf, GameMap map) {
