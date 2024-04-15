@@ -163,6 +163,7 @@ void mouseClicked() {
       
       pause = false;
       gameended = false;
+      current_speed = 2;
       return;
     }
     if (levelButton.clicked()) {
