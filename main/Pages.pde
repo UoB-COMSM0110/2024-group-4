@@ -6,6 +6,7 @@ import java.text.ParseException;
 boolean GAME_RUNNING = true;
 int GHOST_STATE = SCATTER;
 int lastWave = 20000;
+float current_speed = 2;
 final int TOTAL_WAVES = 5;
 final int TOTAL_DOTS = 244;
 PImage bg;
@@ -95,10 +96,7 @@ void maingame() {
     if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 2) ) {
       releaseNextGhost();
       myPacman.changeSpeed(4);
-      ghost1.changeSpeed(4);
-      ghost2.changeSpeed(4);
-      ghost3.changeSpeed(4);
-      ghost4.changeSpeed(4);
+      current_speed = 4;
     }
     if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 3) ) {
       releaseNextGhost();
@@ -109,10 +107,10 @@ void maingame() {
     gameMap.drawMap();
     myPacman.draw();
 
-    ghost1.changeSpeed(2);
-    ghost2.changeSpeed(2);
-    ghost3.changeSpeed(2);
-    ghost4.changeSpeed(2);
+    ghost1.changeSpeed(current_speed);
+    ghost2.changeSpeed(current_speed);
+    ghost3.changeSpeed(current_speed);
+    ghost4.changeSpeed(current_speed);
     if (gameMap.checkSlow() && !gameMap.checkStop()) {
       ghost1.changeSpeed(ghost1.speed / 2);
       ghost2.changeSpeed(ghost2.speed / 2);
@@ -148,11 +146,15 @@ void maingame() {
     textSize(100);
     if (gameMap.dotsRemaining()) {
       fill(255, 0, 0);
-      text("GAME OVER", gamewidth/2 - 250, gameheight/2 - 400);
+      text("GAME OVER", gamewidth/2 - 260, gameheight/2 - 400);
     } else {
       fill(255, 255, 0);
-      text("YOU WIN", gamewidth/2 - 250, gameheight/2 - 400);
+      text("YOU WIN", gamewidth/2 - 260, gameheight/2 - 400);
     }
+    int finalScore = (gameMap.score + gameMap.money * 10) * (1 + level / 10);
+    fill(255);
+    textSize(80);
+    text("FINAL SCORE  " + finalScore, gamewidth/2 - 260, gameheight/2 - 240);
     endButton.display();
   }
 }

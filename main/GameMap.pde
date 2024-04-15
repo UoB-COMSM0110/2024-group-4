@@ -190,7 +190,7 @@ class GameMap {
         } else {
           fill(255, 255, 0);
         }
-        rect(gridX * cellSize, gridY * cellSize, cellSize, cellSize);
+        rect(gridX * cellSize+5, gridY * cellSize+5, cellSize*0.75, cellSize*0.75);
       }
     }
 
