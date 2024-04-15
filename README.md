@@ -1,4 +1,5 @@
-# 2024-group-4
+# TEAM 
+## 2024-group-4
 
 ![](asset/mmexport1708947640736.jpg)
 
@@ -6,11 +7,13 @@ Kevin Chen   ad23091@bristol.ac.uk   ad23091
 
 Xiaokang Fan dr23824@bristol.ac.uk   SeventyThree73
 
-Tianyi Chen fu23287@bristol.ac.uk    TYChen2000
+Tianyi Chen fu23287@bristol.ac.uk    TYChen2000   (GAP)
 
 Nicky Dickson kr23498@bristol.ac.uk   nd1221
 
-# Game Ideas:
+# INTRODUCTION
+
+## Game Ideas:
 
 ## 1. Vampire Survivors
    
@@ -70,15 +73,7 @@ Twist: In our version of Pac-Man, both the character and the ghost will be contr
 Challenges: how to design and program different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
 
 
-## 6. Hollow Knight clone
-
-Description: Metroidvania-style platformer puzzle game where the player must navigate through a dungeon, avoiding obstacles and killing enemies. 
-
-Twist: The player’s peripherals have limited use (e.g. can only move forward x squares, limited mouse presses) and in order to reach the end of the dungeon, they must collect ‘peripheral’ tokens to allow them to continue. If they run out of moves, the game ends.
-
-Challenges: tedious to design levels which strike right balance between playable and frustrating, must design by anticipating how the player chooses to use their available moves, using a generative map to avoid hand-designing levels, extra challenges stemming from generative map are how to generate peripheral tokens and enemies in the right place to make the game playable.
-
-# Requirements
+# REQUIREMENTS
 
 ## Stakeholders
 
@@ -151,9 +146,19 @@ As a marker for this project, I want to see groups create engaging and well made
 
 Both user story and use case play crucial roles in game development, ensuring that games are not only technically sound but also engaging and enjoyable for players.
 
+
+# DESIGN
+
 ## Class Diagram
 
 ![](asset/PacmanClassDiagram.png)
+
+
+# IMPLEMENTATION
+
+
+
+# EVALUATION
 
 ## Heuristic Evaluation
 * Project Title: Pacman Savior
@@ -162,3 +167,11 @@ Both user story and use case play crucial roles in game development, ensuring th
 1. Add more interface/UI for the game to improve the HCI experience.
 2. Add more instructions for the game to guide the players.
 3. Add more difficulties to the game to add different experience.
+
+
+# PROCESS
+
+
+# CONCLUSION
+
+# INDIVIDUAL CONTRIBUTION
