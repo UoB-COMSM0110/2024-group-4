@@ -151,7 +151,7 @@ Both user story and use case play crucial roles in game development, ensuring th
 
 ## Class Diagram
 
-![](asset/PacmanClassDiagram.png)
+![](asset/ClassDiagram.png)
 
 
 # IMPLEMENTATION
