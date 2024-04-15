@@ -156,7 +156,10 @@ Both user story and use case play crucial roles in game development, ensuring th
 
 # IMPLEMENTATION
 
-
+## Challenges
+1. Pacman and ghosts's movement logic design & implementation.
+2. Interaction between blocks and other things.
+3. How to balance different difficulties and the prices of the blocks.
 
 # EVALUATION
 
@@ -176,8 +179,10 @@ Both user story and use case play crucial roles in game development, ensuring th
 
 # INDIVIDUAL CONTRIBUTION
 
-| Juean Chen            | Xiaokang Fan            | Nicky Dickson            |
-|-----------------------|-------------------------|--------------------------|
-| UI design             |                         |                          |
-| Map design            |                         |                          |
-| Block design          |                         |                          |
+| Juean Chen                           | Xiaokang Fan                         | Nicky Dickson                        |
+|--------------------------------------|--------------------------------------|--------------------------------------|
+| UI design & implementation           |                                      |                                      |
+| Maps design & implementation         |                                      |                                      |
+| Block design & implementation        |                                      |                                      |
+| Original pacman design               |                                      |                                      |
+| Fix some bugs                        |                                      |                                      |
