@@ -175,3 +175,9 @@ Both user story and use case play crucial roles in game development, ensuring th
 # CONCLUSION
 
 # INDIVIDUAL CONTRIBUTION
+
+| Juean Chen            | Xiaokang Fan            | Nicky Dickson            |
+|-----------------------|-------------------------|--------------------------|
+| UI design             |                         |                          |
+| Map design            |                         |                          |
+| Block design          |                         |                          |
