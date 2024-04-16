@@ -179,15 +179,15 @@ Both user story and use case play crucial roles in game development, ensuring th
 
 # INDIVIDUAL CONTRIBUTION
 
-| Juean Chen                           | Xiaokang Fan                         | Nicky Dickson                        |
-|--------------------------------------|--------------------------------------|--------------------------------------|
-| UI design & implementation           | Game framework construction          |                                      |
-| Maps design & implementation         | Game engineering framework design    |                                      |
-| Block design & implementation        | Implement most page designs          |                                      |
-| Original pacman design               | Implement the button class to simplify button implementation |              |
-| Fix some bugs                        | Implement animation class            |                                      |
-| Write report                         | Optimize entity classes, extend movement methods and give physical meaning ||
-|                                      | Simplify ghost drawing logic         |                                      |
-|                                      | Design game record manager class     |                                      |
-|                                      | Fix some bugs                        |                                      |
-|                                      | Algorithm optimization               |                                      |
+| Juean Chen                                | Xiaokang Fan                         | Nicky Dickson                        |
+|-------------------------------------------|--------------------------------------|--------------------------------------|
+| UI design & implementation                | Game framework construction          |                                      |
+| Maps design & implementation              | Game engineering framework design    |                                      |
+| Block design & implementation             | Implement most page designs          |                                      |
+| Original pacman movement logic design     | Implement the button class to simplify button implementation |              |
+| Fix some bugs                             | Implement animation class            |                                      |
+| Write report                              | Optimize entity classes, extend movement methods and give physical meaning ||
+|                                           | Simplify ghost drawing logic         |                                      |
+|                                           | Design game record manager class     |                                      |
+|                                           | Fix some bugs                        |                                      |
+|                                           | Algorithm optimization               |                                      |
