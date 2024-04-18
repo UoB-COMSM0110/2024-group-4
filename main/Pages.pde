@@ -125,6 +125,7 @@ void maingame() {
     }
     ghost1.draw();
     ghost2.draw();
+    println(ghost2.targetCol, ghost2.targetRow);
     ghost3.draw();
     ghost4.draw();
     if (pause) {

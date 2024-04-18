@@ -190,8 +190,8 @@ class Inky extends Ghost {
     int targetCol = targetGhost.getCurrentNode()[0] + ( (tempCol - targetGhost.getCurrentNode()[0] ) / d ) * totalDist;
     int targetRow = targetGhost.getCurrentNode()[1] + ( (tempRow - targetGhost.getCurrentNode()[1] ) / d ) * totalDist;
 
-    targetCol = targetCol;
-    targetRow = targetRow;
+    this.targetCol = targetCol;
+    this.targetRow = targetRow;
   }
 
 
