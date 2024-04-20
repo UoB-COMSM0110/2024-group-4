@@ -133,7 +133,7 @@ As a marker for this project, I want to see groups create engaging and well made
 ## Use-case diagram
 
 <div align=center>
-   ![](asset/UseCaseDiagram.png)
+   <img src="asset/UseCaseDiagram.png"/>
 </div>
 
 ## Reflection
@@ -168,7 +168,7 @@ Both user story and use case play crucial roles in game development, ensuring th
   * Player bulids blocks to stop the ghosts from getting pacman and help pacman to eat all the dots
 
 <div align=center>
-   ![](asset/Help.png)
+   <img src="asset/Help.png"/>
 </div>
 
 * End Scene
@@ -179,13 +179,13 @@ Both user story and use case play crucial roles in game development, ensuring th
 ## Class Diagram
 
 <div align=center>
-   ![](asset/ClassDiagram.png)
+   <img src="asset/ClassDiagram.png"/>
 </div>
 
 ## Behavioural Diagram
 
 <div align=center>
-   ![](asset/BehaviouralDiagram.png)
+   <img src="asset/BehaviouralDiagram.png"/>
 </div>
 
 # PART 5: IMPLEMENTATION
