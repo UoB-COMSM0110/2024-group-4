@@ -202,7 +202,7 @@ Then, it was the ghosts' movement logic, which is also a ticky one, because ther
 Objective:
 Given a weighted graph, a source node, and a goal node, A* aims to find the shortest path (with respect to the given weights) from the source to the goal.
 
-Key Features:\n
+Key Features:
 Completeness: A* guarantees that it will find a solution if one exists.
 Optimality: It finds the optimal path (minimizing the total cost) among all possible paths.
 Efficiency: A* efficiently explores the graph by using heuristics to guide its search.
@@ -229,6 +229,7 @@ In practical travel-routing systems, other algorithms may outperform A* due to m
 Nevertheless, A* remains the best solution for many cases.
 
 **2. Interaction between blocks and other things:**
+
 
 
 **3. How to balance different difficulties and the prices of the blocks:**
