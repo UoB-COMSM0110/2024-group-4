@@ -155,6 +155,18 @@ Both user story and use case play crucial roles in game development, ensuring th
 
 ## System Architecture
 
+* Start Menu
+   * START: start the main game
+   * LEVEL: choose the difficulty of the game, 5 levels in total, higher levels means higher difficulty and higher score
+   * RANKING; show the 5 top score and their player in the ranking list
+   * HELP: show the function of the all the UI in the main game
+   * EXIT：exit the game
+ 
+* Main Game
+
+* End Scene
+   * YOU WIN: if pacman eat all the dots, you win
+   * GAME OVER: if pacman's health is decreased to 0, the game is over
 
 
 ## Class Diagram
