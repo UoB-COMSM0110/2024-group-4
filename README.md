@@ -1,7 +1,7 @@
 # PART 1: TEAM 
 ## 2024-group-4
 <div align=center>
-   ![](asset/mmexport1708947640736.jpg)
+   <img src="asset/mmexport1708947640736.jpg"/>
 </div>
 Kevin Chen   ad23091@bristol.ac.uk   ad23091
 
