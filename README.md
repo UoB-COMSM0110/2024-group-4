@@ -1,8 +1,8 @@
 # PART 1: TEAM 
 ## 2024-group-4
-
-![](asset/mmexport1708947640736.jpg)
-
+<div align=center>
+   ![](asset/mmexport1708947640736.jpg)
+</div>
 Kevin Chen   ad23091@bristol.ac.uk   ad23091
 
 Xiaokang Fan dr23824@bristol.ac.uk   SeventyThree73
@@ -132,7 +132,9 @@ As a marker for this project, I want to see groups create engaging and well made
 
 ## Use-case diagram
 
-![](asset/UseCaseDiagram.png)
+<div align=center>
+   ![](asset/UseCaseDiagram.png)
+</div>
 
 ## Reflection
 
@@ -164,7 +166,10 @@ Both user story and use case play crucial roles in game development, ensuring th
  
 * Main Game
   * Player bulids blocks to stop the ghosts from getting pacman and help pacman to eat all the dots
-![](asset/Help.png)
+
+<div align=center>
+   ![](asset/Help.png)
+</div>
 
 * End Scene
    * YOU WIN: if pacman eat all the dots, you win
@@ -173,11 +178,15 @@ Both user story and use case play crucial roles in game development, ensuring th
 
 ## Class Diagram
 
-![](asset/ClassDiagram.png)
+<div align=center>
+   ![](asset/ClassDiagram.png)
+</div>
 
 ## Behavioural Diagram
 
-![](asset/BehaviouralDiagram.png)
+<div align=center>
+   ![](asset/BehaviouralDiagram.png)
+</div>
 
 # PART 5: IMPLEMENTATION
 
