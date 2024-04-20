@@ -192,7 +192,35 @@ Both user story and use case play crucial roles in game development, ensuring th
 
 ## Challenges
 **1. Pacman and ghosts's movement logic design & implementation:**
-This proved to be the most challenging of our three challenges because of several reasons: First of all is the pacman's movement logic, in the early design stage, the pacman's movement logic is very complex in order to make it smart enough to eat all the dots since the 
+
+This proved to be the most challenging of our three challenges because of several reasons: 
+
+First of all is the pacman's movement logic, in the early design stage, the pacman's movement logic is very complex in order to make it smart enough to eat all the dots, however, after we actually played the game, we found that it would be too easy for the player to win the game if we make the pacman so smart, so in the end we decide to make it not so smart so the player would need to use block to guide the pacman, in this way, the game is more interesting to play. 
+
+Then, it was the ghosts' movement logic, which is also a ticky one, because there are four ghosts in our game, and each of them had a different movement logic according to the traditional pacman game, it took us quite some time to implement the four different movement logics to the ghosts. The main algorithm we used is called the A search algorithm, often pronounced as “A-star,” is a powerful graph traversal and pathfinding technique used in various fields of computer science. Let me break it down:
+Objective:
+Given a weighted graph, a source node, and a goal node, A* aims to find the shortest path (with respect to the given weights) from the source to the goal.
+Key Features:
+Completeness: A* guarantees that it will find a solution if one exists.
+Optimality: It finds the optimal path (minimizing the total cost) among all possible paths.
+Efficiency: A* efficiently explores the graph by using heuristics to guide its search.
+Heuristics:
+A* extends Dijkstra’s algorithm by incorporating heuristics.
+It evaluates nodes based on a combination of two factors:
+g(n): The actual cost from the start node to node n.
+h(n): The estimated distance from node n to the goal node.
+The evaluation function is f(n) = g(n) + h(n).
+Trade-Off:
+Unlike Dijkstra’s algorithm, which generates the entire shortest-path tree, A* focuses on finding the shortest path from the source to a specific goal.
+This trade-off allows A* to use a goal-directed heuristic and achieve better performance.
+Origins:
+A* was invented by researchers working on the Shakey the Robot project in the late 1960s.
+It builds upon the Graph Traverser algorithm, which used a heuristic function h(n).
+Peter Hart introduced the concepts of admissibility and consistency of heuristic functions.
+Space Complexity:
+A* stores all generated nodes in memory, which can be a drawback in terms of space.
+In practical travel-routing systems, other algorithms may outperform A* due to memory constraints.
+Nevertheless, A* remains the best solution for many cases.
 
 **2. Interaction between blocks and other things:**
 
