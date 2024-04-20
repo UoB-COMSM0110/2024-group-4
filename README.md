@@ -158,7 +158,7 @@ Both user story and use case play crucial roles in game development, ensuring th
 * Start Menu
    * START: start the main game
    * LEVEL: choose the difficulty of the game, 5 levels in total, higher levels means higher difficulty and higher score
-   * RANKING; show the 5 top score and their player in the ranking list
+   * RANKING: show the 5 top score and their player in the ranking list
    * HELP: show the function of the all the UI in the main game
    * EXIT：exit the game
  
