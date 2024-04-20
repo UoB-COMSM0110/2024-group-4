@@ -182,9 +182,14 @@ Both user story and use case play crucial roles in game development, ensuring th
 # PART 5: IMPLEMENTATION
 
 ## Challenges
-1. Pacman and ghosts's movement logic design & implementation.
-2. Interaction between blocks and other things.
-3. How to balance different difficulties and the prices of the blocks.
+**1. Pacman and ghosts's movement logic design & implementation:**
+This proved to be the most challenging of our three challenges because of several reasons: First of all is the pacman's movement logic, in the early design stage, the pacman's movement logic is very complex in order to make it smart enough to eat all the dots since the 
+
+**2. Interaction between blocks and other things:**
+
+
+**3. How to balance different difficulties and the prices of the blocks:**
+
 
 # PART 6: EVALUATION
 
