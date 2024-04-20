@@ -163,6 +163,8 @@ Both user story and use case play crucial roles in game development, ensuring th
    * EXIT：exit the game
  
 * Main Game
+  * Player bulids blocks to stop the ghosts from getting pacman and help pacman to eat all the dots
+![](asset/Help.png)
 
 * End Scene
    * YOU WIN: if pacman eat all the dots, you win
