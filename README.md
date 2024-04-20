@@ -175,6 +175,9 @@ Both user story and use case play crucial roles in game development, ensuring th
 
 ![](asset/ClassDiagram.png)
 
+## Behavioural Diagram
+
+![](asset/BehaviouralDiagram.png)
 
 # PART 5: IMPLEMENTATION
 
