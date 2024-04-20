@@ -124,7 +124,9 @@ As a marker for this project, I want to see groups create engaging and well made
     * Show some examples of how to play the game
     * Choose the map of the game
 
-* Game starts 
+* Game starts
+
+* Player bulids blocks to stop the ghosts from getting pacman and help pacman to eat all the dots
 
 * Final screen: Pacman / Ghosts win
 
@@ -133,6 +135,8 @@ As a marker for this project, I want to see groups create engaging and well made
 ![](asset/UseCaseDiagram.png)
 
 ## Reflection
+
+In the early stage design of the game, we learned that:
 
 * User Story:
 1. A user story is a non-technical description of how a player interacts with an element in a game. It focuses on the player’s experience, emotions, and the narrative they derive from the interaction.
@@ -148,6 +152,10 @@ Both user story and use case play crucial roles in game development, ensuring th
 
 
 # DESIGN
+
+## System Architecture
+
+
 
 ## Class Diagram
 
