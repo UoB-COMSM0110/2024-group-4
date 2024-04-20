@@ -1,4 +1,4 @@
-# TEAM 
+# PART 1: TEAM 
 ## 2024-group-4
 
 ![](asset/mmexport1708947640736.jpg)
@@ -11,7 +11,7 @@ Tianyi Chen fu23287@bristol.ac.uk    TYChen2000   (GAP)
 
 Nicky Dickson kr23498@bristol.ac.uk   nd1221
 
-# INTRODUCTION
+# PART 2: INTRODUCTION
 
 ## Game Ideas:
 
@@ -73,7 +73,7 @@ Twist: In our version of Pac-Man, both the character and the ghost will be contr
 Challenges: how to design and program different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
 
 
-# REQUIREMENTS
+# PART 3: REQUIREMENTS
 
 ## Stakeholders
 
@@ -151,7 +151,7 @@ In the early stage design of the game, we learned that:
 Both user story and use case play crucial roles in game development, ensuring that games are not only technically sound but also engaging and enjoyable for players.
 
 
-# DESIGN
+# PART 4: DESIGN
 
 ## System Architecture
 
@@ -176,14 +176,14 @@ Both user story and use case play crucial roles in game development, ensuring th
 ![](asset/ClassDiagram.png)
 
 
-# IMPLEMENTATION
+# PART 5: IMPLEMENTATION
 
 ## Challenges
 1. Pacman and ghosts's movement logic design & implementation.
 2. Interaction between blocks and other things.
 3. How to balance different difficulties and the prices of the blocks.
 
-# EVALUATION
+# PART 6: EVALUATION
 
 ## Heuristic Evaluation
 * Project Title: Pacman Savior
@@ -194,10 +194,10 @@ Both user story and use case play crucial roles in game development, ensuring th
 3. Add more difficulties to the game to add different experience.
 
 
-# PROCESS
+# PART 7: PROCESS
 
 
-# CONCLUSION
+# PART 8: CONCLUSION
 
 # INDIVIDUAL CONTRIBUTION
 
