@@ -255,7 +255,7 @@ This challenge might be the easiest challenge among these three challenges, but 
 
 ## Quantitavie Evaluation
 
-**- GAME LEVEL 2 -**
+### - GAME LEVEL 2 -
 
 **NASA TLX**
 | Player No | Mental demand | Physical demand | Temporal demand | Performance | Effort | Frustration | Raw score |
@@ -286,9 +286,7 @@ This challenge might be the easiest challenge among these three challenges, but 
 | 10. I needed to learn a lot of things before I could get going with this system. | 1 | 1 | 2 | 2 | 3 | 2 | 2 | 2 | 1 | 1 |
 | System Usability Survey Score | 85 | 87.5 | 77.5 | 70 | 80 | 80 | 82.5 | 90 | 82.5 | 87.5 |
 
-
-
-**- GAME LEVEL 4 -**
+### - GAME LEVEL 4 -
 
 **NASA TLX**
 | Player No | Mental demand | Physical demand | Temporal demand | Performance | Effort | Frustration | Raw score |
