@@ -239,7 +239,7 @@ During the test stage of the game, we found a mysterious bug: after we destroied
 
 **3. How to balance different difficulties and the price of the blocks:**
 
-This challenge might be the easiest challenge among these three challenges, but it did took us some time to balance the difficulties and the prices of the blocks. There are five levels of difficulty in our game, each level has a different map, at first, our thought was changed the speed of the ghosts to seperate different difficulties, but after we test it, we found out that the game will be very difficult even if we change the speed just by multiply two, so we decide to use another method to seperate the difficulties, since there are four ghosts in our game, we set a different release time according to the level player choosed, higher level means that all the four ghost will be released earlier, we seperate different release time by counting the dot pacman ate. As for the price of the blocks, the only problem is that the stop block is too powerful, the player can win easily with it, so we set the price of the stop block to a very high price to make sure that the player cannot put the stop block in the early stage of the main game.
+This challenge might be the easiest challenge among these three challenges, but it did took us some time to balance the difficulties and the prices of the blocks. There are five levels of difficulty in our game, each level has a different map, at first, our thought was changed the speed of the ghosts to seperate different difficulties, but after we test it, we found out that the game would be very difficult even if we changed the speed just multiplied by two, so we decided to use another method to seperate the difficulties, since there are four ghosts in our game, we set a different release time according to the level that player chose, higher level means that all the four ghost will be released earlier, we seperate different release time by counting the dot pacman ate. As for the price of the blocks, the only problem is that the stop block is too powerful, the player can win easily with it, so we set the price of the stop block to a very high price to make sure that the player cannot put the stop block in the early stage of the main game.
 
 # PART 6: EVALUATION
 
@@ -319,10 +319,12 @@ This challenge might be the easiest challenge among these three challenges, but 
 
 # PART 7: PROCESS
 
-During the develop process of the game, we mainly use WhatsApp to keep in contact, and Skype to have online meeting.
+In the early design stage of the game, we mainly used WhatsApp to discuss the ideas of our game online, and sometimes we had meetings at MVB to have a deeper discussion as well. This is the time when we gave different thoughts about what kind of game we wanted to develop, and how to add a good twist to it to make it more special. After considering the develop difficulties of all the ideas, we chose pacman savior in the end.
 
-* Here is our team roles:
-* 
+During the develop process of the game, we mainly use WhatsApp to keep in contact, and Skype to have online meeting. Normally, on the Monday of each week, we would have a online / offline meeting to discuss what should we do in this week, and divide different work that each of us should do carefully in order to prevent conflict when pushing code to GitHub. When we meet a bug, we would discuss the bug together by WhatsApp if the bug is not so hard to solve, if it was a tricky one, we would discuss it by Skype so that we can share our screens to have a deeper communication about how to solve the bug.
+
+* Here are our roles in the development of the game:
+
 | Juean Chen                                | Xiaokang Fan                         | Nicky Dickson                        |
 |-------------------------------------------|--------------------------------------|--------------------------------------|
 | UI design & implementation                | Game framework construction          |                                      |
