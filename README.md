@@ -243,13 +243,19 @@ This challenge might be the easiest challenge among these three challenges, but 
 
 # PART 6: EVALUATION
 
-## Heuristic Evaluation
+## Qualitative Evaluation
+
+**Heuristic Evaluation**
 * Project Title: Pacman Savior
 ![](asset/HeuristicEvaluation.png)
 * Suggestions from players:
 1. Add more interface/UI for the game to improve the HCI experience.
 2. Add more instructions for the game to guide the players.
 3. Add more difficulties to the game to add different experience.
+
+## Quantitavie Evaluation
+
+
 
 
 # PART 7: PROCESS
