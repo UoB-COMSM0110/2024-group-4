@@ -172,6 +172,7 @@ Both user story and use case play crucial roles in game development, ensuring th
 </div>
 
 * End Scene
+   * Enter your name
    * YOU WIN: if pacman eat all the dots, you win
    * GAME OVER: if pacman's health is decreased to 0, the game is over
 
@@ -321,7 +322,7 @@ This challenge might be the easiest challenge among these three challenges, but 
 
 In the early design stage of the game, we mainly used WhatsApp to discuss the ideas of our game online, and sometimes we had meetings at MVB to have a deeper discussion as well. This is the time when we gave different thoughts about what kind of game we wanted to develop, and how to add a good twist to it to make it more special. After considering the develop difficulties of all the ideas, we chose pacman savior in the end.
 
-During the develop process of the game, we mainly use WhatsApp to keep in contact, and Skype to have online meeting. Normally, on the Monday of each week, we would have a online / offline meeting to discuss what should we do in this week, and divide different work that each of us should do carefully in order to prevent conflict when pushing code to GitHub. When we meet a bug, we would discuss the bug together by WhatsApp if the bug is not so hard to solve, if it was a tricky one, we would discuss it by Skype so that we can share our screens to have a deeper communication about how to solve the bug.
+During the develop process of the game, we mainly use WhatsApp to keep in contact, Skype to have online meeting, and GitHub to keep a track of our changes. Normally, on the Monday of each week, we would have a online / offline meeting to discuss what should we do in this week, and divide different work that each of us should do carefully in order to prevent conflict when pushing code to GitHub. When we meet a bug, we would discuss the bug together by WhatsApp if the bug is not so hard to solve, if it was a tricky one, we would discuss it by Skype so that we can share our screens to have a deeper communication about how to solve the bug.
 
 * Here are our roles in the development of the game:
 
@@ -339,6 +340,8 @@ During the develop process of the game, we mainly use WhatsApp to keep in contac
 |                                           | Algorithm optimization               |                                      |
 
 # PART 8: CONCLUSION
+
+
 
 # INDIVIDUAL CONTRIBUTION
 
