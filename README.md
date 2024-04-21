@@ -322,7 +322,7 @@ This challenge might be the easiest challenge among these three challenges, but 
 
 In the early design stage of the game, we mainly used WhatsApp to discuss the ideas of our game online, and sometimes we had meetings at MVB to have a deeper discussion as well. This is the time when we gave different thoughts about what kind of game we wanted to develop, and how to add a good twist to it to make it more special. After considering the develop difficulties of all the ideas, we chose pacman savior in the end.
 
-During the develop process of the game, we mainly use WhatsApp to keep in contact, Skype to have online meeting, and GitHub to keep a track of our changes. Normally, on the Monday of each week, we would have a online / offline meeting to discuss what should we do in this week, and divide different work that each of us should do carefully in order to prevent conflict when pushing code to GitHub. When we meet a bug, we would discuss the bug together by WhatsApp if the bug is not so hard to solve, if it was a tricky one, we would discuss it by Skype so that we can share our screens to have a deeper communication about how to solve the bug.
+During the develop process of the game, we mainly use WhatsApp to keep in contact, Skype to have online meeting, and GitHub to keep a track of our changes. Normally, on the Monday of each week, we would have a online / offline meeting to discuss what should we do in this week, and divide different work that each of us should do carefully in order to prevent conflict when we push code to GitHub. When we meet a bug during the development, we would discuss the bug together by WhatsApp first if the bug is not so hard to solve, if we found out that it was a tricky one, we would discuss it by Skype so that we can share our screens to have a deeper communication about how to solve the bug.
 
 * Here are our roles in the development of the game:
 
@@ -341,7 +341,9 @@ During the develop process of the game, we mainly use WhatsApp to keep in contac
 
 # PART 8: CONCLUSION
 
+First of all, we learned a lot during this game development process like the use and application of different development techniques and tools, and how to design and implement a project as a team. And we also gained more experience on how to solve a problem like a tricky bug by discussion in the team and teamwork, which will be very helpful when we go to work in the company. Besides, we also learned about how to schedule the work and divide the work to each member in the team evenly. Last but not the least, we have a wonderful and interesting teamwork experience in this game develop project, which will not only benefit our future development in the software engineering area, but also will be a fantastic memory in our lives.
 
+If we had the time and resources to develop the game further the features we would want to add are: multiplayer mode, which will allow two people to play the game - one of them controls the pacman movement while the other place the block; infinite mode, which will have a map generator to produce infinite maps, the pacman will move to next map after it eats all the dots in the current map; reverse mode, in this mode, player's goal will change from keep pacman alive to help ghosts catch pacman, in this mode, the ai of the pacman will be very smart while the ai of the ghost will be not so smart.
 
 # INDIVIDUAL CONTRIBUTION
 
