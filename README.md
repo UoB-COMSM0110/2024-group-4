@@ -254,8 +254,10 @@ This challenge might be the easiest challenge among these three challenges, but 
 3. Add more difficulties to the game to add different experience.
 
 ## Quantitavie Evaluation
-
-
+**- GAME LEVEL 2 -**
+**NASA TLX**
+|Player No|Mental Demand|Physical Demand|Temporal Demand|Performance|Effort|Frustration|RAW Nasa TLX Score|
+|1|Mental Demand|Physical Demand|Temporal Demand|Performance|Effort|Frustration|RAW Nasa TLX Score|
 
 
 # PART 7: PROCESS
