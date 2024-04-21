@@ -319,11 +319,9 @@ This challenge might be the easiest challenge among these three challenges, but 
 
 # PART 7: PROCESS
 
+During the develop process of the game, we mainly use WhatsApp to keep in contact, and Skype to have online meeting.
 
-# PART 8: CONCLUSION
-
-# INDIVIDUAL CONTRIBUTION
-
+* Here is how we divided our team roles:
 | Juean Chen                                | Xiaokang Fan                         | Nicky Dickson                        |
 |-------------------------------------------|--------------------------------------|--------------------------------------|
 | UI design & implementation                | Game framework construction          |                                      |
@@ -336,3 +334,12 @@ This challenge might be the easiest challenge among these three challenges, but 
 |                                           | Design game record manager class     |                                      |
 |                                           | Fix some bugs                        |                                      |
 |                                           | Algorithm optimization               |                                      |
+
+# PART 8: CONCLUSION
+
+# INDIVIDUAL CONTRIBUTION
+
+* Juean Chen: 1.00
+* Xiaokang Fan: 1.00
+* Nicky Dickson: 1.00
+
