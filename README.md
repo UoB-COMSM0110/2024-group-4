@@ -3,7 +3,7 @@
 <div align=center>
    <img src="asset/mmexport1708947640736.jpg"/>
 </div>
-Kevin Chen   ad23091@bristol.ac.uk   ad23091
+Juean Chen   ad23091@bristol.ac.uk   ad23091
 
 Xiaokang Fan dr23824@bristol.ac.uk   SeventyThree73
 
@@ -333,7 +333,7 @@ During the develop process of the game, we mainly use WhatsApp to keep in contac
 | Block design & implementation             | Implement most page designs          |                                      |
 | Original pacman movement logic design     | Implement the button class to simplify button implementation |              |
 | Fix some bugs                             | Implement animation class            |                                      |
-| Write report                              | Optimize entity classes, extend movement methods and give physical meaning ||
+| Write most of the report                  | Optimize entity classes, extend movement methods and give physical meaning ||
 |                                           | Simplify ghost drawing logic         |                                      |
 |                                           | Design game record manager class     |                                      |
 |                                           | Fix some bugs                        |                                      |
