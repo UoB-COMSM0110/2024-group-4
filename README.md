@@ -321,7 +321,8 @@ This challenge might be the easiest challenge among these three challenges, but 
 
 During the develop process of the game, we mainly use WhatsApp to keep in contact, and Skype to have online meeting.
 
-* Here is how we divided our team roles:
+* Here is our team roles:
+* 
 | Juean Chen                                | Xiaokang Fan                         | Nicky Dickson                        |
 |-------------------------------------------|--------------------------------------|--------------------------------------|
 | UI design & implementation                | Game framework construction          |                                      |
