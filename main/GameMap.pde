@@ -12,7 +12,7 @@ int map_choice = 0;
 int PORTAL = 7;
 int BIG_DOT = 5;
 int GHOST_HOME = 6;
-int[] price = {10, 50, 200, 50};
+int[] price = {10, 50, 150, 50};
 
 class GameMap {
   int cellSize; // Cell size
