@@ -258,20 +258,64 @@ This challenge might be the easiest challenge among these three challenges, but 
 **- GAME LEVEL 2 -**
 
 **NASA TLX**
->>| Participant Number | Mental demand | Physical demand | Temporal demand | Performance | Effort | Frustration |
->>| ----------- | ------- | ------- | ------- | ------- | ------- | ------- |
->>| 1 | 15 | 10 | 20 | 20 | 35 | 10 |
->>| 2 | 30 | 0 | 35 | 35 | 45 | 20 |
->>| 3 | 25 | 15 | 50 | 40 | 20 | 30 |
->>| 4 | 30 | 10 | 40 | 40 | 30 | 15 |
->>| 5 | 15 | 15 | 35 | 55 | 35 | 40 |
->>| 6 | 40 | 5 | 40 | 40 | 40 | 25 |
->>| 7 | 40 | 5 | 40 | 25 | 50 | 5 |
->>| 8 | 25 | 0 | 25 | 65 | 20 | 25 |
->>| 9 | 15 | 0 | 60 | 55 | 35 | 15 |
->>| 10 | 30 | 5 | 30 | 20 | 45 | 10 |
+| Player No | Mental demand | Physical demand | Temporal demand | Performance | Effort | Frustration | Raw score |
+| ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| 1 | 15 | 10 | 15 | 20 | 30 | 10 | 17 |
+| 2 | 20 | 20 | 30 | 35 | 30 | 20 | 26 |
+| 3 | 15 | 15 | 40 | 30 | 20 | 25 | 24 |
+| 4 | 30 | 10 | 30 | 35 | 20 | 15 | 23 |
+| 5 | 15 | 15 | 35 | 40 | 35 | 30 | 28 |
+| 6 | 20 | 10 | 30 | 20 | 30 | 20 | 22 |
+| 7 | 30 | 15 | 30 | 25 | 20 | 15 | 23 |
+| 8 | 20 | 10 | 25 | 45 | 25 | 20 | 24 |
+| 9 | 15 | 20 | 30 | 25 | 25 | 15 | 21 |
+| 10 | 20 | 15 | 20 | 20 | 35 | 10 | 20 |
+
+**System Usability Scale**
+| Question No \ Player No | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 
+| --------------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
+| 1. I think that I would like to use this system frequently. | 4 | 5 | 4 | 3 | 4 | 3 | 5 | 4 | 4 | 5 |
+| 2. I found the system unnecessarily complex. | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 3 | 2 |
+| 3. I thought the system was easy to use. | 4 | 4 | 5 | 4 | 3 | 4 | 4 | 5 | 4 | 5 |
+| 4. I think that I would need the support of a technical person to be able to use this system. | 1 | 1 | 2 | 2 | 1 | 1 | 2 | 1 | 1 | 2 |
+| 5. I found the various functions in this system were well integrated. | 5 | 5 | 4 | 4 | 5 | 4 | 4 | 5 | 4 | 4 |
+| 6. I thought there was too much inconsistency in this system. | 2 | 2 | 3 | 1 | 2 | 1 | 2 | 1 | 1 | 2 |
+| 7. I would imagine that most people would learn to use this system very quickly. | 4 | 4 | 5 | 3 | 5 | 4 | 4 | 3 | 5 | 4 |
+| 8. I found the system very cumbersome to use. | 2 | 3 | 2 | 2 | 1 | 2 | 1 | 2 | 2 | 1 |
+| 9. I felt very confident using the system. | 5 | 5 | 4 | 4 | 4 | 4 | 5 | 5 | 4 | 5 |
+| 10. I needed to learn a lot of things before I could get going with this system. | 1 | 1 | 2 | 2 | 3 | 2 | 2 | 2 | 1 | 1 |
+| System Usability Survey Score | 85 | 87.5 | 77.5 | 70 | 80 | 80 | 82.5 | 90 | 82.5 | 87.5 |
 
 **- GAME LEVEL 4 -**
+
+**NASA TLX**
+| Player No | Mental demand | Physical demand | Temporal demand | Performance | Effort | Frustration | Raw score |
+| ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| 1 | 20 | 15 | 20 | 25 | 35 | 15 | 22 |
+| 2 | 25 | 25 | 35 | 40 | 35 | 25 | 31 |
+| 3 | 25 | 25 | 40 | 30 | 30 | 25 | 29 |
+| 4 | 30 | 20 | 30 | 35 | 30 | 25 | 28 |
+| 5 | 25 | 25 | 35 | 40 | 45 | 30 | 33 |
+| 6 | 30 | 20 | 30 | 20 | 30 | 30 | 27 |
+| 7 | 30 | 25 | 30 | 35 | 20 | 25 | 28 |
+| 8 | 30 | 20 | 25 | 45 | 25 | 30 | 29 |
+| 9 | 25 | 20 | 30 | 35 | 25 | 25 | 26 |
+| 10 | 20 | 25 | 20 | 30 | 35 | 20 | 25 |
+
+**System Usability Scale**
+| Question No \ Player No | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 
+| --------------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
+| 1. I think that I would like to use this system frequently. | 4 | 5 | 4 | 3 | 4 | 3 | 5 | 4 | 4 | 5 |
+| 2. I found the system unnecessarily complex. | 2 | 1 | 2 | 3 | 2 | 1 | 2 | 1 | 3 | 2 |
+| 3. I thought the system was easy to use. | 4 | 4 | 5 | 4 | 3 | 4 | 4 | 5 | 4 | 5 |
+| 4. I think that I would need the support of a technical person to be able to use this system. | 1 | 1 | 2 | 2 | 1 | 1 | 2 | 1 | 1 | 2 |
+| 5. I found the various functions in this system were well integrated. | 5 | 5 | 4 | 4 | 5 | 4 | 4 | 5 | 4 | 4 |
+| 6. I thought there was too much inconsistency in this system. | 2 | 2 | 3 | 1 | 2 | 1 | 2 | 1 | 1 | 2 |
+| 7. I would imagine that most people would learn to use this system very quickly. | 4 | 4 | 5 | 3 | 5 | 4 | 4 | 3 | 5 | 4 |
+| 8. I found the system very cumbersome to use. | 2 | 3 | 2 | 2 | 1 | 2 | 1 | 2 | 2 | 1 |
+| 9. I felt very confident using the system. | 5 | 5 | 4 | 4 | 4 | 4 | 5 | 5 | 4 | 5 |
+| 10. I needed to learn a lot of things before I could get going with this system. | 1 | 1 | 2 | 2 | 3 | 2 | 2 | 2 | 1 | 1 |
+| System Usability Survey Score | 85 | 87.5 | 77.5 | 70 | 80 | 80 | 82.5 | 90 | 82.5 | 87.5 |
 
 # PART 7: PROCESS
 
