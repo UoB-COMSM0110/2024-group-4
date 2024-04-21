@@ -324,7 +324,7 @@ In the early design stage of the game, we mainly used WhatsApp to discuss the id
 
 During the develop process of the game, we mainly use WhatsApp to keep in contact, Skype to have online meeting, and GitHub to keep a track of our changes. Normally, on the Monday of each week, we would have a online / offline meeting to discuss what should we do in this week, and divide different work that each of us should do carefully in order to prevent conflict when we push code to GitHub. When we meet a bug during the development, we would discuss the bug together by WhatsApp first if the bug is not so hard to solve, if we found out that it was a tricky one, we would discuss it by Skype so that we can share our screens to have a deeper communication about how to solve the bug.
 
-* Here are our roles in the development of the game:
+* Here are our roles in this game project:
 
 | Juean Chen                                | Xiaokang Fan                         | Nicky Dickson                        |
 |-------------------------------------------|--------------------------------------|--------------------------------------|
