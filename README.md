@@ -230,10 +230,16 @@ Nevertheless, A* remains the best solution for many cases.
 
 **2. Interaction between blocks and other things:**
 
-This challenge may look like that it is not so difficult, but it was actually quite a challenge during the implementation. In our game design, there are four kinds of blocks which have different function: the basic block, the most fundamental block, has no function other than blocking the path 
+This challenge may look like that it is not so difficult, but it was actually quite a challenge during the implementation. In our game design, there are four kinds of blocks which have different function: the basic block, the most fundamental block, has no function other than blocking the path; the slow block, other than its block path function, it can also slow the speed of the ghosts when it exist; the stop block, other than its block path function, it can also stop the ghosts when it exist; the transport block, it can not block the path but it can transport pacman to the select place. 
 
-**3. How to balance different difficulties and the prices of the blocks:**
+In our early design of our game, we didn't set a limit for the blocks, player can build as many as blocks as they want, but then we discover that it would be too easy for the player to win if there is no limit for building blocks, so we add a limit of three to the block building, if the player try to build a new block when there are already three blocks on the map, the earliest block will be destroied, but the transport block is a exception, it won't count for the limit since it can not block path.
 
+During the test stage of the game, we found a mysterious bug: after we destroied the slow block or the stop block, the ghosts' movement logic broke sometimes, they will just moved straight out of the bound of the map, it was quite a strange bug since it wasn't happen all the time, sometimes it happened, sometimes it didn't, it took us quite some time to find out what trigger this bug: if we change the ghosts' speed after they leave the last grid and before they reach the next grid, its movement logic will broke, we then implemented a check function to make sure that their speed will only change after they reach the grid.
+
+
+**3. How to balance different difficulties and the price of the blocks:**
+
+This challenge might be the easiest challenge among these three challenges, but it did took us some time to balance the difficulties and the prices of the blocks. There are five levels of difficulty in our game, each level has a different map, at first, our thought was changed the speed of the ghosts to seperate different difficulties, but after we test it, we found out that the game will be very difficult even if we change the speed just by multiply two, so we decide to use another method to seperate the difficulties, since there are four ghosts in our game, we set a different release time according to the level player choosed, higher level means that all the four ghost will be released earlier, we seperate different release time by counting the dot pacman ate. As for the price of the blocks, the only problem is that the stop block is too powerful, the player can win easily with it, so we set the price of the stop block to a very high price to make sure that the player cannot put the stop block in the early stage of the main game.
 
 # PART 6: EVALUATION
 
