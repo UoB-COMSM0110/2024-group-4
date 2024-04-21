@@ -230,7 +230,7 @@ Nevertheless, A* remains the best solution for many cases.
 
 **2. Interaction between blocks and other things:**
 
-
+This challenge may look like that it is not so difficult, but it was actually quite a challenge during the implementation. In our game design, there are four kinds of blocks which have different function: the basic block, the most fundamental block, has no function other than blocking the path 
 
 **3. How to balance different difficulties and the prices of the blocks:**
 
