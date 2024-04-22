@@ -122,12 +122,6 @@ void keyPressed() {
         key = 0; // Prevent exit
       }
       break;
-  
-    case gameLevel:
-        if (key >= '1' && key < '1' + max_level) {
-          level = key - '1';
-        }
-        break;
     
     case gameInProgress:
         if (key >= '1' && key <= '4') {
@@ -137,6 +131,30 @@ void keyPressed() {
         if (keyCode == 32 || key == ESC) {
           gameMap.pause();
           key = 0; // Prevent exit
+        }
+        break;
+  
+    case gameLevel:
+        if (key >= '1' && key < '1' + max_level) {
+          level = key - '1';
+        }
+        if (key == ESC) {
+          key = 0; // Prevent exit
+          gamemod = StartScreen;
+        }
+        break;
+        
+    case gameRecord:
+        if (key == ESC) {
+          key = 0; // Prevent exit
+          gamemod = StartScreen;
+        }
+        break;
+        
+    case gameHelp:
+        if (key == ESC) {
+          key = 0; // Prevent exit
+          gamemod = StartScreen;
         }
         break;
   }
