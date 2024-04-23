@@ -30,4 +30,4 @@ boolean containsElement(int[] array, int target) {
     }
   }
   return false;
-  }
+}

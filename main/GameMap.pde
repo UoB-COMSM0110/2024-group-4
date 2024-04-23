@@ -105,21 +105,28 @@ class GameMap {
             stroke(158, 74, 124); // Wall color
           }
           strokeWeight(10);
+
+          final int margin = cellSize/4;
+          int x1 = j * cellSize;
+          int y1 = i * cellSize;
+          int x2 = x1 + cellSize;
+          int y2 = y1 + cellSize;
+
           // check up
-          if (containsElement(pathList, map[max(0, i-1)][j])) {
-            if (containsElement(pathList, map[i][max(0, j-1)])) {
-              line(j * cellSize+10, i * cellSize+10, (j+1) * cellSize, i * cellSize+10);
-            } else if (containsElement(pathList, map[i][min(j+1, this.COLUMNS-1)])) {
-              line(j * cellSize, i * cellSize+10, (j+1) * cellSize-10, i * cellSize+10);
-            } else {
-              if (map[max(0, i-1)][j-1] == wall) {
-                line(j * cellSize-10, i * cellSize+10, (j+1) * cellSize, i * cellSize+10);
-              } else if (map[max(0, i-1)][j+1] == wall) {
-                line(j * cellSize, i * cellSize+10, (j+1) * cellSize+10, i * cellSize+10);
-              } else {
-                line(j * cellSize, i * cellSize+10, (j+1) * cellSize, i * cellSize+10);
-              }
+          if (containsElement(pathList, map[max(0, i-1)][j])) { // Up is pathway
+            y1 += margin; // Move the upper horizontal line down a few pixels
+            y2 = y1;      // Align y1, y2
+            
+            if (containsElement(pathList, map[i][max(0, j-1)])){ // Left is pathway
+              x1 += margin; // Shorten the left end
+            } else if (containsElement(pathList, map[i][min(j+1, this.COLUMNS-1)])) { // Right is pathway
+              x2 -= margin; // Shorten the right end
+            } else { // Both sides are walls
+              x1 -= margin * int(map[max(0, i-1)][j-1] == wall); // Stretch the left end if upper left is wall
+              x2 += margin * int(map[max(0, i-1)][j+1] == wall); // Stretch the right end if upper right is wal
             }
+            
+            line(x1, y1, x2, y2);
           }
 
           // check down
