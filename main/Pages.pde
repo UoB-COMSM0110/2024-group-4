@@ -190,8 +190,8 @@ void chooselevel() {
   // LEVEL
   textAlign(CENTER, CENTER);
   fill(200, 100, 200);
-  textSize(100);
-  text("L E V E L", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-300);
+  textSize(button_textSize*2);
+  text("L E V E L", (gamewidth-button_w)/2 + gamewidth/10, (gameheight-button_h)/2-gameheight/4);
   // Level number
   if (level == 0) {
     fill(33, 33, 222);
@@ -204,20 +204,20 @@ void chooselevel() {
   } else {
     fill(158, 74, 124);
   }
-  textSize(100);
-  text(level + 1, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-120);
-  textSize(60);
-  text("Final score x 1." + level, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2+20);
+  textSize(button_textSize*2);
+  text(level + 1, (gamewidth-button_w)/2 + gamewidth/10, (gameheight-button_h)/2-gameheight/10);
+  textSize(button_textSize/5*6);
+  text("Final score x 1." + level, (gamewidth-button_w)/2+ + gamewidth/10, (gameheight-button_h)/2+gameheight/60);
   // Buttons
   levelupButton.display();
   leveldownButton.display();
   levelenterButton.display();
   // Hint
   fill(80, 80, 80);
-  textSize(30);
+  textSize(button_textSize*3/5);
   String hinttext = "Click PREV or NEXT  or  Enter a number from 1 to 5 to select level";
-  text(hinttext, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2+340);
-  text("Higher level means higher difficulty and higher score", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2+380);
+  text(hinttext, (gamewidth-button_w)/2+ gamewidth/10, (gameheight-button_h)/2+gameheight*340/1200);
+  text("Higher level means higher difficulty and higher score", (gamewidth-button_w)/2+ gamewidth/10, (gameheight-button_h)/2+gameheight*380/1200);
   return;
 }
 
