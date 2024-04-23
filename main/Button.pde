@@ -35,11 +35,44 @@ class Button {
     text(label, x + width / 2, y + height / 2);
   }
 
-  private boolean hover() {
+  protected boolean hover() {
     return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
   }
 
   boolean clicked() {
     return hover();
+  }
+}
+
+class Block extends Button {
+  boolean isPressed = false;
+  int [] rgb;
+
+  Block(float x, float y, float width, float height, int [] rgb) {
+    super(x, y, width, height, "", 0);
+
+    if (rgb.length != 3) {
+      throw new IllegalArgumentException("RGB array must have exactly three elements.");
+    }
+    this.rgb = rgb;
+  }
+
+  @Override
+  boolean clicked() {
+    if(hover()){
+      isPressed = !isPressed;
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  void display() {
+    if (hover()) {
+      fill(this.hoverbackgroundcolour);
+      rect(x, y, width, height);
+    }
+    fill(rgb[0], rgb[1], rgb[2]); // color
+    rect(x + width/4, y + height/4, width/2, height/2);
   }
 }
