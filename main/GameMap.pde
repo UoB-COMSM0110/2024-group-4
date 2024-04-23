@@ -12,7 +12,8 @@ int map_choice = 0;
 int PORTAL = 7;
 int BIG_DOT = 5;
 int GHOST_HOME = 6;
-int[] price = {10, 50, 150, 50};
+final int[] blockwall = {2, 4, 6};
+final int[] price = {10, 50, 150, 50};
 
 class GameMap {
   int cellSize; // Cell size
@@ -34,12 +35,29 @@ class GameMap {
   final int COLUMNS = 28;  // x
   final int RAWS = 31; // y
 
+  Block block1;
+  Block block2;
+  Block block3;
+  Block block4;
+  PauseButton pauseButton;
+
   // Constructor
   GameMap(int cellSize) {
     this.cellSize = cellSize;
     this.dotSize = cellSize / 4;
     this.distance = (cellSize - dotSize) / 2;
     this.wallindex = 0;
+
+    int[] rgb1 = {22, 22, 148};
+    block1 = new Block(1121, 580, 120, 120, rgb1);
+    int[] rgb2 = {135, 206, 250};
+    block2 = new Block(1251, 580, 120, 120, rgb2);
+    int[] rgb3 = {255, 255, 255};
+    block3 = new Block(1381, 580, 120, 120, rgb3);
+    int[] rgb4 = {255, 255, 0};
+    block4 = new Block(1511, 580, 120, 120, rgb4);
+
+    pauseButton = new PauseButton(1550, 10, cellSize*2, cellSize*2);
   }
 
   boolean setMap() {
@@ -154,15 +172,15 @@ class GameMap {
           }
           noStroke();
         }
-        if (map[i][j] == 2) {
+        if (map[i][j] == blockwall[0]) {
           fill(22, 22, 148);
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
-        if (map[i][j] == 4) {
+        if (map[i][j] == blockwall[1]) {
           fill(135, 206, 250);
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
-        if (map[i][j] == 6) {
+        if (map[i][j] == blockwall[2]) {
           fill(255);
           rect(j * cellSize, i * cellSize, cellSize, cellSize); // Draw walls
         }
@@ -187,11 +205,12 @@ class GameMap {
       }
     }
 
+    // Hover
     int gridX = mouseX / cellSize;
     int gridY = mouseY / cellSize;
 
     if (gridX >= 0 && gridX < 1120/cellSize && gridY >= 0 && gridY < 1240/cellSize) {
-      if (map[gridY][gridX] == 3 || map[gridY][gridX] == 0) {
+      if (map[gridY][gridX] == dot || map[gridY][gridX] == empty_grid) {
         if (block_type == 1) {
           fill(22, 22, 148);
         } else if (block_type == 2) {
@@ -245,17 +264,18 @@ class GameMap {
     noStroke();
 
     // Pause button background color
-    if (mouseX >= 1550 && mouseX < 1630 && mouseY >= 10 && mouseY < 90) {
-      fill(105, 196, 250);
-    } else {
-      fill(135, 206, 250);
-    }
-    rect(1640-90, 10, cellSize, cellSize);
-    rect(1640-50, 10, cellSize, cellSize);
-    rect(1640-90, 10+cellSize, cellSize, cellSize);
-    rect(1640-50, 10+cellSize, cellSize, cellSize);
-    // Draw pause button
-    drawPauseButton();
+    pauseButton.display();
+    // if (mouseX >= 1550 && mouseX < 1630 && mouseY >= 10 && mouseY < 90) {
+    //   fill(105, 196, 250);
+    // } else {
+    //   fill(135, 206, 250);
+    // }
+    // rect(1640-90, 10, cellSize, cellSize);
+    // rect(1640-50, 10, cellSize, cellSize);
+    // rect(1640-90, 10+cellSize, cellSize, cellSize);
+    // rect(1640-50, 10+cellSize, cellSize, cellSize);
+    // // Draw pause button
+    // drawPauseButton();
 
     // Show score
     textAlign(LEFT, BASELINE);
@@ -298,30 +318,34 @@ class GameMap {
     }
     rect(1535, 490, 1.5*cellSize, 1.5*cellSize);
     // choose block
-    if (mouseX >= 1120 && mouseX < 1240 && mouseY >= 574 && mouseY < 700) {
-      fill(200);
-      rect(1121, 580, 120, 120);
-    }
-    if (mouseX >= 1250 && mouseX < 1370 && mouseY >= 574 && mouseY < 700) {
-      fill(200);
-      rect(1251, 580, 120, 120);
-    }
-    if (mouseX >= 1380 && mouseX < 1500 && mouseY >= 574 && mouseY < 700) {
-      fill(200);
-      rect(1381, 580, 120, 120);
-    }
-    if (mouseX >= 1510 && mouseX < 1630 && mouseY >= 574 && mouseY < 700) {
-      fill(200);
-      rect(1511, 580, 120, 120);
-    }
-    fill(22, 22, 148);
-    rect(1150, 610, 1.5*cellSize, 1.5*cellSize);
-    fill(135, 206, 250);
-    rect(1282, 610, 1.5*cellSize, 1.5*cellSize);
-    fill(255);
-    rect(1412, 610, 1.5*cellSize, 1.5*cellSize);
-    fill(255, 255, 0);
-    rect(1542, 610, 1.5*cellSize, 1.5*cellSize);
+    // if (mouseX >= 1120 && mouseX < 1240 && mouseY >= 574 && mouseY < 700) {
+    //   fill(200);
+    //   rect(1121, 580, 120, 120);
+    // }
+    // if (mouseX >= 1250 && mouseX < 1370 && mouseY >= 574 && mouseY < 700) {
+    //   fill(200);
+    //   rect(1251, 580, 120, 120);
+    // }
+    // if (mouseX >= 1380 && mouseX < 1500 && mouseY >= 574 && mouseY < 700) {
+    //   fill(200);
+    //   rect(1381, 580, 120, 120);
+    // }
+    // if (mouseX >= 1510 && mouseX < 1630 && mouseY >= 574 && mouseY < 700) {
+    //   fill(200);
+    //   rect(1511, 580, 120, 120);
+    // }
+    // fill(22, 22, 148);
+    // rect(1150, 610, 1.5*cellSize, 1.5*cellSize);
+    // fill(135, 206, 250);
+    // rect(1282, 610, 1.5*cellSize, 1.5*cellSize);
+    // fill(255);
+    // rect(1412, 610, 1.5*cellSize, 1.5*cellSize);
+    // fill(255, 255, 0);
+    // rect(1542, 610, 1.5*cellSize, 1.5*cellSize);
+    block1.display();
+    block2.display();
+    block3.display();
+    block4.display();
     // Show block information
     fill(246, 209, 7); // Yellow
     textSize(40);
@@ -412,7 +436,6 @@ class GameMap {
         }
       }
       if (i==wallstack_deep) {
-
         println("ERROR: Can not find this tmp wall int wallstack", x, y);
       }
       return true;
@@ -503,7 +526,7 @@ class GameMap {
     int gridX = mouseX / cellSize;
     int gridY = mouseY / cellSize;
 
-    if (gridX >= 0 && gridX < 1120/cellSize && gridY >= 0 && gridY < 1240/cellSize) {
+    if (gridX >= 0 && gridX < this.COLUMNS && gridY >= 0 && gridY < this.RAWS) {
       println("Cliked : ", gridX, gridY);
       if (gameMap.block_type == 4) {
         if ((gameMap.map[gridY][gridX] == 3 || gameMap.map[gridY][gridX] == 0) && gameMap.money > 40) {
@@ -513,19 +536,19 @@ class GameMap {
         gameMap.setWall(gridX, gridY);
       }
     }
-    if (mouseX >= 1550 && mouseX < 1630 && mouseY >= 10 && mouseY < 90) {
+    if (pauseButton.clicked()) {
       gameMap.pause();
     }
-    if (mouseX >= 1120 && mouseX < 1240 && mouseY >= 574 && mouseY < 700) {
+    if (block1.clicked()) {
       gameMap.changeBlock(1);
     }
-    if (mouseX >= 1250 && mouseX < 1370 && mouseY >= 574 && mouseY < 700) {
+    if (block2.clicked()) {
       gameMap.changeBlock(2);
     }
-    if (mouseX >= 1380 && mouseX < 1500 && mouseY >= 574 && mouseY < 700) {
+    if (block3.clicked()) {
       gameMap.changeBlock(3);
     }
-    if (mouseX >= 1510 && mouseX < 1630 && mouseY >= 574 && mouseY < 700) {
+    if (block4.clicked()) {
       gameMap.changeBlock(4);
     }
     if (pause == true) {
