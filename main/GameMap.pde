@@ -31,6 +31,9 @@ class GameMap {
   int score = 0;
   int money = 100;
 
+  final int COLUMNS = 28;  // x
+  final int RAWS = 31; // y
+
   // Constructor
   GameMap(int cellSize) {
     this.cellSize = cellSize;
@@ -39,9 +42,17 @@ class GameMap {
     this.wallindex = 0;
   }
 
-  void setMap() {
+  boolean setMap() {
     final int[][][] mapList = {map1, map2, map3, map4, map5};
-    map = deepCopy2D(mapList[map_choice]);
+    this.map = deepCopy2D(mapList[map_choice]);
+    if (map[0].length != this.COLUMNS || map.length != this.RAWS) {
+      println("ERROR: Incorrect map size. Expected columns: " + this.COLUMNS 
+              + ", received: " + map[0].length 
+              + ". Expected rows: " + this.RAWS 
+              + ", received: " + map.length + ".");
+      return false;
+    }
+    return true;
   }
 
   void clearGrid(int x, int y) {

@@ -169,7 +169,11 @@ void mouseClicked() {
       GAME_RUNNING = true;
       gamemod = gameInProgress;
       gameMap = new GameMap(cellSize);
-      gameMap.setMap();
+      if(!gameMap.setMap())  {
+        gamemod = StartScreen;
+        println("An error occurred while initializing the map");
+        return;
+      }
       myPacman = new Pacman(PACMAN_HOME[0], PACMAN_HOME[1], pf, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
       //myPacman.setDirection(LEFT);
       //myPacman.setState(EVADE);
