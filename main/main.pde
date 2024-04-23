@@ -169,6 +169,7 @@ void mouseClicked() {
       GAME_RUNNING = true;
       gamemod = gameInProgress;
       gameMap = new GameMap(cellSize);
+      map_choice = level;
       if(!gameMap.setMap())  {
         gamemod = StartScreen;
         println("An error occurred while initializing the map");
@@ -218,7 +219,6 @@ void mouseClicked() {
       return;
     }
     if (levelenterButton.clicked()) {
-      map_choice = level;
       gamemod = StartScreen;
       return;
     }
