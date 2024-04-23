@@ -53,7 +53,9 @@ void maingame() {
   // Update the status of each role
   //statusUpdate();
   // Draw
-
+  if (!startMenuSound.isPlaying()) {
+    startMenuSound.play();
+  }
   // Initialise ghosts
   ghost1.freeze(true);
   ghost2.freeze(true);
@@ -98,8 +100,8 @@ void maingame() {
     }
     if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 2) ) {
       releaseNextGhost();
-      myPacman.changeSpeed(4);
-      current_speed = 4;
+      //myPacman.changeSpeed(3);
+      current_speed = 3;
     }
     if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 3) ) {
       releaseNextGhost();
