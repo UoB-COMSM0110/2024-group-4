@@ -408,6 +408,7 @@ class GameMap {
 
   void eatDot(int x, int y) {
     map[y][x] = eat_dot; // Eat dot
+    eatSmallDotSound.play();
     score += basic_score;
     money++;
   }
@@ -425,6 +426,7 @@ class GameMap {
   // Eat bigDot and remove from map
   void eatBigDot(int row, int col) {
     map[row][col] = eat_dot;
+    eatBigDotSound.play();
     score += bigScore;
     money += 10;
   }
@@ -464,6 +466,7 @@ class GameMap {
   }
 
   void transport(int gridx, int gridy) {
+    teleportSound.play();
     myPacman.setPosition(gridx, gridy);
     // myPacman.x = gridx * cellSize;
     // myPacman.y = gridy * cellSize;
@@ -537,7 +540,7 @@ class GameMap {
     if (gridX >= 0 && gridX < this.COLUMNS && gridY >= 0 && gridY < this.RAWS) {
       println("Cliked : ", gridX, gridY);
       if (gameMap.block_type == 4) {
-        if ((gameMap.map[gridY][gridX] == 3 || gameMap.map[gridY][gridX] == 0) && gameMap.money > 40) {
+        if ((gameMap.map[gridY][gridX] == 3 || gameMap.map[gridY][gridX] == 0) && gameMap.money > 50) {
           gameMap.transport(gridX, gridY);
         }
       } else {

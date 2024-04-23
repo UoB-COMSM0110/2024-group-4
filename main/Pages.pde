@@ -18,6 +18,9 @@ PImage help;
 
 void menu() {
   background(0);
+  if (!startMenuSound.isPlaying()) {
+    startMenuSound.play();
+  }
   bg = loadImage("assets/Background.png");
   bg.resize(1400, 1240);
   image(bg, 120, 0);
@@ -134,6 +137,7 @@ void maingame() {
 
     // Reset pacman
     if ( ghost1.caughtTarget() || ghost2.caughtTarget() || ghost3.caughtTarget() || ghost4.caughtTarget() ) {
+      caughtSound.play();
       myPacman.lives--;
       myPacman.setDirection(LEFT);
       myPacman.setState(EVADE);
@@ -147,9 +151,11 @@ void maingame() {
     textSize(100);
     if (gameMap.dotsRemaining()) {
       fill(255, 0, 0);
+      gameOverSound.play();
       text("GAME OVER", gamewidth/2 - 260, gameheight/2 - 400);
     } else {
       fill(255, 255, 0);
+      youWinSound.play();
       text("YOU WIN", gamewidth/2 - 260, gameheight/2 - 400);
     }
     int finalScore = (gameMap.score + gameMap.money * 10) * (1 + level / 10);
@@ -179,14 +185,16 @@ void endgame() {
     playerName = playerName.replace(",", "").replace("\n", "");
     GRM.saveRecord(playerName);
     return;
-  }
-  else {
+  } else {
     endButton.display();
   }
 }
 
 void chooselevel() {
   background(0);
+  if (!startMenuSound.isPlaying()) {
+    startMenuSound.play();
+  }
   // LEVEL
   textAlign(CENTER, CENTER);
   fill(200, 100, 200);
@@ -223,6 +231,9 @@ void chooselevel() {
 
 void recordmenu() {
   background(0);
+  if (!startMenuSound.isPlaying()) {
+    startMenuSound.play();
+  }
   // Help
   List<String> records = GRM.loadRecords();
   drawLeaderboard(records, gamewidth*0.2, gameheight*0.1);
@@ -234,6 +245,9 @@ void recordmenu() {
 
 void helpmenu() {
   background(0);
+  if (!startMenuSound.isPlaying()) {
+    startMenuSound.play();
+  }
   // Help
   help = loadImage("assets/Help.png");
   help.resize(1640, 1240);

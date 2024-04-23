@@ -120,46 +120,46 @@ void draw() {
 
 void keyPressed() {
   switch (gamemod) {
-    case StartScreen:
-      if (key == ESC) {
-        key = 0; // Prevent exit
-      }
-      break;
-    
-    case gameInProgress:
-        if (key >= '1' && key <= '4') {
-          int blockType = key - '0';
-          gameMap.changeBlock(blockType);
-        }
-        if (keyCode == 32 || key == ESC) {
-          gameMap.pause();
-          key = 0; // Prevent exit
-        }
-        break;
-  
-    case gameLevel:
-        if (key >= '1' && key < '1' + max_level) {
-          level = key - '1';
-        }
-        if (key == ESC) {
-          key = 0; // Prevent exit
-          gamemod = StartScreen;
-        }
-        break;
-        
-    case gameRecord:
-        if (key == ESC) {
-          key = 0; // Prevent exit
-          gamemod = StartScreen;
-        }
-        break;
-        
-    case gameHelp:
-        if (key == ESC) {
-          key = 0; // Prevent exit
-          gamemod = StartScreen;
-        }
-        break;
+  case StartScreen:
+    if (key == ESC) {
+      key = 0; // Prevent exit
+    }
+    break;
+
+  case gameInProgress:
+    if (key >= '1' && key <= '4') {
+      int blockType = key - '0';
+      gameMap.changeBlock(blockType);
+    }
+    if (keyCode == 32 || key == ESC) {
+      gameMap.pause();
+      key = 0; // Prevent exit
+    }
+    break;
+
+  case gameLevel:
+    if (key >= '1' && key < '1' + max_level) {
+      level = key - '1';
+    }
+    if (key == ESC) {
+      key = 0; // Prevent exit
+      gamemod = StartScreen;
+    }
+    break;
+
+  case gameRecord:
+    if (key == ESC) {
+      key = 0; // Prevent exit
+      gamemod = StartScreen;
+    }
+    break;
+
+  case gameHelp:
+    if (key == ESC) {
+      key = 0; // Prevent exit
+      gamemod = StartScreen;
+    }
+    break;
   }
 }
 
@@ -170,7 +170,7 @@ void mouseClicked() {
       gamemod = gameInProgress;
       gameMap = new GameMap(cellSize);
       map_choice = level;
-      if(!gameMap.setMap())  {
+      if (!gameMap.setMap()) {
         gamemod = StartScreen;
         println("An error occurred while initializing the map");
         return;
@@ -186,7 +186,7 @@ void mouseClicked() {
       ghosts = new Ghost[] {ghost1, ghost2, ghost3, ghost4};
 
       initGame();
-      
+
       pause = false;
       gameended = false;
       current_speed = 2;

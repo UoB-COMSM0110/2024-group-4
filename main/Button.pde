@@ -7,6 +7,7 @@ class Button {
   int textcolour = 0;
   int hoverbackgroundcolour = 200;
   int hovertextcolour = 100;
+  boolean playsound = true;
 
   Button(float x, float y, float width, float height, String label, int textSize) {
     this.x = x;
@@ -18,6 +19,14 @@ class Button {
   }
 
   void display() {
+    if (hover()) {
+      if (playsound) {
+        selectSound.play();
+        playsound = false;
+      }
+    } else {
+      playsound = true;
+    }  
     if (hover()) {
       fill(hoverbackgroundcolour); // color
       rect(x, y, width, height, 10);
@@ -40,6 +49,7 @@ class Button {
   }
 
   boolean clicked() {
+    clickSound.play();
     return hover();
   }
 }
@@ -69,6 +79,11 @@ class Block extends Button {
     fill(rgb[0], rgb[1], rgb[2]); // color
     rect(x + width/4, y + height/4, width/2, height/2);
   }
+  
+  @Override
+  boolean clicked() {
+    return hover();
+  }
 }
 
 
@@ -85,6 +100,14 @@ class PauseButton extends Button {
   void display() {
     fill(rgb[0], rgb[1], rgb[2]); // color
     if (hover()) {
+      if (playsound) {
+        selectSound.play();
+        playsound = false;
+      }
+    } else {
+      playsound = true;
+    }
+    if (hover()) {
       fill(rgb_hover[0], rgb_hover[1], rgb_hover[2]);
     }
     rect(x , y , width, height);
@@ -100,6 +123,7 @@ class PauseButton extends Button {
 
   @Override
   boolean clicked() {
+    clickSound.play();
     boolean ishover = hover();
     if(ishover){
       this.isOn = !this.isOn;
