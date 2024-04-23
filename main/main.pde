@@ -232,45 +232,7 @@ void mouseClicked() {
     }
   }
   if (gamemod == gameInProgress) {
-    int gridX = mouseX / cellSize;
-    int gridY = mouseY / cellSize;
-
-    if (gridX >= 0 && gridX < 1120/cellSize && gridY >= 0 && gridY < 1240/cellSize) {
-      println("Cliked : ", gridX, gridY);
-      if (gameMap.block_type == 4) {
-        if ((gameMap.map[gridY][gridX] == 3 || gameMap.map[gridY][gridX] == 0) && gameMap.money > 40) {
-          gameMap.transport(gridX, gridY);
-        }
-      } else {
-        gameMap.setWall(gridX, gridY);
-      }
-    }
-    if (mouseX >= 1550 && mouseX < 1630 && mouseY >= 10 && mouseY < 90) {
-      gameMap.pause();
-    }
-    if (mouseX >= 1120 && mouseX < 1240 && mouseY >= 574 && mouseY < 700) {
-      gameMap.changeBlock(1);
-    }
-    if (mouseX >= 1250 && mouseX < 1370 && mouseY >= 574 && mouseY < 700) {
-      gameMap.changeBlock(2);
-    }
-    if (mouseX >= 1380 && mouseX < 1500 && mouseY >= 574 && mouseY < 700) {
-      gameMap.changeBlock(3);
-    }
-    if (mouseX >= 1510 && mouseX < 1630 && mouseY >= 574 && mouseY < 700) {
-      gameMap.changeBlock(4);
-    }
-    if (pause == true) {
-      if (pauseContinueButton.clicked()) {
-        pause = false;
-        return;
-      }
-      if (pauseCancelButton.clicked()) {
-        endgame();
-        gamemod = StartScreen;
-        return;
-      }
-    }
+    gameMap.clicked();
     return;
   }
   if (gamemod == gameOver) {
