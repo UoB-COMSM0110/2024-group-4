@@ -11,8 +11,6 @@ Ghost[] ghosts;
 Pathfinder pf;
 GameRecordManager GRM;
 
-final int cellSize = 40;
-
 final int StartScreen = 0;
 final int gameInProgress = 1;
 final int gameOver = 2;
@@ -38,13 +36,18 @@ Button cancelButton;
 Button pauseContinueButton;
 Button pauseCancelButton;
 
-final int gamewidth = 1640;
-final int gameheight = 1240;
-final int button_w = 300;
-final int button_h = 100;
-final int button_textSize = 50;
-final int startButton_Y = (gameheight-button_h)/2 - 100;
-final int button_gap = 120;
+final int gamewidth = 1600;
+final int gameheight = 1200;
+final int button_w = gamewidth / 16 * 3;
+final int button_h = button_w / 3;
+final int button_textSize = gamewidth / 32;
+final int startButton_X = (gamewidth-button_w)/2;
+final int startButton_Y = (gameheight-button_h)/2 - gamewidth / 16 + gamewidth * 14 / 160;
+final int button_gap = button_h + button_h / 5;
+final int levelAdjustButtonY = startButton_Y - gamewidth * 14 / 160 + button_gap * 2;
+
+final int cellSize = gamewidth / 40;
+
 PFont font;
 PImage heart;
 PImage coin;
@@ -67,28 +70,28 @@ void setup() {
   coin.resize(44, 44);
   gamemod = StartScreen;
   level = map_choice;
-  startButton = new Button((gamewidth-button_w)/2, startButton_Y+140, button_w, button_h, "Start", button_textSize);
-  levelButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 1+140, button_w, button_h, "Level", button_textSize);
-  recordButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 2+140, button_w, button_h, "Ranking", button_textSize);
-  helpButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 3+140, button_w, button_h, "Help", button_textSize);
-  exitButton = new Button((gamewidth-button_w)/2, startButton_Y + button_gap * 4+140, button_w, button_h, "Exit", button_textSize);
-  endButton = new Button((gamewidth-button_w)/2*0.3-10, (gameheight-button_h-200)/2+240, button_w*2.5, button_h, "Return to main menu", button_textSize);
+  startButton = new Button(startButton_X, startButton_Y, button_w, button_h, "Start", button_textSize);
+  levelButton = new Button(startButton_X, startButton_Y + button_gap * 1, button_w, button_h, "Level", button_textSize);
+  recordButton = new Button(startButton_X, startButton_Y + button_gap * 2, button_w, button_h, "Ranking", button_textSize);
+  helpButton = new Button(startButton_X, startButton_Y + button_gap * 3, button_w, button_h, "Help", button_textSize);
+  exitButton = new Button(startButton_X, startButton_Y + button_gap * 4, button_w, button_h, "Exit", button_textSize);
+  endButton = new Button(startButton_X*3/10-gamewidth/160, (gameheight-button_h-200)/2, button_w*2.5, button_h, "Return to main menu", button_textSize);
 
-  leveldownButton = new Button((gamewidth-button_w)/2 - 200, startButton_Y + button_gap * 2, button_w, button_h, "PREV", button_textSize);
-  levelupButton = new Button((gamewidth-button_w)/2 + 200, startButton_Y + button_gap * 2, button_w, button_h, "NEXT", button_textSize);
-  levelenterButton = new Button(gamewidth - 400, gameheight - 200, button_w, button_h, "Confirm", button_textSize);
+  leveldownButton = new Button(startButton_X - button_w * 2 / 3, levelAdjustButtonY, button_w, button_h, "PREV", button_textSize);
+  levelupButton = new Button(startButton_X + button_w * 2 / 3, levelAdjustButtonY, button_w, button_h, "NEXT", button_textSize);
+  levelenterButton = new Button(gamewidth*0.75, gameheight*5/6, button_w, button_h, "Confirm", button_textSize);
 
-  cancelButton = new Button(gamewidth * 0.8, gameheight - 120, button_w, button_h, "Back", button_textSize);
+  cancelButton = new Button(gamewidth*0.8, gameheight*0.9, button_w, button_h, "Back", button_textSize);
 
-  pauseContinueButton = new Button((gamewidth-button_w)/2*0.4 - 100, startButton_Y + button_gap * 2, button_w*1.2, button_h, "Continue", button_textSize);
-  pauseCancelButton = new Button((gamewidth-button_w)/2*0.8 + 60, startButton_Y + button_gap * 2, button_w*1.2, button_h, "End Game", button_textSize);
+  pauseContinueButton = new Button(startButton_X*0.4 - gamewidth/16, startButton_Y + button_gap * 2, button_w*1.2, button_h, "Continue", button_textSize);
+  pauseCancelButton = new Button(startButton_X*0.8 + gamewidth*6/160, startButton_Y + button_gap * 2, button_w*1.2, button_h, "End Game", button_textSize);
 
   GRM = new GameRecordManager("game_records.txt");
   sprites = loadImage("src/spriteSheet.png");
   loadSounds();
 
-  animPacman = new AnimationPacman(160, 750, 400);
-  animGhosts = new AnimationGhosts(1050, 650, 101);
+  animPacman = new AnimationPacman(gamewidth/10, gameheight*5/8, 400);
+  animGhosts = new AnimationGhosts(gamewidth*1050/1600, gameheight*650/1200, 101);
 }
 
 void draw() {
@@ -165,7 +168,7 @@ void mouseClicked() {
     if (startButton.clicked()) {
       GAME_RUNNING = true;
       gamemod = gameInProgress;
-      gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
+      gameMap = new GameMap(cellSize);
       gameMap.setMap();
       myPacman = new Pacman(PACMAN_HOME[0], PACMAN_HOME[1], pf, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
       //myPacman.setDirection(LEFT);
@@ -233,7 +236,7 @@ void mouseClicked() {
     int gridY = mouseY / cellSize;
 
     if (gridX >= 0 && gridX < 1120/cellSize && gridY >= 0 && gridY < 1240/cellSize) {
-      println(gridX, gridY);
+      println("Cliked : ", gridX, gridY);
       if (gameMap.block_type == 4) {
         if ((gameMap.map[gridY][gridX] == 3 || gameMap.map[gridY][gridX] == 0) && gameMap.money > 40) {
           gameMap.transport(gridX, gridY);
