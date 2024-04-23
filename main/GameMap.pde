@@ -15,6 +15,8 @@ int GHOST_HOME = 6;
 final int[] blockwall = {2, 4, 6};
 final int[] price = {10, 50, 150, 50};
 
+final int[] pathList = {empty_grid, dot, BIG_DOT, blockwall[0], blockwall[1], blockwall[2]};
+
 class GameMap {
   int cellSize; // Cell size
   int dotSize;
@@ -104,15 +106,15 @@ class GameMap {
           }
           strokeWeight(10);
           // check up
-          if (map[max(0, i-1)][j] == 3 || map[max(0, i-1)][j] == 0 || map[max(0, i-1)][j] == 2 || map[max(0, i-1)][j] == 4 || map[max(0, i-1)][j] == 6 || map[max(0, i-1)][j] == 5) {
-            if (map[i][max(0, j-1)] == 3 || map[i][max(0, j-1)] == 0 || map[i][max(0, j-1)] == 2 || map[i][max(0, j-1)] == 4 || map[i][max(0, j-1)] == 6 || map[i][max(0, j-1)] == 5) {
+          if (containsElement(pathList, map[max(0, i-1)][j])) {
+            if (containsElement(pathList, map[i][max(0, j-1)])) {
               line(j * cellSize+10, i * cellSize+10, (j+1) * cellSize, i * cellSize+10);
-            } else if (map[i][min(j+1, map[0].length-1)] == 3 || map[i][min(j+1, map[0].length-1)] == 0  || map[i][min(j+1, map[0].length-1)] == 2 || map[i][min(j+1, map[0].length-1)] == 4 || map[i][min(j+1, map[0].length-1)] == 6 || map[i][min(j+1, map[0].length-1)] == 5) {
+            } else if (containsElement(pathList, map[i][min(j+1, this.COLUMNS-1)])) {
               line(j * cellSize, i * cellSize+10, (j+1) * cellSize-10, i * cellSize+10);
             } else {
-              if (map[max(0, i-1)][j-1] == 1) {
+              if (map[max(0, i-1)][j-1] == wall) {
                 line(j * cellSize-10, i * cellSize+10, (j+1) * cellSize, i * cellSize+10);
-              } else if (map[max(0, i-1)][j+1] == 1) {
+              } else if (map[max(0, i-1)][j+1] == wall) {
                 line(j * cellSize, i * cellSize+10, (j+1) * cellSize+10, i * cellSize+10);
               } else {
                 line(j * cellSize, i * cellSize+10, (j+1) * cellSize, i * cellSize+10);
@@ -374,20 +376,20 @@ class GameMap {
     }
   }
 
-  void drawPauseButton() {
-    if (pause == false) {
-      fill(255);
-      rect(1566, 25, 16, 16);
-      rect(1566, 41, 16, 16);
-      rect(1566, 57, 16, 16);
-      rect(1598, 25, 16, 16);
-      rect(1598, 41, 16, 16);
-      rect(1598, 57, 16, 16);
-    } else {
-      fill(255);
-      triangle(1572, 25, 1572, 73, 1612, 49);
-    }
-  }
+  // void drawPauseButton() {
+  //   if (pause == false) {
+  //     fill(255);
+  //     rect(1566, 25, 16, 16);
+  //     rect(1566, 41, 16, 16);
+  //     rect(1566, 57, 16, 16);
+  //     rect(1598, 25, 16, 16);
+  //     rect(1598, 41, 16, 16);
+  //     rect(1598, 57, 16, 16);
+  //   } else {
+  //     fill(255);
+  //     triangle(1572, 25, 1572, 73, 1612, 49);
+  //   }
+  // }
 
   //  Method to check if a move to a new position has a dot
   boolean checkDot(int x, int y) {
