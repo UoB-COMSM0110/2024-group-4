@@ -107,14 +107,13 @@ class GameMap {
           strokeWeight(10);
 
           final int margin = cellSize/4;
-          int x1 = j * cellSize;
-          int y1 = i * cellSize;
-          int x2 = x1 + cellSize;
-          int y2 = y1 + cellSize;
+          int x1, x2, y1, y2;
 
           // check up
           if (containsElement(pathList, map[max(0, i-1)][j])) { // Up is pathway
-            y1 += margin; // Move the upper horizontal line down a few pixels
+            x1 = j * cellSize;
+            y1 = i * cellSize + margin; // Move the upper horizontal line down a few pixels
+            x2 = x1 + cellSize;
             y2 = y1;      // Align y1, y2
             
             if (containsElement(pathList, map[i][max(0, j-1)])){ // Left is pathway
