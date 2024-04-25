@@ -18,8 +18,8 @@ class Entity {
   // Properties
   protected int x;
   protected int y;
-  private float true_x;
-  private float true_y;
+  protected float true_x;
+  protected float true_y;
   int col;
   int row;
   int targetCol;
@@ -39,7 +39,7 @@ class Entity {
   GameMap map;
   Entity target;
 
-  private boolean reachedNext = true;
+  protected boolean reachedNext = true;
 
   PImage[] frames;
   int frameIndex;

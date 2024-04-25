@@ -92,14 +92,19 @@ void maingame() {
     releaseNextGhost();
     if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 1) ) {
       releaseNextGhost();
+      myPacman.changeSpeed(3);
+      current_speed = 3;
     }
     if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 2) ) {
       releaseNextGhost();
+      myPacman.setState(EFFICIENT_EVADE);
       myPacman.changeSpeed(4);
       current_speed = 4;
     }
     if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 3) ) {
       releaseNextGhost();
+      myPacman.changeSpeed(5);
+      current_speed = 5;
     }
 
     // Draw map
@@ -125,7 +130,6 @@ void maingame() {
     }
     ghost1.draw();
     ghost2.draw();
-    println(ghost2.targetCol, ghost2.targetRow);
     ghost3.draw();
     ghost4.draw();
     if (pause) {

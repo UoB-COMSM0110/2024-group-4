@@ -167,10 +167,8 @@ void mouseClicked() {
       gamemod = gameInProgress;
       gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
       gameMap.setMap();
-      myPacman = new Pacman(PACMAN_HOME[0], PACMAN_HOME[1], pf, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
-      //myPacman.setDirection(LEFT);
-      //myPacman.setState(EVADE);
       pf = new Pathfinder(gameMap);
+      myPacman = new Pacman(PACMAN_HOME[0], PACMAN_HOME[1], pf, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
       ghost1 = new Blinky(12, 14, pf, gameMap, myPacman);
       ghost2 = new Inky(13, 14, pf, gameMap, myPacman);
       ghost3 = new Pinky(14, 14, pf, gameMap, myPacman);

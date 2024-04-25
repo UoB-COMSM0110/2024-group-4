@@ -1,5 +1,9 @@
 final int[] PACMAN_HOME = {14, 23};
 
+// Pacman-specific states
+final int EFFICIENT_EVADE = 6;
+final int CHASE_DOT = 7;
+
 class Pacman extends Entity {
 
   int lives;
@@ -87,4 +91,172 @@ class Pacman extends Entity {
       update();
     }
   }
+  
+  
+  // Update position in the map
+  @Override
+  void update() {
+    if (reachedNext) {
+      reachedNext = false;
+      if ( state == EVADE || state == EFFICIENT_EVADE ) {
+        if ( isPortal() ) { // Assuming all non-temporary portals teleport to opposite side of map, but same row
+          if ( this.col == 1 ) {
+            this.col = 26;
+            this.x = (26 * map.cellSize);
+          } else if ( this.col == 26 ) {
+            this.col = 1;
+            this.x = (1 * map.cellSize);
+          }
+        }
+        else if ( state == EFFICIENT_EVADE ) {
+          if ( !dotsInRange() ) {
+            Node targetNode = getRandomDot();
+            this.targetRow = targetNode.y;
+            this.targetCol = targetNode.x;
+            this.setState(CHASE);
+          }
+          else {
+            randomEfficientMove();
+          }
+        }
+        else {
+          randomMove();
+        }
+      }
+
+      if ( state == CHASE || state == SCATTER ) {
+
+        int nextCol;
+        int nextRow;
+
+        pf.setGrid(col, row, this.targetCol, this.targetRow);
+
+        if ( pf.traverse() ) {
+          nextCol = pf.optimalPath.get(0).x;
+          nextRow = pf.optimalPath.get(0).y;
+
+          setDirection(getOptimalDirection(nextCol, nextRow));
+        } else {
+          randomMove();
+        }
+      }
+    }
+
+    if ( this.freeze ) {
+      return;
+    }
+
+    int currentTime = millis();
+    int times = (currentTime - lastUpdateTime) / interval;
+    lastUpdateTime = currentTime;
+    // Move
+    true_x += (3-direction)%2 * speed * map.cellSize * interval * times / 1000.0;
+    true_y += (direction-2)%2 * speed * map.cellSize * interval * times / 1000.0;
+    x = round(true_x);
+    y = round(true_y);
+    reachedNext = abs(x - col * map.cellSize) >= map.cellSize || abs(y - row * map.cellSize) >= map.cellSize;
+    // update tile
+    if (reachedNext) {
+      col += (3-direction)%2;
+      row += (direction-2)%2;
+      x = col * map.cellSize;
+      y = row * map.cellSize;
+      true_x = x;
+      true_y = y;
+    }
+  }
+  
+  
+  // Checks if any dots within 10 tiles of pacman
+  boolean dotsInRange() {
+    
+    for ( int r = this.row - 5; r < this.row + 5; r++ ) {
+      for ( int c = this.col - 5; c < this.col + 5; c++ ) {
+        if ( this.map.checkMove(c, r) && this.map.checkDot(c, r) ) {
+          return true;
+        }
+      }
+    }
+    
+    return false;
+  }
+  
+  
+  // Returns random-ish dot on map
+  Node getRandomDot() {
+    
+    Node n = new Node(-1, -1);
+    
+    for ( int r = 0; r < this.map.map.length; r++ ) {
+      for ( int c = 0; c < this.map.map[0].length; c++ ) {
+        if ( this.map.checkDot(c, r) ) {
+          n.x = c;
+          n.y = r;
+          return n;
+        }
+      }
+    }
+    
+    return n;
+  }
+  
+  
+  // Sets a random direction for Entity to move towards
+  void randomEfficientMove() {
+    if ( checkCollision(this.direction) ) {
+      changeDirection(this.direction);
+    } else if ( perpendicularValid(this.direction) ) {
+      if ( !dotsAhead() ) {
+        changeDirection(this.direction); // Only change direction if no dots ahead of pacman
+      }
+    }
+  }
+  
+  
+  // Check if there are dots ahead of pacman
+  boolean dotsAhead() {
+    
+    int tempRow = this.row;
+    int tempCol = this.col;
+    
+    switch ( this.direction ) {
+      
+      case UP:
+        while ( this.map.checkMove(tempCol, tempRow) ) {
+          if ( this.map.checkDot(tempCol, tempRow) ) {
+            return true;
+          }
+          tempRow -= 1;
+        }
+        return false;
+        
+      case RIGHT:
+        while ( this.map.checkMove(tempCol, tempRow) ) {
+          if ( this.map.checkDot(tempCol, tempRow) ) {
+            return true;
+          }
+          tempCol += 1;
+        }
+        return false;
+      
+      case DOWN:
+        while ( this.map.checkMove(tempCol, tempRow) ) {
+          if ( this.map.checkDot(tempCol, tempRow) ) {
+            return true;
+          }
+          tempCol += 1;
+        }
+        return false;
+      
+      default:
+        while ( this.map.checkMove(tempCol, tempRow) ) {
+          if ( this.map.checkDot(tempCol, tempRow) ) {
+            return true;
+          }
+          tempCol -= 1;
+        }
+        return false;     
+    }
+  }
+  
 }
