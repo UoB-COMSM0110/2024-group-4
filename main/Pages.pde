@@ -138,6 +138,12 @@ void maingame() {
       myPacman.setDirection(LEFT);
       myPacman.setState(EVADE);
       myPacman.setPosition(PACMAN_HOME[0], PACMAN_HOME[1]);
+      
+      // Set ghost state to SCATTER to avoid spawn camping
+      ghost1.setState(SCATTER);
+      ghost2.setState(SCATTER);
+      ghost3.setState(SCATTER);
+      ghost4.setState(SCATTER);
     }
   }
 

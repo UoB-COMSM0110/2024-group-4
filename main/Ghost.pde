@@ -250,8 +250,8 @@ class Pinky extends Ghost {
     int targetRow = target.getCurrentNode()[1] + 4 * (target.direction-2)%2;
 
     // 1 <= targetCol <= 26   1 <= targetRow <= 29
-    targetCol = min(max(targetCol, 1), 26);
-    targetRow = min(max(targetRow, 1), 29);
+    this.targetCol = min(max(targetCol, 1), 26);
+    this.targetRow = min(max(targetRow, 1), 29);
   }
 }
 
