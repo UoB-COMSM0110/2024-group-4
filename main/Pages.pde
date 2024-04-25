@@ -18,6 +18,9 @@ PImage help;
 
 void menu() {
   background(0);
+  if (!startMenuSound.isPlaying()) {
+    startMenuSound.play();
+  }
   bg = loadImage("assets/Background.png");
   bg.resize(1400, 1240);
   image(bg, 120, 0);
@@ -50,7 +53,9 @@ void maingame() {
   // Update the status of each role
   //statusUpdate();
   // Draw
-
+  if (!startMenuSound.isPlaying()) {
+    startMenuSound.play();
+  }
   // Initialise ghosts
   ghost1.freeze(true);
   ghost2.freeze(true);
@@ -139,6 +144,7 @@ void maingame() {
 
     // Reset pacman
     if ( ghost1.caughtTarget() || ghost2.caughtTarget() || ghost3.caughtTarget() || ghost4.caughtTarget() ) {
+      caughtSound.play();
       myPacman.lives--;
       myPacman.setDirection(LEFT);
       myPacman.setState(EVADE);
@@ -158,9 +164,11 @@ void maingame() {
     textSize(100);
     if (gameMap.dotsRemaining()) {
       fill(255, 0, 0);
+      gameOverSound.play();
       text("GAME OVER", gamewidth/2 - 260, gameheight/2 - 400);
     } else {
       fill(255, 255, 0);
+      youWinSound.play();
       text("YOU WIN", gamewidth/2 - 260, gameheight/2 - 400);
     }
     int finalScore = (gameMap.score + gameMap.money * 10) * (1 + level / 10);
@@ -190,19 +198,21 @@ void endgame() {
     playerName = playerName.replace(",", "").replace("\n", "");
     GRM.saveRecord(playerName);
     return;
-  }
-  else {
+  } else {
     endButton.display();
   }
 }
 
 void chooselevel() {
   background(0);
+  if (!startMenuSound.isPlaying()) {
+    startMenuSound.play();
+  }
   // LEVEL
   textAlign(CENTER, CENTER);
   fill(200, 100, 200);
-  textSize(100);
-  text("L E V E L", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-300);
+  textSize(button_textSize*2);
+  text("L E V E L", (gamewidth-button_w)/2 + gamewidth/10, (gameheight-button_h)/2-gameheight/4);
   // Level number
   if (level == 0) {
     fill(33, 33, 222);
@@ -215,25 +225,28 @@ void chooselevel() {
   } else {
     fill(158, 74, 124);
   }
-  textSize(100);
-  text(level + 1, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2-120);
-  textSize(60);
-  text("Final score x 1." + level, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2+20);
+  textSize(button_textSize*2);
+  text(level + 1, (gamewidth-button_w)/2 + gamewidth/10, (gameheight-button_h)/2-gameheight/10);
+  textSize(button_textSize/5*6);
+  text("Final score x 1." + level, (gamewidth-button_w)/2+ + gamewidth/10, (gameheight-button_h)/2+gameheight/60);
   // Buttons
   levelupButton.display();
   leveldownButton.display();
   levelenterButton.display();
   // Hint
   fill(80, 80, 80);
-  textSize(30);
+  textSize(button_textSize*3/5);
   String hinttext = "Click PREV or NEXT  or  Enter a number from 1 to 5 to select level";
-  text(hinttext, (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2+340);
-  text("Higher level means higher difficulty and higher score", (gamewidth-button_w)/2+ 150, (gameheight-button_h)/2+380);
+  text(hinttext, (gamewidth-button_w)/2+ gamewidth/10, (gameheight-button_h)/2+gameheight*340/1200);
+  text("Higher level means higher difficulty and higher score", (gamewidth-button_w)/2+ gamewidth/10, (gameheight-button_h)/2+gameheight*380/1200);
   return;
 }
 
 void recordmenu() {
   background(0);
+  if (!startMenuSound.isPlaying()) {
+    startMenuSound.play();
+  }
   // Help
   List<String> records = GRM.loadRecords();
   drawLeaderboard(records, gamewidth*0.2, gameheight*0.1);
@@ -245,6 +258,9 @@ void recordmenu() {
 
 void helpmenu() {
   background(0);
+  if (!startMenuSound.isPlaying()) {
+    startMenuSound.play();
+  }
   // Help
   help = loadImage("assets/Help.png");
   help.resize(1640, 1240);

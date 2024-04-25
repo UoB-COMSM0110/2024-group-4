@@ -22,3 +22,12 @@ String truncateString(String input, int maxLength) {
     return input;
   }
 }
+
+boolean containsElement(int[] array, int target) {
+  for (int num : array) {
+    if (num == target) {
+      return true;
+    }
+  }
+  return false;
+}

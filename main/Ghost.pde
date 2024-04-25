@@ -12,6 +12,8 @@ class Ghost extends Entity {
   int scatterTile;
   int[][][] scatterPaths;
 
+  final int cellSize = 40;
+
   Ghost targetGhost;
   // Constructor
   Ghost(int startCol, int startRow, Pathfinder pf, GameMap map, Pacman pacman) {
