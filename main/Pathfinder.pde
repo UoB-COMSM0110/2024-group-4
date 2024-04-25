@@ -12,8 +12,13 @@ class Pathfinder {
   Node[][] grid;
   GameMap map;
 
+  // A*
   ArrayList<Node> openList = new ArrayList<>();
   ArrayList<Node> optimalPath = new ArrayList<>();
+  
+  // BFS
+  ArrayList<Node> optimalBFS = new ArrayList<>();
+  Queue<Node> q = new LinkedList<>();
 
   Node startNode;
   Node targetNode;
@@ -213,6 +218,82 @@ class Pathfinder {
 
     isTarget = false;
   }
+  
+  
+  // -------------------------------------------------------------------------------------------------
+  
+  
+  // Set information needed for BFS algorithm
+  void setGridBFS(int startCol, int startRow) {
+
+    resetGrid();
+    optimalBFS.clear();
+    q.clear();
+    startNode = grid[startRow][startCol];
+    currentNode = startNode;
+    setWalls();
+  }
+  
+  
+  // Find optimal path to next dot according to BFS algorithm (pacman-specific)
+  boolean traverseBFS() {
+    
+    q.add(startNode);
+    startNode.visited = true;
+    
+    while ( !map.checkDot(currentNode.x, currentNode.y) && !q.isEmpty() ) {
+      
+      currentNode = q.poll();
+      
+      int col = currentNode.x;
+      int row = currentNode.y;
+      
+      // Search orthogonal neighbours
+      if ( row - 1 >= 0 ) { // Up
+        addBFS(grid[row - 1][col]);
+      }
+      if ( col + 1 <= MAX_COLS ) { // Right
+        addBFS(grid[row][col + 1]);
+      }
+      if ( row + 1 <= MAX_ROWS ) { //Down
+        addBFS(grid[row + 1][col]);
+      }
+      if ( col - 1 >= 0 ) { // Left
+        addBFS(grid[row][col - 1]);
+      }
+    }
+    
+    if ( q.isEmpty() ) { // Pacman is completely blocked off from dots
+      return false;
+    }
+    
+    backtrackBFS();
+    return true;
+  }
+  
+  
+  // Adds node to queue if valid
+  void addBFS(Node n) {
+    
+    if ( !n.visited && map.checkMove(n.x, n.y) ) {
+      n.parent = currentNode;
+      n.visited = true;
+      q.add(n);
+    }
+  }
+  
+  
+  // Adds all nodes on shortest path to nearest dot to optimalBFS arraylist
+  void backtrackBFS() {
+
+    Node current = currentNode;
+
+    while ( current != startNode ) {
+      optimalBFS.add(0, current);
+      current = current.parent;
+    }
+  }
+  
 }
 
 

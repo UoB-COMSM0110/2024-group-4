@@ -92,6 +92,7 @@ void maingame() {
     releaseNextGhost();
     if ( myPacman.currentDotsEaten >= (10 * (5 - level) * 1) ) {
       releaseNextGhost();
+      myPacman.setState(CHASE_DOT);
       myPacman.changeSpeed(3);
       current_speed = 3;
     }

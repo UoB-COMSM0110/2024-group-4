@@ -54,7 +54,7 @@ class Entity {
     this.true_x = x;
     this.true_y = y;
     // this.speed = 2; // Speed must always be a factor of the cellSize, otherwise will get errors, i.e. 1, 2, 4, 5, 8...
-    this.speed = 2;  // Number of grids/second   // Now you can set the speed to any number(int/float)
+    this.speed = 3;  // Number of grids/second   // Now you can set the speed to any number(int/float)
     this.freeze = false;
     this.pf = pf;
     this.map = map;

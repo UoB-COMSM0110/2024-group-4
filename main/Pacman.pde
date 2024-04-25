@@ -129,7 +129,7 @@ class Pacman extends Entity {
         int nextCol;
         int nextRow;
 
-        pf.setGrid(col, row, this.targetCol, this.targetRow);
+        pf.setGrid(this.col, this.row, this.targetCol, this.targetRow);
 
         if ( pf.traverse() ) {
           nextCol = pf.optimalPath.get(0).x;
@@ -138,6 +138,21 @@ class Pacman extends Entity {
           setDirection(getOptimalDirection(nextCol, nextRow));
         } else {
           randomMove();
+        }
+      }
+      
+      if ( state == CHASE_DOT ) {
+        
+        pf.setGridBFS(this.col, this.row);
+        
+        if ( pf.traverseBFS() ) {
+          int nextCol = pf.optimalBFS.get(0).x;
+          int nextRow = pf.optimalBFS.get(0).y;
+          
+          setDirection(getOptimalDirection(nextCol, nextRow));
+        }
+        else {
+          randomEfficientMove();
         }
       }
     }
