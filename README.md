@@ -11,7 +11,12 @@ Tianyi Chen fu23287@bristol.ac.uk    TYChen2000   (GAP)
 
 Nicky Dickson kr23498@bristol.ac.uk   nd1221
 
+
 # PART 2: INTRODUCTION
+
+## Game Name: Pac-Man Savior
+
+* Prototype Video: https://github.com/UoB-COMSM0110/2024-group-4/blob/main/pacman/Pac-man.mp4
 
 ## Game Ideas:
 
@@ -189,6 +194,7 @@ Both user story and use case play crucial roles in game development, ensuring th
    <img src="asset/BehaviouralDiagram.png"/>
 </div>
 
+
 # PART 5: IMPLEMENTATION
 
 ## Challenges
@@ -241,6 +247,7 @@ During the test stage of the game, we found a mysterious bug: after we destroied
 **3. How to balance different difficulties and the price of the blocks:**
 
 This challenge might be the easiest challenge among these three challenges, but it did took us some time to balance the difficulties and the prices of the blocks. There are five levels of difficulty in our game, each level has a different map, at first, our thought was changed the speed of the ghosts to seperate different difficulties, but after we test it, we found out that the game would be very difficult even if we changed the speed just multiplied by two, so we decided to use another method to seperate the difficulties, since there are four ghosts in our game, we set a different release time according to the level that player chose, higher level means that all the four ghost will be released earlier, we seperate different release time by counting the dot pacman ate. As for the price of the blocks, the only problem is that the stop block is too powerful, the player can win easily with it, so we set the price of the stop block to a very high price to make sure that the player cannot put the stop block in the early stage of the main game.
+
 
 # PART 6: EVALUATION
 
@@ -318,6 +325,7 @@ This challenge might be the easiest challenge among these three challenges, but 
 | 10. I needed to learn a lot of things before I could get going with this system. | 1 | 1 | 2 | 2 | 3 | 2 | 2 | 2 | 1 | 1 |
 | System Usability Survey Score | 85 | 87.5 | 77.5 | 70 | 80 | 80 | 82.5 | 90 | 82.5 | 87.5 |
 
+
 # PART 7: PROCESS
 
 In the early design stage of the game, we mainly used WhatsApp to discuss the ideas of our game online, and sometimes we had meetings at MVB to have a deeper discussion as well. This is the time when we gave different thoughts about what kind of game we wanted to develop, and how to add a good twist to it to make it more special. After considering the develop difficulties of all the ideas, we chose pacman savior in the end.
@@ -339,11 +347,13 @@ During the develop process of the game, we mainly use WhatsApp to keep in contac
 |                                           | Fix some bugs                        |                                      |
 |                                           | Algorithm optimization               |                                      |
 
+
 # PART 8: CONCLUSION
 
 First of all, we learned a lot during this game development process like the use and application of different development techniques and tools, and how to design and implement a project as a team. And we also gained more experience on how to solve a problem like a tricky bug by discussion in the team and teamwork, which will be very helpful when we go to work in the company. Besides, we also learned about how to schedule the work and divide the work to each member in the team evenly. Last but not the least, we have a wonderful and interesting teamwork experience in this game develop project, which will not only benefit our future development in the software engineering area, but also will be a fantastic memory in our lives.
 
 If we had the time and resources to develop the game further the features we would want to add are: multiplayer mode, which will allow two people to play the game - one of them controls the pacman movement while the other place the block; infinite mode, which will have a map generator to produce infinite maps, the pacman will move to next map after it eats all the dots in the current map; reverse mode, in this mode, player's goal will change from keep pacman alive to help ghosts catch pacman, in this mode, the ai of the pacman will be very smart while the ai of the ghost will be not so smart.
+
 
 # INDIVIDUAL CONTRIBUTION
 
