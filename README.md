@@ -3,13 +3,14 @@
 <div align=center>
    <img src="asset/mmexport1708947640736.jpg"/>
 </div>
+
 Juean Chen   ad23091@bristol.ac.uk   ad23091
 
-Xiaokang Fan dr23824@bristol.ac.uk   SeventyThree73
+Xiaokang Fan   dr23824@bristol.ac.uk   SeventyThree73
 
-Tianyi Chen fu23287@bristol.ac.uk    TYChen2000   (GAP)
+Tianyi Chen   fu23287@bristol.ac.uk    TYChen2000   (GAP)
 
-Nicky Dickson kr23498@bristol.ac.uk   nd1221
+Nicky Dickson   kr23498@bristol.ac.uk   nd1221
 
 
 # PART 2: INTRODUCTION
