@@ -17,6 +17,10 @@ Nicky Dickson   kr23498@bristol.ac.uk   nd1221
 
 ## Game Name: Pac-Man Savior
 
+<div align=center>
+   <img src="asset/StartMenu.png"/>
+</div>
+
 * Prototype Video: https://github.com/UoB-COMSM0110/2024-group-4/blob/main/pacman/Pac-man.mp4
 
 ### Game Introduction
