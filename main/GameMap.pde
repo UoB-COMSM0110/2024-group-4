@@ -42,6 +42,7 @@ class GameMap {
   Block block3;
   Block block4;
   PauseButton pauseButton;
+  SpeedUpButton doubleSpeedButton;
 
   // Constructor
   GameMap(int cellSize) {
@@ -60,6 +61,7 @@ class GameMap {
     block4 = new Block(1511, 580, 120, 120, rgb4);
 
     pauseButton = new PauseButton(1550, 10, cellSize*2, cellSize*2);
+    doubleSpeedButton = new SpeedUpButton(gamewidth*0.75, gameheight*0.92, 1.2 * button_w, button_h, "Speed up", button_textSize);
   }
 
   boolean setMap() {
@@ -380,6 +382,7 @@ class GameMap {
       text("man to the", 1140, 1070);
       text("select place.", 1140, 1150);
     }
+    // doubleSpeedButton.display();
   }
 
   // void drawPauseButton() {
@@ -561,6 +564,13 @@ class GameMap {
     }
     if (block4.clicked()) {
       gameMap.changeBlock(4);
+    }
+    if (doubleSpeedButton.clicked()) {
+      if(doubleSpeedButton.isOn) {
+        current_speed *= 2;
+      } else {
+        current_speed /= 2;
+      }
     }
     if (pause == true) {
       if (pauseContinueButton.clicked()) {

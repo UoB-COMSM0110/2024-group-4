@@ -170,6 +170,11 @@ void maingame() {
       fill(255, 255, 0);
       youWinSound.play();
       text("YOU WIN", gamewidth/2 - 260, gameheight/2 - 400);
+
+      // if(level<4) {
+      //   level += 1;
+      // }
+      // initGame();
     }
     int finalScore = (gameMap.score + gameMap.money * 10) * (1 + level / 10);
     fill(255);
@@ -287,6 +292,23 @@ void pauseMenu() {
 
 // Initialise game settings
 void initGame() {
+  GAME_RUNNING = true;
+  gamemod = gameInProgress;
+  gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
+  gameMap.setMap();
+  map_choice = level;
+  if (!gameMap.setMap()) {
+    gamemod = StartScreen;
+    println("An error occurred while initializing the map");
+    return;
+  }
+  pf = new Pathfinder(gameMap);
+  myPacman = new Pacman(PACMAN_HOME[0], PACMAN_HOME[1], pf, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
+  ghost1 = new Blinky(12, 14, pf, gameMap, myPacman);
+  ghost2 = new Inky(13, 14, pf, gameMap, myPacman);
+  ghost3 = new Pinky(14, 14, pf, gameMap, myPacman);
+  ghost4 = new Clyde(15, 14, pf, gameMap, myPacman);
+  ghosts = new Ghost[] {ghost1, ghost2, ghost3, ghost4};
 
   myPacman.setDirection(LEFT);
   myPacman.setState(EVADE);
@@ -303,6 +325,10 @@ void initGame() {
       ghosts[i].setGhost(ghosts[0]);
     }
   }
+
+  pause = false;
+  gameended = false;
+  current_speed = 2;
 }
 
 

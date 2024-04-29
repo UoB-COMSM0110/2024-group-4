@@ -26,6 +26,7 @@ Button levelButton;
 Button recordButton;
 Button helpButton;
 Button exitButton;
+SpeedUpButton speedUpButton;
 
 Button levelupButton;
 Button leveldownButton;
@@ -76,6 +77,7 @@ void setup() {
   helpButton = new Button(startButton_X, startButton_Y + button_gap * 3, button_w, button_h, "Help", button_textSize);
   exitButton = new Button(startButton_X, startButton_Y + button_gap * 4, button_w, button_h, "Exit", button_textSize);
   endButton = new Button(startButton_X*3/10-gamewidth/160, (gameheight-button_h-200)/2, button_w*2.5, button_h, "Return to main menu", button_textSize);
+  speedUpButton = new SpeedUpButton(gamewidth*0.8, gameheight*0.9, button_w, button_h, "Double Speed", button_textSize);
 
   leveldownButton = new Button(startButton_X - button_w * 2 / 3, levelAdjustButtonY, button_w, button_h, "PREV", button_textSize);
   levelupButton = new Button(startButton_X + button_w * 2 / 3, levelAdjustButtonY, button_w, button_h, "NEXT", button_textSize);
@@ -166,29 +168,7 @@ void keyPressed() {
 void mouseClicked() {
   if (gamemod == StartScreen) {
     if (startButton.clicked()) {
-      GAME_RUNNING = true;
-      gamemod = gameInProgress;
-      gameMap = new GameMap(cellSize); // Assuming each cell is 40 pixels
-      gameMap.setMap();
-      map_choice = level;
-      if (!gameMap.setMap()) {
-        gamemod = StartScreen;
-        println("An error occurred while initializing the map");
-        return;
-      }
-      pf = new Pathfinder(gameMap);
-      myPacman = new Pacman(PACMAN_HOME[0], PACMAN_HOME[1], pf, gameMap); // Pacman starts at grid position (1, 1) and knows about the game map
-      ghost1 = new Blinky(12, 14, pf, gameMap, myPacman);
-      ghost2 = new Inky(13, 14, pf, gameMap, myPacman);
-      ghost3 = new Pinky(14, 14, pf, gameMap, myPacman);
-      ghost4 = new Clyde(15, 14, pf, gameMap, myPacman);
-      ghosts = new Ghost[] {ghost1, ghost2, ghost3, ghost4};
-
       initGame();
-
-      pause = false;
-      gameended = false;
-      current_speed = 2;
       return;
     }
     if (levelButton.clicked()) {

@@ -131,3 +131,56 @@ class PauseButton extends Button {
     return ishover;
   }
 }
+
+class SpeedUpButton extends Button {
+  boolean isOn = false;
+  SpeedUpButton(float x, float y, float width, float height, String label, int textSize) {
+    super(x, y, width, height, "", 0);
+  }
+
+    @Override
+  boolean clicked() {
+    clickSound.play();
+    boolean ishover = hover();
+    if(ishover){
+      this.isOn = !this.isOn;
+    }
+    return ishover;
+  }
+
+  // @Override
+  // void display() {
+  //   if (hover()) {
+  //     if (playsound) {
+  //       selectSound.play();
+  //       playsound = false;
+  //     }
+  //   } else {
+  //     playsound = true;
+  //   }  
+  //   if (hover()) {
+  //     fill(hoverbackgroundcolour); // color
+  //     rect(x, y, width, height, 10);
+  //     fill(hovertextcolour); // text color
+  //     textSize(this.textSize);
+  //     textAlign(CENTER, CENTER);
+  //     text(label, x + width / 2, y + height / 2);
+  //     return;
+  //   }
+  //   if (isOn) {
+  //     fill(150); // color
+  //     rect(x, y, width, height, 10);
+  //     fill(hovertextcolour); // text color
+  //     textSize(this.textSize);
+  //     textAlign(CENTER, CENTER);
+  //     text(label, x + width / 2, y + height / 2);
+  //     return;
+  //   }
+  //   fill(backgroundcolour); // color
+  //   rect(x, y, width, height, 10);
+  //   fill(textcolour); // text color
+  //   textSize(this.textSize);
+  //   textAlign(CENTER, CENTER);
+  //   text(label, x + width / 2, y + height / 2);
+  // }
+}
