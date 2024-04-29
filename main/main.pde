@@ -41,7 +41,7 @@ final int gameheight = 1200;
 final int button_w = gamewidth / 16 * 3;
 final int button_h = button_w / 3;
 final int button_textSize = gamewidth / 32;
-final int startButton_X = (gamewidth-button_w)/2;
+final int startButton_X = (gamewidth-button_w)/2+22;
 final int startButton_Y = (gameheight-button_h)/2 - gamewidth / 16 + gamewidth * 14 / 160;
 final int button_gap = button_h + button_h / 5;
 final int levelAdjustButtonY = startButton_Y - gamewidth * 14 / 160 + button_gap * 2;
@@ -75,13 +75,13 @@ void setup() {
   recordButton = new Button(startButton_X, startButton_Y + button_gap * 2, button_w, button_h, "Ranking", button_textSize);
   helpButton = new Button(startButton_X, startButton_Y + button_gap * 3, button_w, button_h, "Help", button_textSize);
   exitButton = new Button(startButton_X, startButton_Y + button_gap * 4, button_w, button_h, "Exit", button_textSize);
-  endButton = new Button(startButton_X*3/10-gamewidth/160, (gameheight-button_h-200)/2, button_w*2.5, button_h, "Return to main menu", button_textSize);
+  endButton = new Button(startButton_X*3/10-gamewidth/160, (gameheight-button_h-200)/2+40, button_w*2.5, button_h, "Return to main menu", button_textSize);
 
   leveldownButton = new Button(startButton_X - button_w * 2 / 3, levelAdjustButtonY, button_w, button_h, "PREV", button_textSize);
   levelupButton = new Button(startButton_X + button_w * 2 / 3, levelAdjustButtonY, button_w, button_h, "NEXT", button_textSize);
   levelenterButton = new Button(gamewidth*0.75, gameheight*5/6, button_w, button_h, "Confirm", button_textSize);
 
-  cancelButton = new Button(gamewidth*0.8, gameheight*0.9, button_w, button_h, "Back", button_textSize);
+  cancelButton = new Button(gamewidth*0.8+40, gameheight*0.9+40, button_w, button_h, "Back", button_textSize);
 
   pauseContinueButton = new Button(startButton_X*0.4 - gamewidth/16, startButton_Y + button_gap * 2, button_w*1.2, button_h, "Continue", button_textSize);
   pauseCancelButton = new Button(startButton_X*0.8 + gamewidth*6/160, startButton_Y + button_gap * 2, button_w*1.2, button_h, "End Game", button_textSize);
@@ -91,7 +91,7 @@ void setup() {
   loadSounds();
 
   animPacman = new AnimationPacman(gamewidth/10, gameheight*5/8, 400);
-  animGhosts = new AnimationGhosts(gamewidth*1050/1600, gameheight*650/1200, 101);
+  animGhosts = new AnimationGhosts(gamewidth*1050/1600+10, gameheight*650/1200, 101);
 }
 
 void draw() {
