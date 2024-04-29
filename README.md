@@ -92,7 +92,7 @@ Maze generation algorithm: Design an algorithm that can generate fair and intere
 * Players of the game
 * The markers of the project
 
-## User Storeies
+## User Stories
 
 As a developer, I want to make a game that is popular, so that my game could have more exposure to people and I could earn more reputation.
 
@@ -266,7 +266,7 @@ This challenge might be the easiest challenge among these three challenges, but 
 2. Add more instructions for the game to guide the players.
 3. Add more difficulties to the game to add different experience.
 
-## Quantitavie Evaluation
+## Quantitative Evaluation
 
 ### - GAME LEVEL 2 -
 
