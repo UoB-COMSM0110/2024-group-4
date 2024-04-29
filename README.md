@@ -341,10 +341,10 @@ During the develop process of the game, we mainly use WhatsApp to keep in contac
 
 | Juean Chen                                | Xiaokang Fan                         | Nicky Dickson                        |
 |-------------------------------------------|--------------------------------------|--------------------------------------|
-| UI design & implementation                | Game framework construction          |                                      |
-| Maps design & implementation              | Game engineering framework design    |                                      |
-| Block design & implementation             | Implement most page designs          |                                      |
-| Original pacman movement logic design     | Implement the button class to simplify button implementation |              |
+| UI design & implementation                | Game framework construction          | Implemented pathfinder class to handle Ghost behaviour|
+| Maps design & implementation              | Game engineering framework design    | Implemented Entity class to handle collisions|
+| Block design & implementation             | Implement most page designs          | Extended Ghost and Pacman classes to inherit from Entity class|
+| Original pacman movement logic design     | Implement the button class to simplify button implementation | Optimised Pacman movement behaviour and logic|
 | Fix some bugs                             | Implement animation class            |                                      |
 | Write most of the report                  | Optimize entity classes, extend movement methods and give physical meaning ||
 | Add sound effect                          | Simplify ghost drawing logic         |                                      |
