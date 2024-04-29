@@ -1,7 +1,7 @@
 # PART 1: TEAM 
 ## 2024-group-4
 <div align=center>
-   <img src="asset/2024_GROUP_4.jpg"/>
+   <img src="asset/2024_GROUP_4.JPG"/>
 </div>
 
 Juean Chen   ad23091@bristol.ac.uk   ad23091
