@@ -25,10 +25,8 @@ Nicky Dickson   kr23498@bristol.ac.uk   nd1221
 
 ### Game Introduction
 
-Description: Our game is based on the original Pac-Man, which is a classic arcade game that was created by Namco in 1980. It features a yellow, circular character that moves around a maze, eating dot and avoiding ghosts.
+Our game is a redesign of the classic Pac-Man created by Namco in 1980 featuring an added twist. Just as in the original, the goal remains for Pacman to travel across the game map, eating pellets and avoiding ghosts. However, in the original, the player has direct control of pacman and is free to decide where and how Pacman should move. In our version, the player has no control whatsoever, they are only allowed to manipulate the map itself by strategically placing blocks to block certain paths Pacman or the ghosts may take acting as a saviour-slash-personal-assistant to Pacman. Both the ghosts' and Pacman's movements are AI controlled, the player's job is to guide Pacman towards his goal of eating all pellets in the map whilst making sure the ghosts stay clear. With every pellet eaten, the player receives a payment which can be spent to purchase extra blocks or blocks with special abilities.
 
-Twist: In our version of Pac-Man, both the character and the ghost will be controled by AI, and the player's task is to build blocks to keep the ghosts away from the character and all the dots that are eaten by the character will become money which can be used to buy more blocks, and there are different kinds of blocks that can be bought which have different abilities like slow or stop the ghost for a while.
-   
 Challenges: how to design and program different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
 
 ## Other Game Ideas:
