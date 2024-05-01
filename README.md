@@ -29,7 +29,7 @@ Challenges: how to design and program different kinds of blocks? how to design t
 
 ## Ideation:
 
-<span style="font-size:0.75em;">
+<span style="font-size:0.5em;">
 
 **1. Vampire Survivors**
    
