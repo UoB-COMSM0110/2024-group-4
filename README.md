@@ -96,9 +96,11 @@ _Challenges:_
 
 ## PART 3: REQUIREMENTS
 
+<br>
+
 ### Stakeholder Identification
 
-We dientified the following stakeholders:
+We identified the following stakeholders:
 
 * Developers
 * Project manager
