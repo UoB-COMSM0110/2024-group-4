@@ -135,35 +135,18 @@ Ghosts chase player
 
 | Use-Case Section | Easy Mode | Hard Mode |
 |-|-|-|
-| **Description**                  | A run through of a level where ghosts' movement logic is random | A run through of a level where the ghosts' movement logic is determined by a pathfinding algorithm and ghosts will target the player |
-| **Basic Flow**                          | Consume all pellets in the level without dying | Consume all pellets without dying |
-| 1.                                      | Players can choose to be the blocker or the pacman, Players can choose the difficulty, which will change the abilities of the ghost | Players can choose the difficulty, which will change the abilities of the ghost                                          |
-| 2.                                      | Blocker LEFT-CLICK and drag the block to place blocks if the money is enough; the other player use WASD to control the pacman's move | Blocker LEFT-CLICK and drag the block to place blocks if the money is enough|
-| 3.                                      | Game ends                                  | Game ends                                                                     |
-|                                         |                                               |                                                                                                                 |
-| **Alternative Flow**                    |                                               |                                                                                                                 |
-| A1                                      | 1. Pacman eats a dot, the blocker's money increase by 1                                |                                                                                                                 |
-|                                         | 2. Back to Basic Flow 1.                    |                                                                                                                 |
-| A2                                      | 1. Pacman eats all the dots                                    |                                                                                                                 |
-|                                         | 2. Back to Basic Flow 3.                    |                                                                                                                 |
-| A3                                      | 1. Blocker purchases a block and place it                                    |                                                                                                                 |
-|                                         | 2. Back to Basic Flow 1.                    |                                                                                                                 |
-| A4                                      | 1. Ghost catch the pacman                           |                                                                                                                 |
-|                                         | 2. Back to Basic Flow 3.                    |                                                                                                                 |
-=======
+| **Description** | A run through of a level where ghosts' movement logic is random | A run through of a level where the ghosts' movement logic is determined by a pathfinding algorithm and ghosts will target the player |
+| **Basic Flow**  | Consume all pellets in the level without dying | Consume all pellets in the level without dying |
+| 1. | User places blocks on map to guide Pacman along a path of their choosing while avoiding collisions with ghosts | User places blocks on map to guide Pacman along a path of their choosing. Ghosts target Pacman, so user must devote more game resources to blocking the paths of incoming ghosts. |
+| 2. | Pacman earns money by eating pellets, which the user can spend at the block shop to purchase more powerful blocks | User focuses on collecting pellets to purchase blocks which can slow or freeze ghosts' movements to more easily achieve the objective |
+| 3. | User guides Pacman to consume all pellets on the map without being caught by a ghost | User guides Pacman to consume all pellets on the map without being caught by a ghost |
+| **Alternative Flow** | Collision with ghost leads to Pacman losing a life and being respawned | Ghost chases and catches Pacman before user has time to block it's path or purchase a 'special' block |
+| 1 | User guides Pacman around the map to collect pellets by placing blocks to block certain paths | User guides Pacman around map. Each new ghost released will use a pathfinding algorithm to dynamically target Pacman |
+| 2 | User does not manage to place a block in time to stop Pacman from colliding with ghost or ghost makes an unexpected turn into Pacman's path | User navigates alternate waves of ghost attacks. Ghosts will periodically move towards the four corners of the map, and then will converge in on Pacman, finding the nearest alternative route if the user blocks their path. |
+| 3 | Collision between Pacman and ghost reduces Pacman's lives by one and returns pacman to his spawn point. Repeat steps 1 and 2. | One or multiple ghosts converge in on Pacman and the user does not have enough blocks to prevent themselves being caught, resulting in the loss of a life. Repeat steps 1 and 2. |
+| 4 | If Pacman's lives are reduced to zero, the game ends. The user is prompted to input their name and their score is recorded. | If Pacman's lives are reduced to zero, the game ends. The user is prompted to input their name and their score is recorded. |
+===
 
-* Select 1 player or 2 players
-
-* Settings screen
-    * Choose the difficulty of the game
-    * Show some examples of how to play the game
-    * Choose the map of the game
-
-* Game starts
-
-* Player bulids blocks to stop the ghosts from getting pacman and help pacman to eat all the dots
-
-* Final screen: Pacman / Ghosts win
 
 ## Use-case diagram
 
