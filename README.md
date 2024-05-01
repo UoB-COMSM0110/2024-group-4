@@ -31,7 +31,7 @@ Challenges: how to design and program different kinds of blocks? how to design t
 
 ## Ideation:
 
-To begin with, we decided to come up with two ideas individually and meet in person to present them to each other and pick two from the pool of six to explore further. After a quick vote, we settled on a Vampire-Survivor-style game and a Pacman-style game (which was presented twice). To determine which idea we should pursue further, we conducted requirements engineering practices for both games: identifying stakeholders, specifying system behaviour through use case diagrams and specifications, and creating paper prototypes for boths games.
+To begin with, we decided to come up with two ideas individually then meet in person to present them to each other and pick two from the pool of six to explore further. After a quick vote, we settled on a Vampire-Survivor-style game and a Pacman-style game (which was presented twice). To determine which idea we should pursue further, we conducted requirements engineering practices for both games: identifying stakeholders, specifying system behaviour through use case diagrams and specifications, and creating paper prototypes for boths games.
 
 ### Other Game Ideas
 
