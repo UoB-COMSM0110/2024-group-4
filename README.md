@@ -27,11 +27,11 @@ Our game is a redesign of the classic Pac-Man created by Namco in 1980 featuring
 
 Challenges: how to design and program different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
 
+---
+
 ## Ideation:
 
 To begin with, we decided to come up with two ideas individually and meet in person to present them to each other and pick two from the pool of six to explore further. After a quick vote, we settled on a Vampire-Survivor-style game and a Pacman-style game (which was presented twice). To determine which idea we should pursue further, we conducted requirements engineering practices for both games: identifying stakeholders, specifying system behaviour through use case diagrams and specifications, and creating paper prototypes for boths games.
-
----
 
 ### Other Game Ideas
 
@@ -44,7 +44,7 @@ _Challenges:_
 - How to create an evolving horde of monsters?
 - How to design different weapons?
 - How to balance the game difficulty and the fun of playing the game?
-
+<br>
 **2. Defend Zombies**
 
 _Description:_
@@ -54,7 +54,7 @@ _Challenges:_
 - How to design unique zombies?
 - How to design different defence towers?
 - How to balance game difficulty and fun of playing the game?
-
+<br>
 **3. Grand Strategy Chess**
 
 _Description:_
@@ -70,7 +70,7 @@ _Challenges:_
 - Balance: Ensuring all classes, special units, and terrain effects are balanced in the game, whether in single-player campaigns or multiplayer battles.
 - Strategic Depth: Designing mechanics and tactical possibilities that are complex enough to satisfy players of all skill levels while keeping the game accessible.
 - Map diversity: Create rich and diverse maps and campaign stories to increase the replay value of your game.
-
+<br>
 **4. Maze Tank Blitz**
 
 _Description:_
