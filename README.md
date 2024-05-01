@@ -27,7 +27,9 @@ Our game is a redesign of the classic Pac-Man created by Namco in 1980 featuring
 
 Challenges: how to design and program different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
 
-## Other Game Ideas:
+## Ideation:
+
+<span style="font-size:0.75em;">
 
 **1. Vampire Survivors**
    
@@ -78,6 +80,7 @@ challenges:
 Balance: Ensure balance between all weapons to make the game both fair and challenging.
 Maze generation algorithm: Design an algorithm that can generate fair and interesting maze layouts to provide a diverse gaming experience.
 
+</span>
 
 # PART 3: REQUIREMENTS
 
