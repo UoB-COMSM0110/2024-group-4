@@ -133,7 +133,7 @@ Ghosts chase player
 
 <br>
 
-| Use-Case Section                        | Easy Mode                                      | Hard Mode                                                                                                     |
+| Use-Case Section | Easy Mode | Hard Mode |
 |-----------------------------------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | **Description**                         | 1 player play the blocker 1 player play the pacman against 4 ghosts play by the computer     | player play the blocker,one computer play the pacman, against 4 ghosts play by the computer                                             |
 | **Basic Flow**                          | Ghosts need to catch the pacman, blocker need to stop that                    | Ghosts need to catch the pacman, blocker need to stop that                                          |
