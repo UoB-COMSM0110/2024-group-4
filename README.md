@@ -134,9 +134,9 @@ Ghosts chase player
 <br>
 
 | Use-Case Section | Easy Mode | Hard Mode |
-|-----------------------------------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| **Description**                         | 1 player play the blocker 1 player play the pacman against 4 ghosts play by the computer     | player play the blocker,one computer play the pacman, against 4 ghosts play by the computer                                             |
-| **Basic Flow**                          | Ghosts need to catch the pacman, blocker need to stop that                    | Ghosts need to catch the pacman, blocker need to stop that                                          |
+|-|-|-|
+| **Description**                  | A run through of a level where ghosts' movement logic is random | A run through of a level where the ghosts' movement logic is determined by a pathfinding algorithm and ghosts will target the player |
+| **Basic Flow**                          | Consume all pellets in the level without dying | Consume all pellets without dying |
 | 1.                                      | Players can choose to be the blocker or the pacman, Players can choose the difficulty, which will change the abilities of the ghost | Players can choose the difficulty, which will change the abilities of the ghost                                          |
 | 2.                                      | Blocker LEFT-CLICK and drag the block to place blocks if the money is enough; the other player use WASD to control the pacman's move | Blocker LEFT-CLICK and drag the block to place blocks if the money is enough|
 | 3.                                      | Game ends                                  | Game ends                                                                     |
