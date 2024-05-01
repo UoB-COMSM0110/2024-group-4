@@ -10,7 +10,7 @@ Xiaokang Fan   dr23824@bristol.ac.uk   SeventyThree73
 
 Nicky Dickson   kr23498@bristol.ac.uk   nd1221
 
-<br>
+---
 
 ## PART 2: INTRODUCTION
 
@@ -90,7 +90,7 @@ _Challenges:_
 - Maze generation algorithm: Designing an algorithm to generate fair and interesting maze layouts and provide a diverse gaming experience.
 - Special abilities: Implemeting a range of special items and distributing them fairly throughout the map.
 
-<br> ---
+---
 
 ## PART 3: REQUIREMENTS
 
