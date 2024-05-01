@@ -96,8 +96,6 @@ _Challenges:_
 
 ## PART 3: REQUIREMENTS
 
-<br>
-
 ### Stakeholder Identification
 
 We identified the following stakeholders:
