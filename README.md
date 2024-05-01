@@ -14,13 +14,13 @@ Nicky Dickson   kr23498@bristol.ac.uk   nd1221
 
 ## PART 2: INTRODUCTION
 
-### Game Name: Pac-Man Savior
+### Game Name: Pac-Man Savior 
 
 <div align=center>
    <img src="asset/StartMenu.png"/>
 </div>
 
-* Game Video Link: https://youtu.be/6X-PJXRcBWU
+### Game Video Link: https://youtu.be/6X-PJXRcBWU
 
 ### Game Introduction
 
