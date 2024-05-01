@@ -145,7 +145,7 @@ Ghosts chase player
 | 2 | User does not manage to place a block in time to stop Pacman from colliding with ghost or ghost makes an unexpected turn into Pacman's path | User navigates alternate waves of ghost attacks. Ghosts will periodically move towards the four corners of the map, and then will converge in on Pacman, finding the nearest alternative route if the user blocks their path. |
 | 3 | Collision between Pacman and ghost reduces Pacman's lives by one and returns pacman to his spawn point. Repeat steps 1 and 2. | One or multiple ghosts converge in on Pacman and the user does not have enough blocks to prevent themselves being caught, resulting in the loss of a life. Repeat steps 1 and 2. |
 | 4 | If Pacman's lives are reduced to zero, the game ends. The user is prompted to input their name and their score is recorded. | If Pacman's lives are reduced to zero, the game ends. The user is prompted to input their name and their score is recorded. |
-===
+
 
 
 ## Use-case diagram
