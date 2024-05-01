@@ -45,6 +45,7 @@ _Challenges:_
 - How to design different weapons?
 - How to balance the game difficulty and the fun of playing the game?
 <br>
+
 **2. Defend Zombies**
 
 _Description:_
@@ -55,6 +56,7 @@ _Challenges:_
 - How to design different defence towers?
 - How to balance game difficulty and fun of playing the game?
 <br>
+
 **3. Grand Strategy Chess**
 
 _Description:_
@@ -71,6 +73,7 @@ _Challenges:_
 - Strategic Depth: Designing mechanics and tactical possibilities that are complex enough to satisfy players of all skill levels while keeping the game accessible.
 - Map diversity: Create rich and diverse maps and campaign stories to increase the replay value of your game.
 <br>
+
 **4. Maze Tank Blitz**
 
 _Description:_
