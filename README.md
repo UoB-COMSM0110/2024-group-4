@@ -90,6 +90,7 @@ _Challenges:_
 - Maze generation algorithm: Designing an algorithm to generate fair and interesting maze layouts and provide a diverse gaming experience.
 - Special abilities: Implemeting a range of special items and distributing them fairly throughout the map.
 
+<br>
 ---
 
 ## PART 3: REQUIREMENTS
