@@ -1,3 +1,5 @@
+## Game Video Link: https://youtu.be/6X-PJXRcBWU
+
 ## PART 1: TEAM 
 ### 2024-group-4
 <div align=center>
@@ -19,8 +21,6 @@ Nicky Dickson   kr23498@bristol.ac.uk   nd1221
 <div align=center>
    <img src="asset/StartMenu.png"/>
 </div>
-
-### Game Video Link: https://youtu.be/6X-PJXRcBWU
 
 ### Game Introduction
 
