@@ -1,5 +1,5 @@
-# PART 1: TEAM 
-## 2024-group-4
+## PART 1: TEAM 
+### 2024-group-4
 <div align=center>
    <img src="asset/2024_GROUP_4.JPG"/>
 </div>
@@ -10,10 +10,11 @@ Xiaokang Fan   dr23824@bristol.ac.uk   SeventyThree73
 
 Nicky Dickson   kr23498@bristol.ac.uk   nd1221
 
+<br>
 
-# PART 2: INTRODUCTION
+## PART 2: INTRODUCTION
 
-## Game Name: Pac-Man Savior
+### Game Name: Pac-Man Savior
 
 <div align=center>
    <img src="asset/StartMenu.png"/>
@@ -29,7 +30,7 @@ Challenges: how to design and program different kinds of blocks? how to design t
 
 ---
 
-## Ideation:
+### Ideation:
 
 To begin with, we decided to come up with two ideas individually then meet in person to present them to each other and pick two from the pool of six to explore further. After a quick vote, we settled on a Vampire-Survivor-style game and a Pacman-style game (which was presented twice). To determine which idea we should pursue further, we conducted requirements engineering practices for both games: identifying stakeholders, specifying system behaviour through use case diagrams and specifications, and creating paper prototypes for boths games.
 
@@ -89,30 +90,36 @@ _Challenges:_
 - Maze generation algorithm: Designing an algorithm to generate fair and interesting maze layouts and provide a diverse gaming experience.
 - Special abilities: Implemeting a range of special items and distributing them fairly throughout the map.
 
+<br> ---
+
+## PART 3: REQUIREMENTS
+
+### Stakeholder Identification
+
+We dientified the following stakeholders:
+
+* Developers
+* Project manager
+* Players
+* Project markers
+
 <br>
 
-# PART 3: REQUIREMENTS
+### User Stories
 
-## Stakeholders
+"As a developer, I want to make a game that is popular, so that I achieve more exposure and build a reputation."
 
-* Developers of the game
-* Project manager of the game
-* Players of the game
-* The markers of the project
+"As the project manager, I want to ensure the game developed is meets all requirements on time and on budget, so that financial stakeholders are satisfied."
 
-## User Stories
+"As a player, I want to be able to select different levels of varying difficulties so that I can choose how intense my game will be based on my own experience."
 
-As a developer, I want to make a game that is popular, so that my game could have more exposure to people and I could earn more reputation.
+"As a player, I want to see how many lives my character has, so that I can adjust my in-game strategy and resource management to stay alive as long as possible."
 
-As the project manager, I want to ensure the game developed is meeting all the requirements, so that the project can be developed according to the plan.
+"As a player, I want to have be able to see tutorial examples so I can prepare a gameplay strategy."
 
-As a player, I want to choose different modes of the game so that I can choose the game's difficulty based on my interests.
+"As a marker for this project, I want to see groups create engaging and well made games, with a good twist and a strong development process that utilises the techniques taught in this module."
 
-As a player, I want to know the direction of my character, so that I can know where it will go.
-
-As a player, I want to have cases or tutorial examples telling me some of special designs of the game.
-
-As a marker for this project, I want to see groups create engaging and well made games, with a good twist that is interesting, and a strong process of development that utilises the techniques taught in this module.
+<br>
 
 ## Use-case specifications
 
