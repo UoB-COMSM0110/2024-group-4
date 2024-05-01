@@ -109,17 +109,17 @@ We identified the following stakeholders:
 
 ### User Stories
 
-"As a developer, I want to make a game that is popular, so that I achieve more exposure and build a reputation."
-
-"As the project manager, I want to ensure the game developed is meets all requirements on time and on budget, so that financial stakeholders are satisfied."
-
-"As a player, I want to be able to select different levels of varying difficulties so that I can choose how intense my game will be based on my own experience."
-
-"As a player, I want to see how many lives my character has, so that I can adjust my in-game strategy and resource management to stay alive as long as possible."
-
-"As a player, I want to have be able to see tutorial examples so I can prepare a gameplay strategy."
-
-"As a marker for this project, I want to see groups create engaging and well made games, with a good twist and a strong development process that utilises the techniques taught in this module."
+>"As a developer, I want to make a game that is popular, so that I achieve more exposure and build a reputation."
+>
+>"As the project manager, I want to ensure the game developed is meets all requirements on time and on budget, so that financial stakeholders are satisfied."
+>
+>"As a player, I want to be able to select different levels of varying difficulties so that I can choose how intense my game will be based on my own experience."
+>
+>"As a player, I want to see how many lives my character has, so that I can adjust my in-game strategy and resource management to stay alive as long as possible."
+>
+>"As a player, I want to have be able to see tutorial examples so I can prepare a gameplay strategy."
+>
+>"As a marker for this project, I want to see groups create engaging and well made games, with a good twist and a strong development process that utilises the techniques taught in this module."
 
 <br>
 
