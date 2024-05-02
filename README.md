@@ -26,7 +26,7 @@ Nicky Dickson   kr23498@bristol.ac.uk   nd1221
 
 Our game is a redesign of the classic Pac-Man created by Namco in 1980 featuring an added twist. Just as in the original, the goal remains for Pacman to travel across the game map, eating pellets and avoiding ghosts. However, in the original, the player has direct control of pacman and is free to decide where and how Pacman should move. In our version, the player has no control whatsoever, they are only allowed to manipulate the map itself by strategically placing blocks to block certain paths Pacman or the ghosts may take acting as a saviour-slash-personal-assistant to Pacman. Both the ghosts' and Pacman's movements are AI controlled and the player's job is to guide Pacman towards his goal of eating all pellets in the map whilst making sure the ghosts stay clear. With every pellet eaten, the player receives a payment which can be spent to purchase extra blocks or blocks with special abilities.
 
-Challenges: how to design and program different kinds of blocks? how to design the AI for the character and the ghost? how to balance the game difficulty?
+We identified a series of challenges in making such a game. These included how to design and program different kinds of blocks, how to design the AI for the character and the ghosts and how to balance the game difficulty.
 
 ---
 
@@ -158,39 +158,19 @@ To ensure the entire team was was on the same page regarding system-user interac
 
 <br>
 
----
-
-## PART 4: DESIGN
-
-### System Architecture
-
-* Start Menu
-   * START: start the main game
-   * LEVEL: choose the difficulty of the game, 5 levels in total, higher levels means higher difficulty and higher score
-   * RANKING: show the 5 top score and their player in the ranking list
-   * HELP: show the function of the all the UI in the main game
-   * EXIT：exit the game
- 
-* Main Game
-  * Player bulids blocks to stop the ghosts from getting pacman and help pacman to eat all the dots
-
-<div align=center>
-   <img src="asset/Help.png"/>
-</div>
-
-* End Scene
-   * Enter your name
-   * YOU WIN: if pacman eat all the dots, you win
-   * GAME OVER: if pacman's health is decreased to 0, the game is over
-
-
 ### Class Diagram
+
+The class diagram was initially created as a general blueprint for the game's structure which we would follow to maximise programming cohesion. As our ideas developed and the features we implemented increased, we gradually updated the class diagram and found it to be a useful visual aid throughout the development process, particularly as complexity grew. However, due to the speed of feature increments, the class diagram became a 'documentation' tool as opposed to a planning tool as we predominantly referred back to it during team meetings when presenting what changes we had made to the system. Although, it did aid in the development process as we were able to easily spot a few circular dsign malpractices and refactor them.
 
 <div align=center>
    <img src="asset/ClassDiagram.png"/>
 </div>
 
+<br>
+
 ### Behavioural Diagram
+
+As the complexity of the class diagram grew, it became increasingly difficult to decipher at a glance. We decided it would be beneficial to create a behavioural diagram to show the intended program flows.
 
 <div align=center>
    <img src="asset/BehaviouralDiagram.png"/>
@@ -200,9 +180,36 @@ To ensure the entire team was was on the same page regarding system-user interac
 
 ---
 
-# PART 5: IMPLEMENTATION
+## PART 4: DESIGN
 
-## Challenges
+### System Architecture Overview
+
+* Start Menu
+   * START: start the main game.
+   * LEVEL: choose the difficulty of the game, 5 levels in total, higher levels equates to higher difficulty and a higher score multiplier.
+   * RANKING: show the 5 top scoring players in the ranking list.
+   * HELP: show the functionality of the user interface in the main game.
+   * EXIT：exit the game.
+ 
+* Main Game
+  * Player places blocks to stop ghosts from catching Pacman and ensuring Pacman consumes all pellets.
+
+<div align=center>
+   <img src="asset/Help.png"/>
+</div>
+
+* End Scene
+   * YOU WIN: if all pellets are consumed, the player wins and is asked to enter their name and score.
+   * GAME OVER: if Pacman's health is decreased to 0, the game is over and the player is asked to enter their name and score.
+
+<br>
+
+---
+
+## PART 5: IMPLEMENTATION
+
+### Challenges
+
 **1. Pacman and ghosts's movement logic design & implementation:**
 
 This proved to be the most challenging of our three challenges because of several reasons: 
