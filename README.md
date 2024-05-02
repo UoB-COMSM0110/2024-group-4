@@ -21,6 +21,7 @@ Nicky Dickson   kr23498@bristol.ac.uk   nd1221
 <div align=center>
    <img src="asset/StartMenu.png"/>
 </div>
+_Sprite credit: The Pixel Master_
 
 ### Game Introduction
 
@@ -361,9 +362,9 @@ During the develop process of the game, we mainly use WhatsApp to keep in contac
 
 ## PART 8: CONCLUSION
 
-First of all, we learned a lot during this game development process like the use and application of different development techniques and tools, and how to design and implement a project as a team. And we also gained more experience on how to solve a problem like a tricky bug by discussion in the team and teamwork, which will be very helpful when we go to work in the company. Besides, we also learned about how to schedule the work and divide the work to each member in the team evenly. Last but not the least, we have a wonderful and interesting teamwork experience in this game develop project, which will not only benefit our future development in the software engineering area, but also will be a fantastic memory in our lives.
+This game development process has taught us a lot about the application of different development tools and techniques. We gained valuable insight into planning and executing a complex project using an agile ethos and an appreciation of the benefits stemming from repeated agile iterations. With regular playtesting and being in constant communication during development, we were able to identify and fix bugs quickly. The regular team meetings coupled with consistent project updates allowed us to be flexible in development and enabled us to temporarily assume others' roles if they were unavailable without any significant issues. Moving forward, we would benefit most by more carefully considering use cases and user stories during the ideation and requirements phase. Many of our issues regarding balancing the difficulty ultimately stemmed from a less than thorough analysis of the project's various flows and end states.
 
-If we had the time and resources to develop the game further the features we would want to add are: multiplayer mode, which will allow two people to play the game - one of them controls the pacman movement while the other place the block; infinite mode, which will have a map generator to produce infinite maps, the pacman will move to next map after it eats all the dots in the current map; reverse mode, in this mode, player's goal will change from keep pacman alive to help ghosts catch pacman, in this mode, the ai of the pacman will be very smart while the ai of the ghost will be not so smart.
+If we had time and resources (and maybe an extra team member) to develop the game further, we would implement some features that are already coded into the game, but we didn't have time to fully integrate. These include extra ghosts (namely Sue, Funky and Spunky) and extra game states such as the frightened ghost state. The current Pathfinder and Animation classes should make their integration relatively easy. The original inspiration for the game was to take a classic game and give the player a role they would not normally play, in this case the player is playing as the game level itself. So additional development could include the addition of power ups that the player must guide Pacman towards and ghosts away from, or the addition of items which damage/alter the level, such as bombs to destroy walls or create holes in the floor that must be avoided.
 
 <br>
 
