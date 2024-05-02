@@ -123,7 +123,7 @@ We identified the following stakeholders:
 
 <br>
 
-## Use-case specifications
+### Use-case specifications
 
 _Easy Mode:_
 Ghosts move randomly
@@ -150,11 +150,7 @@ Ghosts chase player
 
 ## Use-case diagram
 
-<div align=center>
-   <img src="asset/UseCaseDiagram.png"/>
-</div>
-
-## Reflection
+### Reflection
 
 In the early stage design of the game, we learned that:
 
@@ -170,6 +166,11 @@ In the early stage design of the game, we learned that:
 
 Both user story and use case play crucial roles in game development, ensuring that games are not only technically sound but also engaging and enjoyable for players.
 
+<div align=center>
+   <img src="asset/UseCaseDiagram.png"/>
+</div>
+
+<br>
 
 # PART 4: DESIGN
 
