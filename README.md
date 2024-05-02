@@ -212,9 +212,9 @@ We identified a series of challenges in making such a game. These included how t
 
 ### Challenges
 
-**1. Pacman and ghosts's movement logic design & implementation:**
+**1. Pacman and ghosts' movement logic, design and implementation:**
 
-This proved to be the most programming-complex of our three challenges because it entailed creating a tilemap to overlay the game map, a collision detection system which restricted sprites to orthogonal paths within the tilemap and implementing pathfinding algorithms to guide moveable entities. Despite this, the implementation did not end up being as difficult as we had thought.
+This proved to be the most programmingly complex of our three challenges because it entailed creating a tilemap to overlay the game map, a collision detection system which restricted sprites to orthogonal paths within the tilemap and implementing pathfinding algorithms to guide moveable entities. Despite this, the implementation did not end up being as difficult as we had thought.
 
 We decided to use the A* algorithm to determine the ghosts' movement and return the shortest path between a given ghost and Pacman. A* was chosen due to its completeness, efficiency and optimality guaranteeing it would return the best possible path. We also implemented the breath first search algorithm and incorporated it into Pacman's late-game movement logic to allow him to move to the nearest unknown pellet (which precluded reusing A*). These were packaged in the Pathfinder class.
 
