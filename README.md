@@ -148,23 +148,9 @@ Ghosts chase player
 
 <br>
 
-## Use-case diagram
+### Use-case diagram
 
-### Reflection
-
-In the early stage design of the game, we learned that:
-
-* User Story:
-1. A user story is a non-technical description of how a player interacts with an element in a game. It focuses on the player’s experience, emotions, and the narrative they derive from the interaction.
-2. Game designers use user stories to explain why a game needs a specific feature. Instead of using technical jargon, they create relatable scenarios.
-
-* Use Case:
-1. Use cases provide an in-depth look at system behavior. They outline all the steps required to achieve a desired goal.
-2. Unlike user stories, use cases are more detailed and focus on system requirements. They help developers understand how different components interact.
-3. For game development, use cases might describe scenarios like player login, combat mechanics, or inventory management. They guide the implementation process.
-4. In summary, use cases offer context, planning structure, and a comprehensive understanding of system behavior.
-
-Both user story and use case play crucial roles in game development, ensuring that games are not only technically sound but also engaging and enjoyable for players.
+To ensure the entire team was was on the same page regarding system-user interactions and the functional requirements of the game, we made use of several UML techniques. The use-case diagram was intended to act as a quick reference to show what our desired system behaviour is and how the different (planned) components should eventually interact with each other.  
 
 <div align=center>
    <img src="asset/UseCaseDiagram.png"/>
