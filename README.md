@@ -265,6 +265,8 @@ This challenge might be the easiest challenge among these three challenges, but 
 
 ## Qualitative Evaluation
 
+* In this part, we have a set of 5 people to do the qualitative evaluation in order to produce some advice for the game development.
+
 **Heuristic Evaluation**
 * Project Title: Pacman Savior
 ![](asset/HeuristicEvaluation.png)
@@ -274,6 +276,8 @@ This challenge might be the easiest challenge among these three challenges, but 
 3. Add more difficulties to the game to add different experience.
 
 ## Quantitative Evaluation
+
+* In this part, we have a set of 10 people to do the quatitative evaluation in order to produce some evluation for the different game difficulties.
 
 ### - GAME LEVEL 2 -
 
