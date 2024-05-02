@@ -26,7 +26,7 @@ Nicky Dickson   kr23498@bristol.ac.uk   nd1221
 
 Our game is a redesign of the classic Pac-Man created by Namco in 1980 featuring an added twist. Just as in the original, the goal remains for Pacman to travel across the game map, eating pellets and avoiding ghosts. However, in the original, the player has direct control of pacman and is free to decide where and how Pacman should move. In our version, the player has no control whatsoever, they are only allowed to manipulate the map itself by strategically placing blocks to block certain paths Pacman or the ghosts may take acting as a saviour-slash-personal-assistant to Pacman. Both the ghosts' and Pacman's movements are AI controlled and the player's job is to guide Pacman towards his goal of eating all pellets in the map whilst making sure the ghosts stay clear. With every pellet eaten, the player receives a payment which can be spent to purchase extra blocks or blocks with special abilities.
 
-We identified a series of challenges in making such a game. These included how to design and program different kinds of blocks, how to design the AI for the character and the ghosts and how to balance the game difficulty.
+<br>
 
 ---
 
@@ -160,7 +160,7 @@ To ensure the entire team was was on the same page regarding system-user interac
 
 ### Class Diagram
 
-The class diagram was initially created as a general blueprint for the game's structure which we would follow to maximise programming cohesion. As our ideas developed and the features we implemented increased, we gradually updated the class diagram and found it to be a useful visual aid throughout the development process, particularly as complexity grew. However, due to the speed of feature increments, the class diagram became a 'documentation' tool as opposed to a planning tool as we predominantly referred back to it during team meetings when presenting what changes we had made to the system. Although, it did aid in the development process as we were able to easily spot a few circular dsign malpractices and refactor them.
+The class diagram was initially created as a general blueprint for the game's structure which we would follow to maximise programming cohesion. As our ideas developed and the features we implemented increased, we gradually updated the class diagram and found it to be a useful visual aid throughout the development process, particularly as complexity grew. However, due to the speed of feature increments, the class diagram became a 'documentation' tool as opposed to a planning tool as we predominantly referred back to it during team meetings when presenting what changes we had made to the system. Although, it did aid in the development process as we were able to easily spot a few circular design malpractices and refactor them.
 
 <div align=center>
    <img src="asset/ClassDiagram.png"/>
@@ -208,46 +208,26 @@ As the complexity of the class diagram grew, it became increasingly difficult to
 
 ## PART 5: IMPLEMENTATION
 
+We identified a series of challenges in making such a game. These included how to design and program different kinds of blocks, how to design the AI for the character and the ghosts and how to balance the game difficulty.
+
 ### Challenges
 
 **1. Pacman and ghosts's movement logic design & implementation:**
 
-This proved to be the most challenging of our three challenges because of several reasons: 
+This proved to be the most programming-complex of our three challenges because it entailed creating a tilemap to overlay the game map, a collision detection system which restricted sprites to orthogonal paths within the tilemap and implementing pathfinding algorithms to guide moveable entities. Despite this, the implementation did not end up being as difficult as we had thought.
 
-First of all is the pacman's movement logic, in the early design stage, the pacman's movement logic is very complex in order to make it smart enough to eat all the dots, however, after we actually played the game, we found that it would be too easy for the player to win the game if we make the pacman so smart, so in the end we decide to make it not so smart so the player would need to use block to guide the pacman, in this way, the game is more interesting to play. 
+We decided to use the A* algorithm to determine the ghosts' movement and return the shortest path between a given ghost and Pacman. A* was chosen due to its completeness, efficiency and optimality guaranteeing it would return the best possible path. We also implemented the breath first search algorithm and incorporated it into Pacman's late-game movement logic to allow him to move to the nearest unknown pellet (which precluded reusing A*). These were packaged in the Pathfinder class.
 
-Then, it was the ghosts' movement logic, which is also a ticky one, because there are four ghosts in our game, and each of them had a different movement logic according to the traditional pacman game, it took us quite some time to implement the four different movement logics to the ghosts. The main algorithm we used is called the A search algorithm, often pronounced as “A-star,” it is a powerful graph traversal and pathfinding technique. Let me break it down:
+The difficulty regarding this challenge came in interfacing the tilemap with the game map. The tilemap is comprised of nodes, each holding the relevant information needed to calculate the above algorithms (fCost, hCost, etc.), so the Pathfinder class returned the the optimal path to a target _tile_ on the tilemap rather than a target position on the game map itself. Given that entities were restricted to orthogonal movements, we could not just send a sprite to its target by altering its x and y coordinates without vbreaking the collision detection system. The solution we found was to simply calculate the position of the next tile in the optimal path relative to a moveable entity's current tile and use it to set that entity's movement direction and repeat until the entity had collided with its target.
 
-Objective:
-Given a weighted graph, a source node, and a goal node, A* aims to find the shortest path (with respect to the given weights) from the source to the goal.
 
-Key Features:
-Completeness: A* guarantees that it will find a solution if one exists.
-Optimality: It finds the optimal path (minimizing the total cost) among all possible paths.
-Efficiency: A* efficiently explores the graph by using heuristics to guide its search.
 
-Heuristics:
-A* extends Dijkstra’s algorithm by incorporating heuristics.
-It evaluates nodes based on a combination of two factors:
-g(n): The actual cost from the start node to node n.
-h(n): The estimated distance from node n to the goal node.
-The evaluation function is f(n) = g(n) + h(n).
 
-Trade-Off:
-Unlike Dijkstra’s algorithm, which generates the entire shortest-path tree, A* focuses on finding the shortest path from the source to a specific goal.
-This trade-off allows A* to use a goal-directed heuristic and achieve better performance.
+Initially, we intended for Pacman's movements to be driven by a breath first search algorithm to always guide him to the nearest pellet so that the player could just focus on repelling ghosts. After a few playtesting sessions, we realised ths presented no real challenge so decided to gradually increase his 'intelligence' based on how many ghosts are currently released in the map. 
 
-Origins:
-A* was invented by researchers working on the Shakey the Robot project in the late 1960s.
-It builds upon the Graph Traverser algorithm, which used a heuristic function h(n).
-Peter Hart introduced the concepts of admissibility and consistency of heuristic functions.
+<br>
 
-Space Complexity:
-A* stores all generated nodes in memory, which can be a drawback in terms of space.
-In practical travel-routing systems, other algorithms may outperform A* due to memory constraints.
-Nevertheless, A* remains the best solution for many cases.
-
-**2. Interaction between blocks and other things:**
+**2. Interaction between blocks and moveable entities:**
 
 This challenge may look like that it is not so difficult, but it was actually quite a challenge during the implementation. In our game design, there are four kinds of blocks which have different function: the basic block, the most fundamental block, has no function other than blocking the path; the slow block, other than its block path function, it can also slow the speed of the ghosts when it exist; the stop block, other than its block path function, it can also stop the ghosts when it exist; the transport block, it can not block the path but it can transport pacman to the select place. 
 
@@ -255,15 +235,19 @@ In our early design of our game, we didn't set a limit for the blocks, player ca
 
 During the test stage of the game, we found a mysterious bug: after we destroied the slow block or the stop block, the ghosts' movement logic broke sometimes, they will just moved straight out of the bound of the map, it was quite a strange bug since it wasn't happen all the time, sometimes it happened, sometimes it didn't, it took us quite some time to find out what trigger this bug: if we change the ghosts' speed after they leave the last grid and before they reach the next grid, its movement logic will broke, we then implemented a check function to make sure that their speed will only change after they reach the grid.
 
+<br>
 
 **3. How to balance different difficulties and the price of the blocks:**
 
 This challenge might be the easiest challenge among these three challenges, but it did took us some time to balance the difficulties and the prices of the blocks. There are five levels of difficulty in our game, each level has a different map, at first, our thought was changed the speed of the ghosts to seperate different difficulties, but after we test it, we found out that the game would be very difficult even if we changed the speed just multiplied by two, so we decided to use another method to seperate the difficulties, since there are four ghosts in our game, we set a different release time according to the level that player chose, higher level means that all the four ghost will be released earlier, we seperate different release time by counting the dot pacman ate. As for the price of the blocks, the only problem is that the stop block is too powerful, the player can win easily with it, so we set the price of the stop block to a very high price to make sure that the player cannot put the stop block in the early stage of the main game.
 
+<br>
 
-# PART 6: EVALUATION
+---
 
-## Qualitative Evaluation
+## PART 6: EVALUATION
+
+### Qualitative Evaluation
 
 * In this part, we have a set of 5 people to do the qualitative evaluation in order to produce some advice for the game development.
 
@@ -275,13 +259,16 @@ This challenge might be the easiest challenge among these three challenges, but 
 2. Add more instructions for the game to guide the players.
 3. Add more difficulties to the game to add different experience.
 
-## Quantitative Evaluation
+<br>
+
+### Quantitative Evaluation
 
 * In this part, we have a set of 10 people to do the quatitative evaluation in order to produce some evluation for the different game difficulties.
 
-### - GAME LEVEL 2 -
+### - GAME EASY LEVEL -
 
 **NASA TLX**
+
 | Player No | Mental demand | Physical demand | Temporal demand | Performance | Effort | Frustration | Raw score |
 | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 | 1 | 15 | 10 | 15 | 20 | 30 | 10 | 17 |
@@ -296,6 +283,7 @@ This challenge might be the easiest challenge among these three challenges, but 
 | 10 | 20 | 15 | 20 | 20 | 35 | 10 | 20 |
 
 **System Usability Scale**
+
 | Question No \ Player No | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 
 | --------------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
 | 1. I think that I would like to use this system frequently. | 4 | 5 | 4 | 3 | 4 | 3 | 5 | 4 | 4 | 5 |
@@ -310,9 +298,10 @@ This challenge might be the easiest challenge among these three challenges, but 
 | 10. I needed to learn a lot of things before I could get going with this system. | 1 | 1 | 2 | 2 | 3 | 2 | 2 | 2 | 1 | 1 |
 | System Usability Survey Score | 85 | 87.5 | 77.5 | 70 | 80 | 80 | 82.5 | 90 | 82.5 | 87.5 |
 
-### - GAME LEVEL 4 -
+### - GAME HARD LEVEL -
 
 **NASA TLX**
+
 | Player No | Mental demand | Physical demand | Temporal demand | Performance | Effort | Frustration | Raw score |
 | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
 | 1 | 20 | 15 | 20 | 25 | 35 | 15 | 22 |
@@ -326,7 +315,10 @@ This challenge might be the easiest challenge among these three challenges, but 
 | 9 | 25 | 20 | 30 | 35 | 25 | 25 | 26 |
 | 10 | 20 | 25 | 20 | 30 | 35 | 20 | 25 |
 
+<br>
+
 **System Usability Scale**
+
 | Question No \ Player No | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 
 | --------------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | 
 | 1. I think that I would like to use this system frequently. | 4 | 5 | 4 | 3 | 4 | 3 | 5 | 4 | 4 | 5 |
@@ -341,14 +333,19 @@ This challenge might be the easiest challenge among these three challenges, but 
 | 10. I needed to learn a lot of things before I could get going with this system. | 1 | 1 | 2 | 2 | 3 | 2 | 2 | 2 | 1 | 1 |
 | System Usability Survey Score | 85 | 87.5 | 77.5 | 70 | 80 | 80 | 82.5 | 90 | 82.5 | 87.5 |
 
+<br>
 
-# PART 7: PROCESS
+---
+
+## PART 7: PROCESS
 
 In the early design stage of the game, we mainly used WhatsApp to discuss the ideas of our game online, and sometimes we had meetings at MVB to have a deeper discussion as well. This is the time when we gave different thoughts about what kind of game we wanted to develop, and how to add a good twist to it to make it more special. After considering the develop difficulties of all the ideas, we chose pacman savior in the end.
 
 During the develop process of the game, we mainly use WhatsApp to keep in contact, Skype to have online meeting, and GitHub to keep a track of our changes. Normally, on the Monday of each week, we would have a online / offline meeting to discuss what should we do in this week, and divide different work that each of us should do carefully in order to prevent conflict when we push code to GitHub. When we meet a bug during the development, we would discuss the bug together by WhatsApp first if the bug is not so hard to solve, if we found out that it was a tricky one, we would discuss it by Skype so that we can share our screens to have a deeper communication about how to solve the bug.
 
 * Here are our roles in this game project:
+
+<br>
 
 | Juean Chen                                | Xiaokang Fan                         | Nicky Dickson                        |
 |-------------------------------------------|--------------------------------------|--------------------------------------|
@@ -363,15 +360,21 @@ During the develop process of the game, we mainly use WhatsApp to keep in contac
 |                                           | Fix some bugs                        |                                      |
 |                                           | Algorithm optimization               |                                      |
 
+<br>
 
-# PART 8: CONCLUSION
+---
+
+## PART 8: CONCLUSION
 
 First of all, we learned a lot during this game development process like the use and application of different development techniques and tools, and how to design and implement a project as a team. And we also gained more experience on how to solve a problem like a tricky bug by discussion in the team and teamwork, which will be very helpful when we go to work in the company. Besides, we also learned about how to schedule the work and divide the work to each member in the team evenly. Last but not the least, we have a wonderful and interesting teamwork experience in this game develop project, which will not only benefit our future development in the software engineering area, but also will be a fantastic memory in our lives.
 
 If we had the time and resources to develop the game further the features we would want to add are: multiplayer mode, which will allow two people to play the game - one of them controls the pacman movement while the other place the block; infinite mode, which will have a map generator to produce infinite maps, the pacman will move to next map after it eats all the dots in the current map; reverse mode, in this mode, player's goal will change from keep pacman alive to help ghosts catch pacman, in this mode, the ai of the pacman will be very smart while the ai of the ghost will be not so smart.
 
+<br>
 
-# INDIVIDUAL CONTRIBUTION
+---
+
+## INDIVIDUAL CONTRIBUTION
 
 * Juean Chen: 1.00
 * Xiaokang Fan: 1.00
