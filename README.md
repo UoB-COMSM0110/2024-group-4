@@ -172,9 +172,11 @@ Both user story and use case play crucial roles in game development, ensuring th
 
 <br>
 
-# PART 4: DESIGN
+---
 
-## System Architecture
+## PART 4: DESIGN
+
+### System Architecture
 
 * Start Menu
    * START: start the main game
@@ -196,18 +198,21 @@ Both user story and use case play crucial roles in game development, ensuring th
    * GAME OVER: if pacman's health is decreased to 0, the game is over
 
 
-## Class Diagram
+### Class Diagram
 
 <div align=center>
    <img src="asset/ClassDiagram.png"/>
 </div>
 
-## Behavioural Diagram
+### Behavioural Diagram
 
 <div align=center>
    <img src="asset/BehaviouralDiagram.png"/>
 </div>
 
+<br>
+
+---
 
 # PART 5: IMPLEMENTATION
 
